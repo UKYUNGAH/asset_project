@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>보상의 신 | 보상 상담</title>
+        <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+
+        <!-- reset.css: 브라우저 기본 스타일 초기화 -->
+        <link rel="stylesheet" href="/styles/reset.css" />
+        <!-- common.css: 헤더, 푸터, 버튼 등 공통 요소 스타일 -->
+        <link rel="stylesheet" href="/styles/common.css" />
+        <!-- style.css: 각 페이지별 고유 스타일 -->
+        <link rel="stylesheet" href="/styles/style.css" />
+
+        <!-- JS -->
+        <script src="/js/script.js" defer></script>
+    </head>
+
+    <body>
+        <!-- *PAGE: 보상상담 페이지
+        *공통 스타일은 common.css에 정의되어 있습니다.
+        *개별 페이지 스타일은 style.css에서 관리합니다! -->
+
+        <!-- 헤더 - 공통
+        *클래스 on으로 글씨 블루 색상 적용했습니다 -->
+        <header class="header">
+            <div class="header_wrap">
+                <div class="container">
+                    <div class="inner">
+                        <h1 class="logo">
+                            <a href="/index.html">
+                                <img src="/images/logo.png" alt="보상의 신" />
+                            </a>
+                        </h1>
+
+                        <!-- PC용 GNB -->
+                        <nav class="gnb">
+                            <ul>
+                                <li><a href="/insurance_claim.html">보험금청구</a></li>
+                                <li><a href="/claim_back.html">못받은 보험금</a></li>
+                                <li><a href="/counseling.html" class="on">보상상담</a></li>
+                                <li><a href="/about.html">회사소개</a></li>
+                            </ul>
+                        </nav>
+
+                        <!-- 모바일용 햄버거 버튼 -->
+                        <button class="ham_btn" aria-label="메뉴 열기">
+                            <img class="ham_icon" src="/images/ham_btn.png" alt="메뉴 버튼" />
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 📱 모바일 전용 GNB -->
+                <nav class="ham_gnb">
+                    <ul>
+                        <li><a href="/insurance_claim.html">보험금청구</a></li>
+                        <li><a href="/claim_back.html">못받은 보험금</a></li>
+                        <li><a href="/counseling.html" class="on">보상상담</a></li>
+                        <li><a href="/about.html">회사소개</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main class="counseling">
+            <!-- 간단한 회사소개 및 서비스 설명 영역 -->
+            <section class="intro">
+                <div class="container">
+                    <h2>
+                        <span class="blue">전문 손해사정사</span>와<br />
+                        전략적 업무 협약을 맺은 보상의 신
+                    </h2>
+                    <p>전문 손해사정사와 보상의 신이 전문적이고 꼼꼼한 보상 상담을 약속 드려요</p>
+                    <p>보상의 신 전문 손해사정사는 신속하고 공정한 보상 상담을 보장해요</p>
+                </div>
+            </section>
+
+            <!-- 프로모션 영역 -->
+            <section class="promotion">
+                <!-- 서비스 홍보 및 손해사정사 자격 안내 -->
+                <div class="container">
+                    <div class="text_content">
+                        <img src="/images/bg_counseling.png" alt="" />
+                        <div class="inner">
+                            <h3 class="title">궁금한 점은<br />언제든 문의 주세요!</h3>
+                            <div class="sub_title">
+                                <p class="b_top">
+                                    고객의 입장에서<br />
+                                    언제나 함께 하는 보상의 신
+                                </p>
+                                <p class="b_bottom">전문 손해사정 상담 서비스</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 서비스 리스트 - 손해사정사 종류별 안내 -->
+                    <ul class="service_list">
+                        <li class="service_item">
+                            <div class="info">
+                                자동차보험<br />
+                                (대물보상)<br />
+                                손해사정<br />
+                            </div>
+                            <div class="qualification">제 2종 손해사정사</div>
+                        </li>
+                        <li class="service_item">
+                            <div class="info">
+                                자동차보험<br />
+                                (대인보상)<br />
+                                손해사정<br />
+                            </div>
+                            <div class="qualification">제 1종 손해사정사</div>
+                        </li>
+                        <li class="service_item">
+                            <div class="info">
+                                장기보험<br />
+                                손해사정
+                            </div>
+                            <div class="qualification">제 1종 손해사정사</div>
+                        </li>
+                        <li class="service_item">
+                            <div class="info">
+                                화재 · 특종<br />
+                                손해사정
+                            </div>
+                            <div class="qualification">제 3종 손해사정사</div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- FAQ(사례 소개) 영역 
+                * 아코디언 형태로 구현 -->
+            <section class="faq">
+                <div class="container">
+                    <h3>
+                        손해사정 전문가의
+                        <span class="blue">사례 소개</span>
+                    </h3>
+
+                    <div class="faq_item">
+                        <div class="case">
+                            <h4>
+                                <span class="blue2">1. </span>
+                                척추 압박골절
+                            </h4>
+                            <p>
+                                넘어졌을 뿐인데 척추 압박골절?<br />
+                                손해사정을 통해 충분한 보험금을 받으세요.
+                            </p>
+                            <img src="/images/arr_dwon_icon.png" alt="펼쳐보기" />
+                        </div>
+                        <ul class="content">
+                            <li class="list">
+                                <strong class="question blue">Q1) 척추 압박골절, 왜 손해사정이 중요할까요?</strong>
+                                <div class="answer">
+                                    <p>
+                                        척추 압박골절은 단순한 골절이 아닙니다. 치료비 보상만으로는 충분하지 않습니다.
+                                    </p>
+                                </div>
+                                <div class="answer custom_answer">
+                                    <strong class="answer_title">후유장해 진단 :</strong>
+                                    <p>
+                                        척추 압박골절은 후유 장해로 이어질 가능성이 높습니다. <br />후유장해 진단을 통해
+                                        장해 보험금을 추가로 받을 수 있습니다.
+                                    </p>
+                                </div>
+                                <div class="answer custom_answer">
+                                    <strong class="answer_title">정확한 장해율 산정 :</strong>
+                                    <p>
+                                        장해율은 보험금 지급액을 결정하는 중요한 요소입니다. <br />하지만 보험사는
+                                        자체적인 기준으로 장해율을 낮게 평가하는 경우가 많습니다.<br />
+                                        손해사정사를 통해 정당한 장해율을 산정 받으셔야 합니다.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="list">
+                                <strong class="question blue">
+                                    Q2) 척추 압박골절, 어떤 경우에 보험금을 받을 수 있나요?
+                                </strong>
+                                <div class="answer">
+                                    <p>
+                                        척추 압박골절은 다양한 원인으로 발생할 수 있으며, 개인 보험 가입 여부와 사고
+                                        원인에 따라<br />
+                                        보험금 지급 가능성이 달라집니다.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="list">
+                                <strong class="question blue">Q3) 왜 손해사정 전문가에게 맡겨야 할까요?</strong>
+                                <div class="answer">
+                                    <p>
+                                        척추 압박골절 보험금 청구는 복잡하고 까다로운 절차를 거쳐야 합니다.<br />일반인이
+                                        혼자 진행하기에는 어려움이 많습니다.
+                                    </p>
+                                </div>
+                                <div class="answer custom_answer">
+                                    <strong class="answer_title">복잡한 보험약관 해석 :</strong>
+                                    <p>
+                                        보험 약관은 일반인이 이해하기 어렵게 되어 있습니다. <br />손해사정사를 통해
+                                        약관을 정확하게 해석하고 고객님에게 유리한 방향으로 도움을 받으세요.
+                                    </p>
+                                </div>
+                                <div class="answer custom_answer">
+                                    <strong class="answer_title">의학적 지식 :</strong>
+                                    <p>
+                                        척추 압박골절은 의학적 판단이 중요합니다. 손해사정사는 의무 기록을 분석하고,<br />
+                                        필요한 경우 의료 자문을 통해 객관적인 근거를 확보해 드립니다.
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="faq_item">
+                        <div class="case">
+                            <h4>
+                                <span class="blue2">2. </span>
+                                난소 경계성 종양
+                            </h4>
+                            <p>
+                                난소 경계성 종양 진단!<br />
+                                흔한 문제라고 넘기지마시고 보험금 받아가세요.
+                            </p>
+                            <img src="/images/arr_dwon_icon.png" alt="펼쳐보기" />
+                        </div>
+                        <ul class="content">
+                            <li class="list">
+                                <strong class="question blue"> Q1) 난소 경계성 종양, 왜 손해사정이 중요할까요? </strong>
+                                <div class="answer">
+                                    <p>
+                                        난소 경계성 종양은 암 발전 가능성을 가진 질환입니다. 수술 후에도 재발의 위험성
+                                        때문에<br />
+                                        지속적인 관리가 필요하며, 그로 인해 경제적인 부담이 발생할 수 있습니다.
+                                    </p>
+                                </div>
+                                <div class="answer custom_answer">
+                                    <strong class="answer_title">암 보험금 지급 가능성 :</strong>
+                                    <p>
+                                        난소 경계성 종양은 암으로 분류되지 않아 암 보험금을 받기 어렵습니다.<br />
+                                        따라서 종양의 종류, 병리학적 진단, 치료 방법 등에 맞추어 암 보험금 지급 가능성을
+                                        꼼꼼히 검토해야 합니다.
+                                    </p>
+                                </div>
+                                <div class="answer custom_answer">
+                                    <strong class="answer_title">후유장해 진단 :</strong>
+                                    <p>난소 부속기 절제로 인해 장해 및 납입면제에 해당되는지 검토해야 합니다</p>
+                                </div>
+                                <div class="answer custom_answer">
+                                    <strong class="answer_title">정확한 진단금 산정 :</strong>
+                                    <p>
+                                        보험사는 자체적인 기준으로 진단금 지급액을 낮게 책정 할 수 있습니다.<br />
+                                        손해사정사를 통해 정당한 진단금/장해보험금을 산정 받으세요.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="list">
+                                <strong class="question blue">
+                                    Q2) 난소 경계성 종양, 어떤 경우에 보험금을 받을 수 있나요?
+                                </strong>
+                                <div class="answer">
+                                    <p>
+                                        난소 경계성 종양은<br />
+                                        개인 보험 가입 여부, 보험 종류, 가입 시기 등에 따라 보험금 지급 가능성이
+                                        달라집니다.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="list">
+                                <strong class="question blue"> Q3) 왜 손해사정 전문가에게 맡겨야 할까요? </strong>
+                                <div class="answer">
+                                    <p>
+                                        난소 경계성 종양 보험금 청구는 과정이 복잡합니다. 일반인 혼자 진행하기에는
+                                        어려움이 많습니다.
+                                    </p>
+                                </div>
+                                <div class="answer custom_answer">
+                                    <strong class="answer_title">보험사 대응 :</strong>
+                                    <p>
+                                        보험사는 다양한 이유로 보험금 지급을 거부하거나 축소합니다. <br />전문 지식과
+                                        경험을 바탕으로 한 손해사정사의 보험사 협상을 통해 고객님의 권익을 보호
+                                        받으세요.
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="faq_item">
+                        <div class="case">
+                            <h4>
+                                <span class="blue2">3. </span>
+                                경동맥 협착(I65)
+                            </h4>
+                            <p>
+                                경동맥 협착으로 보험금 청구 분쟁을 겪고 있다면?<br />
+                                제대로 보험금 받는 방법을 알려드릴게요.
+                            </p>
+                            <img src="/images/arr_dwon_icon.png" alt="펼쳐보기" />
+                        </div>
+                        <ul class="content">
+                            <li class="list">
+                                <strong class="question blue">
+                                    Q1) 경동맥 협착(I65), 왜 보험금 청구가 어려울까요?
+                                </strong>
+                                <div class="answer">
+                                    <p>
+                                        경동맥 협착은 뇌로 가는 혈액을 공급하는 중요한 혈관의 협착을 의미합니다.<br />
+                                        하지만, 보험사는 협착 정도나 진단 기준에 따라 보험금 지급을 거부하는 경우가
+                                        많습니다.
+                                    </p>
+                                </div>
+                                <div class="answer custom_answer">
+                                    <strong class="answer_title">협착 정도 :</strong>
+                                    <p>
+                                        보험사는 일반적으로 50% 이상의 협착을 요구합니다.<br />
+                                        50% 미만의 협착은 의미가 없다고 판단하여 보험금 지급을 거부할 수 있습니다.
+                                    </p>
+                                </div>
+                                <div class="answer custom_answer">
+                                    <strong class="answer_title">진단 기준 :</strong>
+                                    <p>
+                                        보험사는 정밀 검사를 요구하며, MRI나 MRA 검사만으로는 불충분하다고 판단할 수
+                                        있습니다. (때에 따라 추가 검사가 필요해집니다.)
+                                    </p>
+                                </div>
+                                <div class="answer custom_answer">
+                                    <strong class="answer_title">고지의무 위반 :</strong>
+                                    <p>
+                                        보험 가입 전 경동맥 협착 소견이 있었다면, 고지의무 위반으로 보험금 청구가 거절될
+                                        수 있습니다.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="list">
+                                <strong class="question blue">
+                                    Q2) 경동맥 협착(I65) 보험금 청구 시 발생하는 분쟁 유형
+                                </strong>
+                                <div class="answer custom_answer">
+                                    <strong class="answer_title">진단비 부지급 :</strong>
+                                    <p>
+                                        보험사는 협착 정도가 미미하거나, 다른 진단명(예: 두통증후군)으로 판단하여
+                                        진단비를 지급하지 않을 수 있습니다.
+                                    </p>
+                                </div>
+                                <div class="answer custom_answer">
+                                    <strong class="answer_title">고지의무 위반 :</strong>
+                                    <p>
+                                        보험 가입 전 경동맥 협착 소견이 있었음에도 불구하고 고지하지 않은 경우, 보험금
+                                        청구가 거절될 수 있습니다.
+                                    </p>
+                                </div>
+                                <div class="answer custom_answer">
+                                    <strong class="answer_title">의료 검토 및 자문 :</strong>
+                                    <p>
+                                        보험사는 의료 검토 및 자문을 통해 진단의 타당성을 재검토할 수 있으며, 이를 통해
+                                        보험금 지급을 거부할 수 있습니다.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="list">
+                                <strong class="question blue"> Q3) 왜 손해사정 전문가에게 맡겨야 할까요?</strong>
+                                <div class="answer">
+                                    <p>
+                                        경동맥 협착 관련 보험금 청구는 과정이 복잡합니다. 일반인 혼자 진행하기에는
+                                        어렵습니다.
+                                    </p>
+                                </div>
+                                <div class="answer custom_answer">
+                                    <strong class="answer_title">보험사 대응 :</strong>
+                                    <p>
+                                        보험사는 다양한 이유로 보험금 지급을 거부하거나 축소합니다. 전문 지식과 경험을
+                                        바탕으로 한 손해사정사의 보험사 협상을 통해 고객님의 권익을 보호 받으세요.
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="faq_item">
+                        <div class="case">
+                            <h4>
+                                <span class="blue2">4. </span>
+                                교통사고 보험금 합의
+                            </h4>
+                            <p>
+                                교통사고로 손목 골절 수술… <br />
+                                보험사와 합의금 산정으로 골머리를 앓고 있다면?
+                            </p>
+                            <img src="/images/arr_dwon_icon.png" alt="펼쳐보기" />
+                        </div>
+                        <ul class="content">
+                            <li class="list">
+                                <strong class="question blue">
+                                    Q1) 요골, 척골 골절 수술, 왜 손해사정이 중요할까요?
+                                </strong>
+                                <div class="answer">
+                                    <p>
+                                        요골과 척골 골절은 복잡한 수술을 요하며, 회복 기간이 길어 경제적 부담이 큽니다.
+                                        <br />
+                                        따라서 정확한 손해액 산정과 보험금 청구가 중요합니다.
+                                    </p>
+                                </div>
+                                <div class="answer custom_answer">
+                                    <strong class="answer_title">수술비 및 치료비 :</strong>
+                                    <p>
+                                        수술 후 회복 과정에서 발생하는 치료비, 약물비, 재활 치료비 등이 포함됩니다.
+                                        손해사정사는 의무 기록을 분석하여 모든 관련 비용을 확인합니다.
+                                    </p>
+                                </div>
+                                <div class="answer custom_answer">
+                                    <strong class="answer_title">경제적 손실 :</strong>
+                                    <p>
+                                        수술 후 일시적으로 일할 수 없는 경우, 잃은 수입을 계산하여 보험금에
+                                        포함시킵니다.
+                                    </p>
+                                </div>
+                                <div class="answer custom_answer">
+                                    <strong class="answer_title">통증 및 고통 :</strong>
+                                    <p>수술 후 발생하는 통증 및 고통은 비경제적 손실로, 배상금에 반영될 수 있습니다.</p>
+                                </div>
+                            </li>
+                            <li class="list">
+                                <strong class="question blue"> Q2) 왜 손해사정 전문가에게 맡겨야 할까요? </strong>
+                                <div class="answer">
+                                    <p>
+                                        교통사고로 인한 요골/척골 골절을 비롯한 여러 가지 유형의 사고는 보험금 청구에
+                                        앞서<br />
+                                        자신이 입은 피해에 대한 의학적 지식과 보험 약관에 대한 깊은 이해를 필요로
+                                        합니다.<br />
+                                        일반인이 혼자 진행하기에는 어려움이 많습니다.
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 푸터 - 공통 -->
+        <footer class="footer">
+            <div class="container">
+                <p class="company_name">
+                    <strong>(주) 보상의 신</strong>
+                </p>
+                <address class="bottom">
+                    <span>사업자 등록번호: 572-49-01070</span>
+                    <span>대표: 양주팔</span>
+                    <span class="company_address"
+                        >34909 대전광역시 중구 계백로 1719, 14층 1412호(오류동, 센트리아오피스텔)</span
+                    >
+                </address>
+            </div>
+        </footer>
+
+        <!-- 플로팅효과 섹션 -->
+        <div class="floating">
+            <div class="f_container">
+                <h3>보험금 청구 문의</h3>
+
+                <div class="input_wrap">
+                    <div class="input_list">
+                        <input type="text" name="user_name" id="user_name" placeholder="이름 입력" class="item" />
+
+                        <input
+                            type="text"
+                            inputmode="numeric"
+                            pattern="[0-9]*"
+                            name="phone_number"
+                            maxlength="11"
+                            id="phone_number"
+                            placeholder="휴대폰 번호 (-없이 입력)"
+                            class="item"
+                        />
+
+                        <select name="sido" id="sido" class="item select_css s_custom">
+                            <option value="서울" hidden>서울광역시</option>
+                            <option value="대전">대전광역시</option>
+                            <option value="대구">대구광역시</option>
+                            <option value="부산">부산광역시</option>
+                            <option value="인천">인천광역시</option>
+                        </select>
+
+                        <select name="gugun" id="gugun" class="item select_css s_custom">
+                            <option value="강남구" hidden>강남구</option>
+                            <option value="강서구">강서구</option>
+                            <option value="강동구">강동구</option>
+                        </select>
+                    </div>
+
+                    <button type="button" class="click_btn">
+                        상담<br />
+                        신청
+                    </button>
+                </div>
+
+                <div class="checkbox_wrap">
+                    <label for="agree_all">
+                        <input type="checkbox" id="agree_all" name="agree_all" />
+                        <em>전체 동의</em>
+                    </label>
+
+                    <label for="agree_service">
+                        <input type="checkbox" id="agree_service" name="agree_service" />
+                        <em>개인정보 취급방침 및 서비스 이용약관</em>
+
+                        <button type="button">[보기]</button>
+                    </label>
+
+                    <label for="agree_third">
+                        <input type="checkbox" id="agree_third" name="agree_third" />
+                        <em>민감정보 제3자 제공 동의</em>
+
+                        <button type="button">[보기]</button>
+                    </label>
+
+                    <label for="agree_etc">
+                        <input type="checkbox" id="agree_etc" name="agree_etc" />
+                        <em>기타 동의사항</em>
+
+                        <button type="button">[보기]</button>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        const faqItems = document.querySelectorAll('.faq_item');
+
+        faqItems.forEach((item) => {
+            const caseElement = item.querySelector('.case');
+            const content = item.querySelector('.content');
+            const img = caseElement.querySelector('img');
+
+            caseElement.addEventListener('click', () => {
+                const isActive = content.classList.toggle('active');
+
+                // 회전 클래스만 토글
+                img.classList.toggle('rotate', isActive);
+            });
+        });
+    </script>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>보상의 신</title>
+
+        <!-- #ISSUE: 임시로 아무이미지나 파비콘 넣어뒀습니다. 맞는 이미지로 대체해주세요!  -->
+        <!-- favicon -->
+        <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+
+        <!-- SEO용 메타 -->
+        <meta
+            name="description"
+            content="보상의 신에서 5년간의 진료 내역을 조회하고, 못받은 보험금을 간편하게 청구하세요. AI가 꼼꼼하게 도와드립니다!"
+        />
+        <meta name="keywords" content="보험금 청구, 못받은 보험금, 보상상담, 병원서류 발급, 보상의 신" />
+        <meta name="author" content="보상의 신" />
+
+        <!-- Open Graph (공유용) 태그 임시로 넣어뒀는데 필요 없으시다면 삭제하셔도 좋습니다! -->
+        <meta property="og:title" content="보상의 신 - 쉽고 정확한 보험금 청구" />
+        <meta
+            property="og:description"
+            content="보상의 신에서 5년간의 진료 내역을 조회하고, 못받은 보험금을 간편하게 청구하세요. AI가 꼼꼼하게 도와드립니다!"
+        />
+        <!-- images 폴더 안의 og 이미지를 임시로 사용 -->
+        <meta property="og:image" content="https://god-of-rewards.vercel.app/images/og_img.png" />
+        <!-- 실제 도메인으로 변경 필요 -->
+        <meta property="og:url" content="https://" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="보상의 신" />
+
+        <!-- css 스타일 -->
+        <!-- reset.css: 브라우저 기본 스타일 초기화 -->
+        <link rel="stylesheet" href="/styles/reset.css" />
+        <!-- common.css: 헤더, 푸터, 버튼 등 공통 요소 스타일 -->
+        <link rel="stylesheet" href="/styles/common.css" />
+        <!-- style.css: 각 페이지별 고유 스타일 -->
+        <link rel="stylesheet" href="/styles/style.css" />
+
+        <!-- JS -->
+        <script src="/js/script.js" defer></script>
+    </head>
+    <body>
+        <!-- *PAGE: 메인 페이지 
+        *공통 스타일은 common.css에 정의되어 있습니다.
+        *개별 페이지 스타일은 style.css에서 관리합니다! -->
+
+        <!-- 헤더 - 공통
+        *클래스 on으로 글씨 블루 색상 적용했습니다 -->
+        <header class="header">
+            <div class="header_wrap">
+                <div class="container">
+                    <div class="inner">
+                        <h1 class="logo">
+                            <a href="/index.html">
+                                <img src="/images/logo.png" alt="보상의 신" />
+                            </a>
+                        </h1>
+
+                        <!-- PC용 GNB -->
+                        <nav class="gnb">
+                            <ul>
+                                <li><a href="/insurance_claim.html">보험금청구</a></li>
+                                <li><a href="/claim_back.html">못받은 보험금</a></li>
+                                <li><a href="/counseling.html">보상상담</a></li>
+                                <li><a href="/about.html">회사소개</a></li>
+                            </ul>
+                        </nav>
+
+                        <!-- 모바일용 햄버거 버튼 -->
+                        <button class="ham_btn" aria-label="메뉴 열기">
+                            <img class="ham_icon" src="/images/ham_btn.png" alt="메뉴 버튼" />
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 📱 모바일 전용 GNB -->
+                <nav class="ham_gnb">
+                    <ul>
+                        <li><a href="/insurance_claim.html">보험금청구</a></li>
+                        <li><a href="/claim_back.html">못받은 보험금</a></li>
+                        <li><a href="/counseling.html">보상상담</a></li>
+                        <li><a href="/about.html">회사소개</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main class="main">
+            <!-- 배너  - 공통 (common.css)
+                 *각 페이지마다 배너 이미지와 텍스트 내용만 변경됩니다.
+                 (세부적인 스타일은 각 페이지의 style.css에서 조정합니다)
+                 *앱 다운로드 버튼 기능 구현 필요 -->
+            <section class="banner">
+                <img src="/images/main_banner.png" alt="보상의 신 메인 배너 이미지" />
+                <div class="text_wrap">
+                    <h2 class="title">보상의 모든 것</h2>
+                    <p class="sub_title">보상의 신에서 쉽고 간편하고 정확하게</p>
+
+                    <!-- #ACTION: 앱스토어 버튼에 실제 다운로드 링크 연결 필요 -->
+                    <div class="btn_wrap">
+                        <a href="#" type="button">Play Store</a>
+                        <a href="#" type="button">APP Store</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 서비스 소개 영역 -->
+            <div class="text_content">
+                <div class="container">
+                    <h3>
+                        5년간의 진료 내역을 한눈에 조회하고 <br />
+                        못받은 보험금 청구까지 도와드려요!
+                    </h3>
+                    <h4 class="blue">이제껏 경험하지 못했던 쉽고 정확한 보험금 청구</h4>
+                    <h5>보상의 신과 함께라면 당신의 일상이 새로워집니다.</h5>
+                </div>
+            </div>
+
+            <!-- 보험금 청구 서비스 소개 영역 -->
+            <div class="content con1">
+                <div class="container">
+                    <div class="item item1">
+                        <div class="i_l">
+                            <h3 class="blue">보험금 청구</h3>
+                            <h4>절차는 간단하게<br />보상은 든든하게</h4>
+                            <p>
+                                빠뜨리는 보험금 청구 건이 없도록<br />
+                                AI가 꼼꼼하게 도와드립니다.
+                            </p>
+                        </div>
+                        <div class="i_r">
+                            <img src="./images/c1_1.png" alt="진단코드 검색 이미지" />
+                        </div>
+                    </div>
+                    <div class="item item2">
+                        <div class="i_l">
+                            <img src="./images/c1_2.png" alt="못받은 보험금 확인 모달창 이미지" />
+                        </div>
+                        <div class="i_r">
+                            <h4>
+                                못받은 보험금까지<br />
+                                확실하게
+                            </h4>
+                            <p>
+                                몰라서 청구하지 못한 3년 내 보험금까지<br />
+                                추가로 확인해 드려요.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 못받은 보험금 서비스 소개 영역 -->
+            <div class="content con2">
+                <div class="container">
+                    <div class="item item1">
+                        <div class="i_l">
+                            <h3 class="blue">못받은 보험금</h3>
+                            <h4>3년간 못받은 보험금,<br />간편하게 돌려받으세요</h4>
+                            <p>
+                                빠뜨리는 보험금 청구 건이 없도록<br />
+                                AI가 꼼꼼하게 도와드립니다.
+                            </p>
+                        </div>
+                        <div class="i_r">
+                            <img src="./images/c2_1.png" alt="찾은 보험금 이미지" />
+                        </div>
+                    </div>
+                    <div class="item item2">
+                        <div class="i_l">
+                            <img src="./images/c2_2.png" alt="수술비, 진단비 안내 이미지" />
+                        </div>
+                        <div class="i_r">
+                            <p>
+                                수술비, 진단비 등도<br />
+                                추가로 받으실 수 있어요.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 병원서류 발급 서비스 소개 영역 -->
+            <div class="content con3">
+                <div class="container">
+                    <div class="item item1">
+                        <div class="i_l">
+                            <h3 class="blue">병원서류 발급</h3>
+                            <h4>초간편 보험금 청구</h4>
+                            <p>
+                                보상의 신으로 언제 어디에서나<br />
+                                간편하게 보험금 청구하세요!
+                            </p>
+                        </div>
+                        <div class="i_r">
+                            <img src="./images/c3_1.png" alt="청구서 업로드 이미지" />
+                        </div>
+                    </div>
+                    <div class="item item2">
+                        <div class="i_l">
+                            <img src="./images/c3_2.png" alt="의료비 간편 청구 이미지" />
+                        </div>
+                        <div class="i_r">
+                            <h4>의료비 간편청구</h4>
+                            <ul>
+                                <li>전자 청구서로 간편하게 청구 가능</li>
+                                <li>언제 어디에서나 증명서 발급 가능</li>
+                                <li>한꺼번에 여러 보험사 청구 가능</li>
+                                <li>일반병원, 치과, 약국 등 서류 발급</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 보상상담 서비스 소개 영역 -->
+            <div class="counsel">
+                <div class="container">
+                    <h3 class="blue">함께 하는 보상상담</h3>
+                    <p>
+                        보상의 신 각 분야 전문 손해사정사가<br />
+                        무료 보상 상담 서비스를 제공해 드립니다.
+                    </p>
+
+                    <!-- 상담 카테고리 리스트 - 총 6개 -->
+                    <div class="counsel_list">
+                        <!-- 교통사고 상담 카테고리 -->
+                        <div class="counsel_item">
+                            <img src="./images/cs_1.png" alt="" />
+                            <div class="ci_r">
+                                <h4 class="title">교통사고</h4>
+                                <ul>
+                                    <li>- 운전자</li>
+                                    <li>- 동승자</li>
+                                    <li>- 그 외 등등</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- 계약분쟁 상담 카테고리 -->
+                        <div class="counsel_item">
+                            <img src="./images/cs_2.png" alt="" />
+                            <div class="ci_r">
+                                <h4 class="title">계약분쟁</h4>
+                                <ul>
+                                    <li>- 고지 의무</li>
+                                    <li>- 통지 의무</li>
+                                    <li>- 그 외 등등</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- 사망 관련 상담 카테고리 -->
+                        <div class="counsel_item">
+                            <img src="./images/cs_3.png" alt="" />
+                            <div class="ci_r">
+                                <h4 class="title">사망</h4>
+                                <ul>
+                                    <li>- 재해(상해) 사망</li>
+                                    <li>- 질병 사망</li>
+                                    <li>- 자살 사망</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- 진단비 상담 카테고리 -->
+                        <div class="counsel_item">
+                            <img src="./images/cs_4.png" alt="" />
+                            <div class="ci_r">
+                                <h4 class="title">진단비</h4>
+                                <ul>
+                                    <li>- 암</li>
+                                    <li>- 뇌졸중</li>
+                                    <li>- 심근경색</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- 배상책임 상담 카테고리 -->
+                        <div class="counsel_item">
+                            <img src="./images/cs_5.png" alt="" />
+                            <div class="ci_r">
+                                <h4 class="title">배상책임</h4>
+                                <ul>
+                                    <li>- 의사 배상책임</li>
+                                    <li>- 제조물 배상책임</li>
+                                    <li>- 학교안전공제</li>
+                                    <li>- 근로자 재해</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- 장해 상담 카테고리 -->
+                        <div class="counsel_item">
+                            <img src="./images/cs_6.png" alt="" />
+                            <div class="ci_r">
+                                <h4 class="title">장해</h4>
+                                <ul>
+                                    <li>- 척추</li>
+                                    <li>- 신경계</li>
+                                    <li>- 운동장해</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 홍보 영역 -->
+            <div class="bot_bar">
+                <div class="container">
+                    <h1>
+                        이제 <span class="blue">보상의 신</span>에서<br />빈틈 없는 <span class="bold">보험관리</span>를
+                        시작해 보세요
+                    </h1>
+                </div>
+            </div>
+        </main>
+
+        <!-- 푸터 - 공통 -->
+        <footer class="footer">
+            <div class="container">
+                <p class="company_name">
+                    <strong>(주) 보상의 신</strong>
+                </p>
+                <address class="bottom">
+                    <span>사업자 등록번호: 572-49-01070</span>
+                    <span>대표: 양주팔</span>
+                    <span class="company_address"
+                        >34909 대전광역시 중구 계백로 1719, 14층 1412호(오류동, 센트리아오피스텔)</span
+                    >
+                </address>
+            </div>
+        </footer>
+
+        <!-- 플로팅효과 섹션 -->
+        <div class="floating">
+            <div class="f_container">
+                <h3>보험금 청구 문의</h3>
+
+                <div class="input_wrap">
+                    <div class="input_list">
+                        <input type="text" name="user_name" id="user_name" placeholder="이름 입력" class="item" />
+
+                        <input
+                            type="text"
+                            inputmode="numeric"
+                            pattern="[0-9]*"
+                            name="phone_number"
+                            maxlength="11"
+                            id="phone_number"
+                            placeholder="휴대폰 번호 (-없이 입력)"
+                            class="item"
+                        />
+
+                        <select name="sido" id="sido" class="item select_css s_custom">
+                            <option value="서울" hidden>서울광역시</option>
+                            <option value="대전">대전광역시</option>
+                            <option value="대구">대구광역시</option>
+                            <option value="부산">부산광역시</option>
+                            <option value="인천">인천광역시</option>
+                        </select>
+
+                        <select name="gugun" id="gugun" class="item select_css s_custom">
+                            <option value="강남구" hidden>강남구</option>
+                            <option value="강서구">강서구</option>
+                            <option value="강동구">강동구</option>
+                        </select>
+                    </div>
+
+                    <button type="button" class="click_btn">
+                        상담<br />
+                        신청
+                    </button>
+                </div>
+
+                <div class="checkbox_wrap">
+                    <label for="agree_all">
+                        <input type="checkbox" id="agree_all" name="agree_all" />
+                        <em>전체 동의</em>
+                    </label>
+
+                    <label for="agree_service">
+                        <input type="checkbox" id="agree_service" name="agree_service" />
+                        <em>개인정보 취급방침 및 서비스 이용약관</em>
+
+                        <button type="button">[보기]</button>
+                    </label>
+
+                    <label for="agree_third">
+                        <input type="checkbox" id="agree_third" name="agree_third" />
+                        <em>민감정보 제3자 제공 동의</em>
+
+                        <button type="button">[보기]</button>
+                    </label>
+
+                    <label for="agree_etc">
+                        <input type="checkbox" id="agree_etc" name="agree_etc" />
+                        <em>기타 동의사항</em>
+
+                        <button type="button">[보기]</button>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
