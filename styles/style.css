@@ -1,5 +1,225 @@
 /* ====================== 메인 페이지   ====================== */
 /* *STYLEPAGE: main - 메인 */
+/* hiro 영역 */
+.hiro {
+    width: 100%;
+    /* height: calc(var(--vh, 1vh) * 100); */
+    height: 100vh;
+    position: relative;
+}
+.hiro img {
+    width: 100%;
+    height: 100%;
+}
+.hiro .hiro_text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+}
+.hiro h2 {
+    font-size: 60px;
+    font-weight: 900;
+    line-height: 1.4;
+    margin-bottom: 120px;
+    background: linear-gradient(135deg, var(--bs-blue) 0%, #5b86c2 50%, var(--bs-blue) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    padding: 5px 10px;
+}
+.hiro span {
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--bs-blue);
+    background: linear-gradient(135deg, var(--bs-blue) 0%, #5b86c2 50%, var(--bs-blue) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    padding: 5px 10px;
+}
+
+/* text section 영역 */
+.text_section {
+    padding: 185px 0;
+    text-align: center;
+}
+.text_section h3 {
+    font-size: 30px;
+    font-weight: 400;
+    margin-bottom: 60px;
+}
+.text_section h4 {
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--bs-blue);
+}
+
+/* 영업카드 영억 */
+.business {
+    padding: 180px 0;
+    text-align: center;
+    background: var(--bs-bg-gray);
+}
+.business h3 {
+    margin-bottom: 50px;
+    font-size: 50px;
+    font-weight: 700;
+}
+.business h3 span {
+    color: var(--bs-blue);
+}
+.business h4 {
+    margin-bottom: 100px;
+    font-size: 30px;
+    font-weight: 400;
+}
+.business .card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+.business .item {
+    width: 314px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 20px 30px;
+    background: var(--bs-white);
+    border-radius: 20px;
+}
+.business .box {
+    width: 100%;
+    height: 165px;
+    margin-bottom: 36px;
+    background: var(--bs-bg-gray);
+}
+.business .box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-sizing: border-box;
+}
+.business h5 {
+    margin-bottom: 32px;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--bs-blue);
+}
+.business p {
+    font-size: 20px;
+}
+/* fixed bg 영역 */
+.fixed_bg {
+    position: relative;
+    width: 100%;
+}
+
+.fixed_bg .fb_wrap {
+    padding: 150px 0;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: url('/images/fixed_bg.jpg') center center / cover no-repeat;
+}
+
+.fixed_bg h2 {
+    text-align: center;
+    color: #fff;
+    font-size: 70px;
+    font-weight: 700;
+    padding-top: 20px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+    margin-bottom: 120px;
+}
+
+.fixed_bg .text_ani {
+    text-align: center;
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 38px;
+}
+
+.fixed_bg p {
+    display: inline-block;
+    width: 910px;
+    padding: 30px 0;
+    font-size: 50px;
+    font-weight: 600;
+    color: #ccc; /* 초기 회색 */
+    border: 3px solid #ccc;
+    border-radius: 20px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    transform: translateY(0px) translateZ(180px) rotateX(0deg) translateZ(0px);
+    transition: color 0.3s ease, border-color 0.3s ease, transform 0.5s ease; /* 애니메이션 전환 */
+}
+
+.fixed_bg .text_ani p.focus {
+    color: #fff; /* 포커스 시 흰색 */
+    border-color: #fff;
+    transform: translateY(0px) translateZ(180px) rotateX(0deg) scale(1.1);
+}
+
+/* 시스템 영역 */
+.system {
+    padding: 100px 0;
+    text-align: center;
+    background: var(--bs-bg-gray);
+}
+.system h3 {
+    margin-bottom: 45px;
+    font-size: 50px;
+    font-weight: 700;
+}
+
+.system h4 {
+    margin-bottom: 50px;
+    font-size: 30px;
+    font-weight: 400;
+}
+.system .card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+.system .item {
+    width: 320px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 20px 30px;
+    background: var(--bs-white);
+    border-radius: 20px;
+}
+.system .box {
+    width: 100%;
+    height: 120px;
+    margin-bottom: 25px;
+    background: var(--bs-bg-gray);
+}
+.system .box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-sizing: border-box;
+}
+.system h5 {
+    margin-bottom: 30px;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--bs-blue);
+}
+.system p {
+    font-size: 20px;
+}
 
 /* ======================  페이지   ====================== */
 /* *STYLEPAGE: -  */
