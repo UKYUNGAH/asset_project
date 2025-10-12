@@ -85,6 +85,7 @@ html {
     --bs-black: #000000;
     --bs-white: #ffffff;
     --bs-blue: #0554c1; /* 메인 블루 색상 */
+    --bs-dark-blue: #00367f; /* 다크 블루 색상 */
     --bs-gray: #e6ebf2; /* 그레이 색상 */
     --bs-bg-gray: #eef1f5; /* 배경 그레이 색상 */
 }
@@ -148,6 +149,16 @@ main {
     will-change: transform, background, box-shadow;
 }
 
+/* 서브 페이지 헤더 기본 스타일 */
+.header.sub_header {
+    background: var(--bs-white);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header.sub_header li a:not(.on) {
+    color: var(--bs-black);
+}
+
 .header .h_container {
     max-width: 1200px;
     margin: 0 auto;
@@ -190,7 +201,6 @@ main {
 
 .header li a {
     font-size: 16px;
-    font-weight: 600;
     line-height: 1.4;
     padding: 12px 10px;
     color: var(--bs-white);
@@ -201,6 +211,7 @@ main {
 }
 .header li a.on {
     color: var(--bs-blue);
+    font-weight: 500;
 }
 
 /* 반응형 */
@@ -252,12 +263,12 @@ footer .warning {
 }
 
 footer p {
-    font-size: 18px;
+    font-size: 15px;
 }
 
 footer strong,
 footer h4 {
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 400;
     margin-bottom: 5px;
 }

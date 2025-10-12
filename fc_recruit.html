@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title></title>
+
+        <!-- #ISSUE: 임시로 아무이미지나 파비콘 넣어뒀습니다. 맞는 이미지로 대체해주세요!  -->
+        <!-- favicon -->
+        <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+
+        <!-- css 스타일 -->
+        <!-- reset.css: 브라우저 기본 스타일 초기화 -->
+        <link rel="stylesheet" href="/styles/reset.css" />
+        <!-- common.css: 헤더, 푸터, 버튼 등 공통 요소 스타일 -->
+        <link rel="stylesheet" href="/styles/common.css" />
+        <!-- style.css: 각 페이지별 고유 스타일 -->
+        <link rel="stylesheet" href="/styles/style.css" />
+
+        <!-- JS -->
+        <script src="/js/script.js" defer></script>
+    </head>
+    <body>
+        <!-- *PAGE: FC 모집 페이지 
+        *공통 스타일은 common.css에 정의되어 있습니다.
+        *개별 페이지 스타일은 style.css에서 관리합니다! -->
+
+        <!-- 헤더 - 메인 제외 공통
+        *클래스 on으로 글씨 블루 색상 적용했습니다 -->
+        <header class="header sub_header">
+            <div class="h_container">
+                <nav class="header_wrap">
+                    <h1 class="logo">
+                        <a href="/">
+                            <img src="/images/logo.png" alt="" />
+                        </a>
+                    </h1>
+                    <ul>
+                        <li>
+                            <a href="/" class="">회사소개</a>
+                        </li>
+                        <li>
+                            <a href="/center_recruit.html" class="">센터장 모집</a>
+                        </li>
+                        <li>
+                            <a href="/branch_recruit.html" class="">지사장 모집</a>
+                        </li>
+                        <li>
+                            <a href="/fc_recruit.html" class="on">FC 모집</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main class="sub_page fc_recruit">
+            <section class="fc_banner">
+                <img src="/images/fc_banner.png" alt="" />
+                <h2>
+                    보험 영업의 새로운 기준,<br />
+                    FM만의 독보적 시스템
+                </h2>
+            </section>
+
+            <!-- 텍스트 섹션 영역 -->
+            <!-- *애니메이션: 아래에서 위로 페이드인 
+              해당 영역 도달 시점에 작동
+위치(포지션)
+0초에서 Y축: 557.1px
+1초에서 Y축: 379.7px
+*아래에서 위로 올라오는 방향
+불투명도(opacity)
+0초에서 0%
+1초에서 100%-->
+            <section class="fc_text">
+                <div class="container">
+                    <div class="left">
+                        <h3 class="fc_title">FM에셋은?</h3>
+                        <p>
+                            2000년 설립 25년 이상 업력의 대형 GA <br />
+                            GA 설계사 선호 1순위 "계약 성공률 최고"
+                        </p>
+                    </div>
+                    <div class="right">
+                        <img src="/images/fm_logo2.png" alt="" />
+                    </div>
+                </div>
+            </section>
+
+            <!-- 영업기법 영역 -->
+            <!-- *애니메이션: (1)/(2)/(3) 왼쪽에서 오른쪽으로 페이드인, (4) 아래에서 위로 페이드인) 
+              해당 영역 도달 시점에 작동
+위치
+0초에서 X축: 425.1px
+0.3초에서 x축: 605.1px
+불투명도
+0초에서 0%
+0.3초에서 :100%
+*(1)> (2)> (3)> (4)
+각 다음 등장까지 0.05초 텀으로 노출
+(4)
+위치
+1.15초에서 Y축: 1021.4px
+1.45초에서 Y축: 931.4px
+불투명도
+1.15초에서 0%
+1.45초에서 :100%-->
+            <section class="technic">
+                <div class="container">
+                    <div class="t_title">
+                        <p>FM에셋과 함께라면 영업이 쉬워집니다</p>
+                        <h3 class="fc_title">FM만의 보상 전문 영업 기법</h3>
+                    </div>
+                    <div class="content">
+                        <div class="top">
+                            <!-- 애니메이션(1) -->
+                            <div class="left">
+                                <p><span>선 서비스 제공 : </span>고객만족</p>
+                                <p><span>보상 전문가 이미지 : </span>고객 신뢰</p>
+                                <p><span>보험 컨설팅 : </span>자동 증권 회수</p>
+                            </div>
+                            <!-- 애니메이션(2) -->
+
+                            <div class="mid">
+                                <img src="/images/arr_right.png" alt="" />
+                            </div>
+                            <!-- 애니메이션(3) -->
+
+                            <div class="right">
+                                <p>
+                                    국내 최초<br />
+                                    보험 영업
+                                </p>
+                            </div>
+                        </div>
+                        <!-- 애니메이션(4) -->
+                        <div class="bottom">
+                            AI 의료기록 분석을 통한<br />
+                            맞춤형 컨설팅 영업으로 승부하세요!
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 실적 집중 영역 -->
+            <!-- *애니메이션: (1)/(2) 아래에서 위로 페이드인
+              해당 영역 도달 시점에 작동
+위치
+0초에서 Y축: 620.3
+0.3초에서 Y축: 480.3
+*아래에서 위로 이동하는 방향
+불투명도
+0초에서 0%
+0.3초에서 100%
+*(1) > (2) 0. 1초 간격으로 재생됩니다
+(1), (2) 애니메이션 동일 -->
+            <section class="focus">
+                <div class="container">
+                    <h3 class="fc_title">실적 집중 솔루션</h3>
+                    <ul>
+                        <!-- 애니메이션(1) -->
+                        <li>
+                            <img src="/images/fc_sou1.png" alt="" />
+                            <div class="text_wrap">
+                                <p>
+                                    <strong>방문율 70% 이상 DB 제공</strong>
+                                    더 이상 영업할 곳 찾아 헤매기는 그만!
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="/images/fc_sou2.png" alt="" />
+                            <div class="text_wrap">
+                                <p>
+                                    <strong>우수사원 해외연수 + FM연도대상</strong>
+                                    동기 부여 & 확실한 성과 보상
+                                </p>
+                            </div>
+                        </li>
+                        <!-- 애니메이션(2) -->
+                        <li>
+                            <img src="/images/fc_sou3.png" alt="" />
+                            <div class="text_wrap">
+                                <p>
+                                    <strong>AI 보상 프로그램 "보험 유니버스"</strong>
+                                    국내최초 의료기록 보험금 조회<br />
+                                    진료코드 분석 시스템
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="/images/fc_sou4.png" alt="" />
+                            <div class="text_wrap">
+                                <p>
+                                    <strong>고객관리 시스템</strong>
+                                    자동/단체문자, 택배 발송 서비스<br />
+                                    편해진 고객관리 > 계약율 향상
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 직원 후기 영역 -->
+            <!-- *애니메이션: 이미지 1개씩 아래에서 위로 페이드인
+              해당 영역 도달 시점에 작동
+위치(포지션)
+0초에서 Y축: 326px
+0.3초에서 Y축: 246px
+*아래에서 위로 올라오는 방향
+불투명도(opacity)
+0초에서 0%
+0.3초에서 100%
+*(1) > (2) 0.1초 텀으로 노출
+(1), (2) 애니메이션 동 -->
+            <section class="stories">
+                <div class="container">
+                    <div class="card_wrap">
+                        <!-- 애니메이션(1) -->
+                        <div class="card">
+                            <div class="left">
+                                <img src="/images/fc_pro1.png" alt="" />
+                            </div>
+                            <div class="right">
+                                <h4 class="title">리히트지점 방*일 님</h4>
+                                <h5 class="text">
+                                    입사 3차월 월 업적 300만 <br />
+                                    1주년 월 업적 600만! <br /><br />
+                                    FM만의 차별화된 시스템 덕에 업계 최상위로 발돋움!
+                                </h5>
+                            </div>
+                        </div>
+                        <!-- 애니메이션(2) -->
+                        <div class="card">
+                            <div class="left">
+                                <img src="/images/fc_pro2.png" alt="" />
+                            </div>
+                            <div class="right">
+                                <h4 class="title">보금자리지점 이*겸 님</h4>
+                                <h5 class="text">
+                                    2024년 수석FC <br />
+                                    1년 평균 월 업적 3백만원 / 연봉 5억원 <br /><br />
+                                    타 GA에서는 월 평균 30만원 수준. <br />
+                                    2023년 7월 FM에셋 입사 후, <br />
+                                    고효율 DB 제공으로 성과 급상승!
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="fc_title">
+                        누구에게나 열려있는 <span>무한한 기회</span>,<br />
+                        지금 바로 <span>도전</span>하세요!
+                    </h3>
+                </div>
+            </section>
+        </main>
+
+        <!-- 푸터 - 공통 -->
+        <!-- footer.html -->
+        <footer>
+            <div class="container">
+                <div class="company">
+                    <p>
+                        <strong>(주)에프엠에셋</strong> 공동대표 : 김상완, 양주팔<br />
+                        사업자 등록번호: 314-81-47752 대리점 등록번호: 2002031377<br />
+                        사업장 주소: 34909 대전광역시 중구 계백로 1719, 201호 (오류동, 센트리아오피스텔)<br />
+                        대표전화:
+                        <a href="tel:0808019987">080-801-9987</a>, <a href="tel:0425237500">042-523-7500</a><br />
+                        COPYRIGHT ⓒ 2001~2015 FMASSET. ALL RIGHTS RESERVED
+                    </p>
+                </div>
+
+                <div class="service">
+                    <p>
+                        <span>FM에셋</span><br /><br />
+                        본 사이트는 광고 심의 기준을 준수하였으며, 유효기간은 심의일로부터 1년입니다.<br />
+                        (주)에프엠에셋이 제공하는 서비스입니다.<br />
+                        에프엠에셋 보험대리점 준법감시필 2025-0000 (2025.00.00~2026.00.00)
+                    </p>
+                </div>
+
+                <div class="warning">
+                    <h4>[필수 안내사항]</h4>
+                    <p>
+                        보험 계약자가 기존 보험 계약을 해지하고, 새로운 보험 계약을 체결할 경우 유의사항은 아래와
+                        같습니다.<br />
+                        1. 질병 이력, 연령 증가 등으로 가입이 거절되거나 보험료가 인상될 수 있습니다.<br />
+                        2. 가입 상품에 따라 새로운 면책기간 적용 및 보장 제한 등 기타 불이익이 발생할 수 있습니다.
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- GSAP CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    </body>
+</html>
