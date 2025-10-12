@@ -84,6 +84,7 @@ html {
 :root {
     --bs-black: #000000;
     --bs-white: #ffffff;
+    --bs-sky-blue: #4b95f8; /* 메인 블루 색상 */
     --bs-blue: #0554c1; /* 메인 블루 색상 */
     --bs-dark-blue: #00367f; /* 다크 블루 색상 */
     --bs-gray: #e6ebf2; /* 그레이 색상 */
