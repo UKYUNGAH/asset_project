@@ -82,6 +82,7 @@ html {
 /* 색상 변수 정의 */
 /* 프로젝트 전체에서 사용할 CSS 변수 - 새로운 컬러 아이덴티티 반영 */
 :root {
+    /* 기존 색상 변수 */
     --bs-black: #000000;
     --bs-white: #ffffff;
     --bs-sky-blue: #4b95f8; /* 메인 블루 색상 */
@@ -253,6 +254,10 @@ footer {
     padding: 120px 0;
 }
 
+.main_footer {
+    padding: 260px 0 120px;
+}
+
 footer a:hover {
     text-decoration: underline;
 }
@@ -311,14 +316,354 @@ footer h4 {
     }
 }
 
+/* ====================== 반응형 스타일 (태블릿) ====================== */
+@media (max-width: 1200px) {
+    .container {
+        padding: 0 30px; /* 태블릿에서 패딩 증가 */
+    }
+
+    .header {
+        height: 55px; /* 헤더 높이 축소 */
+        line-height: 55px;
+        padding: 0 20px; /* 패딩 증가 */
+    }
+
+    .header .logo {
+        height: 40px; /* 로고 크기 축소 */
+    }
+
+    .header .logo img {
+        max-width: 80px; /* 로고 이미지 축소 */
+    }
+
+    .header ul {
+        gap: 12px; /* 메뉴 간격 축소 */
+    }
+
+    .header li a {
+        font-size: 14px; /* 폰트 크기 축소 */
+        padding: 10px 8px; /* 패딩 축소 */
+    }
+
+    footer {
+        padding: 80px 30px; /* 푸터 패딩 조정 */
+    }
+
+    .main_footer {
+        padding: 180px 30px 80px; /* 메인 푸터 패딩 조정 */
+    }
+}
+
+@media (max-width: 992px) {
+    .header {
+        height: auto;
+        line-height: normal;
+        padding: 10px 15px;
+    }
+
+    .header .header_wrap {
+        flex-wrap: wrap; /* 필요시 랩핑 허용 */
+    }
+
+    .header ul {
+        gap: 10px;
+    }
+
+    .header li a {
+        font-size: 13px; /* 폰트 크기 더 축소 */
+        padding: 8px 6px; /* 패딩 더 축소 */
+    }
+}
+
+/* ====================== 반응형 스타일 (모바일 대) ====================== */
 @media (max-width: 768px) {
     html {
         font-size: 46%; /* 7.36px */
     }
+
+    .container {
+        padding: 0 20px; /* 모바일에서 패딩 조정 */
+    }
+
+    .header {
+        height: 50px; /* 모바일에서 헤더 높이 더 축소 */
+        padding: 8px 15px;
+    }
+
+    .header .logo {
+        height: 35px; /* 로고 높이 더 축소 */
+    }
+
+    .header .logo a {
+        height: 35px;
+        line-height: 35px;
+    }
+
+    .header .logo img {
+        max-width: 70px; /* 로고 이미지 더 축소 */
+    }
+
+    .header ul {
+        gap: 8px; /* 메뉴 간격 더 축소 */
+    }
+
+    .header li a {
+        font-size: 12px; /* 폰트 크기 더 축소 */
+        padding: 6px 4px; /* 패딩 더 축소 */
+    }
+
+    .button_default {
+        padding: 12px 18px; /* 버튼 패딩 축소 */
+        border-radius: 8px; /* 테두리 반지름 축소 */
+        font-size: 14px; /* 폰트 크기 조정 */
+    }
+
+    footer {
+        padding: 60px 20px; /* 푸터 패딩 축소 */
+    }
+
+    .main_footer {
+        padding: 120px 20px 60px; /* 메인 푸터 패딩 축소 */
+    }
+
+    footer p,
+    footer strong,
+    footer h4 {
+        font-size: 13px; /* 푸터 폰트 크기 축소 */
+    }
+
+    footer .company,
+    footer .service,
+    footer .warning {
+        margin-bottom: 25px; /* 여백 축소 */
+    }
 }
 
+/* ====================== 반응형 스타일 (모바일 소) ====================== */
 @media (max-width: 480px) {
     html {
         font-size: 44%; /* 7.04px */
+    }
+
+    .container {
+        padding: 0 15px; /* 모바일 소에서 패딩 더 축소 */
+    }
+
+    .header {
+        height: 45px; /* 헤더 높이 최소화 */
+        padding: 5px 10px;
+    }
+
+    .header .h_container {
+        padding: 0 5px; /* 헤더 내부 패딩 최소화 */
+    }
+
+    .header .logo {
+        height: 30px; /* 로고 높이 최소화 */
+    }
+
+    .header .logo a {
+        height: 30px;
+        line-height: 30px;
+    }
+
+    .header .logo img {
+        max-width: 60px; /* 로고 이미지 최소화 */
+    }
+
+    .header ul {
+        gap: 5px; /* 메뉴 간격 최소화 */
+        flex-wrap: wrap; /* 메뉴 랩핑 허용 */
+    }
+
+    .header li a {
+        font-size: 11px; /* 폰트 크기 최소화 */
+        padding: 4px 3px; /* 패딩 최소화 */
+        line-height: 1.2; /* 줄간격 조정 */
+    }
+
+    .button_default {
+        padding: 10px 15px; /* 버튼 패딩 최소화 */
+        border-radius: 6px; /* 테두리 반지름 최소화 */
+        font-size: 12px; /* 폰트 크기 최소화 */
+    }
+
+    footer {
+        padding: 40px 15px; /* 푸터 패딩 최소화 */
+    }
+
+    .main_footer {
+        padding: 80px 15px 40px; /* 메인 푸터 패딩 최소화 */
+    }
+
+    footer p,
+    footer strong,
+    footer h4 {
+        font-size: 12px; /* 푸터 폰트 크기 최소화 */
+        line-height: 1.4; /* 줄간격 조정 */
+    }
+
+    footer .company,
+    footer .service,
+    footer .warning {
+        margin-bottom: 20px; /* 여백 최소화 */
+    }
+
+    /* 모바일에서 텍스트 가독성을 위한 추가 조정 */
+    footer .warning p {
+        font-size: 11px; /* 주의사항 텍스트 더 작게 */
+    }
+
+    /* 모바일에서 긴 텍스트 줄바꿈 처리 */
+    footer .company p {
+        word-break: keep-all; /* 한글 단어 단위 줄바꿈 */
+        line-height: 1.5; /* 줄간격 증가 */
+    }
+}
+
+/* ====================== 터치 디바이스 최적화 ====================== */
+@media (hover: none) and (pointer: coarse) {
+    /* 터치 디바이스에서 호버 효과 비활성화 */
+    .header li a:hover {
+        background: none; /* 호버 배경 제거 */
+    }
+
+    .button_default:hover {
+        transform: none; /* 호버 변형 제거 */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* 기본 그림자만 유지 */
+    }
+
+    footer a:hover {
+        text-decoration: none; /* 호버 밑줄 제거 */
+    }
+
+    /* 터치 디바이스에서 터치 영역 확대 */
+    .header li a {
+        min-height: 44px; /* 터치 영역 최소 크기 보장 */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .button_default {
+        min-height: 44px; /* 터치 영역 최소 크기 보장 */
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* ====================== 고해상도 디스플레이 최적화 ====================== */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    /* 레티나 디스플레이에서 선명한 텍스트 렌더링 */
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .header .logo img {
+        image-rendering: -webkit-optimize-contrast; /* 로고 이미지 최적화 */
+        image-rendering: crisp-edges;
+    }
+}
+
+/* ====================== 접근성 향상 ====================== */
+@media (prefers-reduced-motion: reduce) {
+    /* 모션 감소 설정 사용자를 위한 애니메이션 비활성화 */
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .header {
+        transition: none !important;
+    }
+
+    .button_default {
+        transition: none !important;
+    }
+}
+
+/* 포커스 가능한 요소들의 접근성 개선 */
+.header li a:focus,
+.button_default:focus {
+    outline: 2px solid var(--bs-blue);
+    outline-offset: 2px;
+}
+
+/* 스크린 리더 전용 텍스트 */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ====================== 성능 최적화 ====================== */
+/* GPU 가속을 위한 will-change 속성 */
+.header {
+    will-change: transform, background-color, box-shadow;
+}
+
+.button_default {
+    will-change: transform, box-shadow;
+}
+
+/* 레이아웃 쉬프트 방지 */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 폰트 로딩 최적화 */
+@font-face {
+    font-family: 'PAPERLOGY';
+    font-display: swap; /* 폰트 로딩 중 대체 폰트 표시 */
+}
+
+/* ====================== 인쇄 스타일 ====================== */
+@media print {
+    .header {
+        position: static; /* 고정 헤더 해제 */
+        box-shadow: none;
+        background: transparent !important;
+    }
+
+    .header li a {
+        color: var(--bs-black) !important;
+    }
+
+    footer {
+        padding: 20px 0;
+    }
+
+    .button_default {
+        background: transparent;
+        color: var(--bs-black);
+        border: 1px solid var(--bs-black);
+    }
+
+    /* 불필요한 요소 숨기기 */
+    .header ul {
+        display: none;
+    }
+}
+
+/* ====================== 다크 모드 지원 (선택사항) ====================== */
+@media (prefers-color-scheme: dark) {
+    /* 다크 모드에서도 기본 색상 유지하되, 필요시 조정 가능 */
+    :root {
+        /* 다크 모드 색상 변수 (필요시 활성화)
+        --bs-bg-gray: #1a1a1a;
+        --bs-white: #f5f5f5;
+        --bs-black: #ffffff;
+        */
     }
 }
