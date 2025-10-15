@@ -139,9 +139,6 @@ main {
 /* ====================== 헤더 HEADER ====================== */
 .header {
     width: 100%;
-    height: 60px;
-    line-height: 60px;
-    padding: 0 15px;
     position: fixed;
     top: 0;
     left: 0;
@@ -161,7 +158,13 @@ main {
     color: var(--bs-black);
 }
 
+.header .h_wrap {
+    display: flex;
+    flex-direction: column;
+}
 .header .h_container {
+    height: 60px;
+    line-height: 60px;
     max-width: 1200px;
     margin: 0 auto;
     height: 100%;
@@ -175,6 +178,7 @@ main {
     justify-content: space-between;
     align-items: center;
     height: 100%;
+    padding: 0 15px;
 }
 
 .header .logo {
@@ -183,7 +187,7 @@ main {
     flex-shrink: 0;
 }
 .header .logo a {
-    display: inline-block;
+    display: flex;
     height: 44px;
     line-height: 44px;
 }
@@ -216,36 +220,56 @@ main {
     font-weight: 500;
 }
 
-/* 반응형 */
-@media (max-width: 992px) {
-    .header {
-        height: auto;
-        line-height: normal;
-        padding: 10px 15px;
-    }
-
-    .header .header_wrap {
-    }
-
-    .header ul {
-        gap: 15px;
-    }
-
-    .header li a {
-        font-size: 14px;
-        padding: 8px;
-    }
+/* 햄버거 버튼 */
+.header .ham_btn {
+    display: none;
+    width: 30px;
+    height: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
 }
 
-@media (max-width: 576px) {
-    .header .logo img {
-        max-width: 60px;
-    }
+.header .ham_btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
 
-    .header ul {
-        gap: 10px;
-        display: none;
-    }
+/* 모바일 슬라이드 메뉴 - 헤더 아래 붙어서 */
+.header .ham_gnb {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.header .ham_gnb.active {
+    max-height: 300px;
+}
+
+.header .ham_gnb ul {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-items: start;
+}
+
+.header .ham_gnb li {
+    width: 100%;
+}
+
+.header .ham_gnb a {
+    width: 100%;
+    display: block;
+    padding: 16px 20px;
+    font-size: 2rem;
+    color: #777;
+}
+
+.header .ham_gnb a.on {
+    color: var(--bs-blue);
 }
 
 /* ====================== 푸터 FOOTER ====================== */
@@ -323,9 +347,12 @@ footer h4 {
     }
 
     .header {
-        height: 55px; /* 헤더 높이 축소 */
-        line-height: 55px;
         padding: 0 20px; /* 패딩 증가 */
+    }
+
+    .header .h_container {
+        height: 55px;
+        line-height: 55px;
     }
 
     .header .logo {
@@ -356,22 +383,16 @@ footer h4 {
 
 @media (max-width: 992px) {
     .header {
-        height: auto;
-        line-height: normal;
-        padding: 10px 15px;
     }
 
     .header .header_wrap {
-        flex-wrap: wrap; /* 필요시 랩핑 허용 */
     }
 
     .header ul {
-        gap: 10px;
     }
 
     .header li a {
-        font-size: 13px; /* 폰트 크기 더 축소 */
-        padding: 8px 6px; /* 패딩 더 축소 */
+        font-size: 13px;
     }
 }
 
@@ -382,12 +403,14 @@ footer h4 {
     }
 
     .container {
-        padding: 0 20px; /* 모바일에서 패딩 조정 */
+        padding: 0 20px;
     }
 
     .header {
-        height: 50px; /* 모바일에서 헤더 높이 더 축소 */
-        padding: 8px 15px;
+    }
+
+    .header .h_container {
+        position: relative;
     }
 
     .header .logo {
@@ -403,13 +426,26 @@ footer h4 {
         max-width: 70px; /* 로고 이미지 더 축소 */
     }
 
-    .header ul {
+    .header ul.nav_menu {
+        display: none;
         gap: 8px; /* 메뉴 간격 더 축소 */
     }
 
-    .header li a {
-        font-size: 12px; /* 폰트 크기 더 축소 */
-        padding: 6px 4px; /* 패딩 더 축소 */
+    .header .ham_btn {
+        display: block;
+    }
+
+    .header .ham_gnb {
+        display: block;
+    }
+
+    .header .ham_gnb ul {
+    }
+    .header .ham_gnb li {
+    }
+    .header .ham_gnb li a {
+    }
+    .header .ham_gnb li a.on {
     }
 
     .button_default {
@@ -446,16 +482,13 @@ footer h4 {
     }
 
     .container {
-        padding: 0 15px; /* 모바일 소에서 패딩 더 축소 */
     }
 
     .header {
-        height: 45px; /* 헤더 높이 최소화 */
-        padding: 5px 10px;
     }
 
     .header .h_container {
-        padding: 0 5px; /* 헤더 내부 패딩 최소화 */
+        padding: 0 5px;
     }
 
     .header .logo {

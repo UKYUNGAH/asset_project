@@ -1,3 +1,11 @@
+br.p_br {
+    display: block;
+}
+
+br.m_br {
+    display: none;
+}
+
 /* ====================== 메인 페이지   ====================== */
 /* *STYLEPAGE: main - 메인 */
 /* hiro 영역 */
@@ -15,6 +23,24 @@
     width: 100%;
     height: 100%;
     object-fit: fill;
+    pointer-events: none; /* 클릭 방지 */
+}
+
+/* 비디오 컨트롤 완전 제거 */
+.main .hiro video::-webkit-media-controls {
+    display: none !important;
+}
+
+.main .hiro video::-webkit-media-controls-panel {
+    display: none !important;
+}
+
+.main .hiro video::-webkit-media-controls-play-button {
+    display: none !important;
+}
+
+.main .hiro video::-webkit-media-controls-start-playback-button {
+    display: none !important;
 }
 
 .main .hiro .hiro_text {
@@ -29,7 +55,7 @@
 .main .hiro h2 {
     font-family: 'GmarketSans', sans-serif;
     font-size: 88px;
-    font-weight: 700;
+    font-weight: 900;
     line-height: 1.4;
     margin-bottom: 120px;
     background: linear-gradient(135deg, var(--bs-blue) 0%, #5b86c2 50%, var(--bs-blue) 100%);
@@ -67,6 +93,11 @@
     font-size: 30px;
     font-weight: 500;
     color: var(--bs-blue);
+}
+
+.main .text_section div.m_div {
+    display: none;
+    height: 20px;
 }
 
 /* 영업카드 영역 & 시스템 카드 영역 */
@@ -110,6 +141,8 @@
 }
 
 .main .common_card .box {
+    display: flex;
+    justify-content: center;
     width: 100%;
     height: 170px;
     margin-bottom: 36px;
@@ -823,6 +856,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
+    width: 80%;
 }
 .center_recruit .c_banner h2 {
     font-size: 50px;
@@ -1107,14 +1141,15 @@
 
 /* *STYLEMEDIA: 태블릿 (1200px 이하) */
 @media (max-width: 1200px) {
+    .sub_page {
+        padding-top: 55px;
+    }
     /* 메인 페이지 */
     .main .hiro h2 {
-        font-size: 65px; /* 88px에서 축소 */
-        margin-bottom: 80px; /* 120px에서 축소 */
+        font-size: 50px;
     }
 
     .main .hiro span {
-        font-size: 22px; /* 26px에서 축소 */
     }
 
     .main .text_section {
@@ -1140,6 +1175,13 @@
         margin-bottom: 80px; /* 100px에서 축소 */
     }
 
+    .main .common_card h5 {
+        font-size: 24px;
+    }
+
+    .main .common_card p {
+        font-size: 15px;
+    }
     .main .common_card .card {
         gap: 20px; /* 30px에서 축소 */
     }
@@ -1150,7 +1192,7 @@
 
     .main .point h2 {
         font-size: 48px; /* 56px에서 축소 */
-        top: 80px; /* 110px에서 축소 */
+        top: 120px; /* 110px에서 축소 */
         margin-bottom: 60px; /* 80px에서 축소 */
     }
 
@@ -1259,6 +1301,18 @@
         padding: 30px 20px; /* 40px 26px에서 축소 */
     }
 
+    .center_recruit .job .right h4 {
+        font-size: 18px;
+    }
+
+    .center_recruit .job .right p {
+        font-size: 15px;
+    }
+
+    .center_recruit .center_text h3 {
+        font-size: 34px;
+    }
+
     .center_recruit .different .icon_wrap {
         gap: 60px; /* 95px에서 축소 */
     }
@@ -1268,7 +1322,16 @@
         height: 160px; /* 198px에서 축소 */
     }
 
+    .center_recruit .different img {
+        max-width: 90px;
+    }
+
+    .center_recruit .different .item:last-child img {
+        max-width: 100px;
+    }
+
     .center_recruit .vision .count {
+        width: auto;
         padding: 25px 60px; /* 33px 100px에서 축소 */
     }
 
@@ -1276,23 +1339,42 @@
         font-size: 24px; /* 28px에서 축소 */
     }
 
-    .center_recruit .backup li {
-        width: 280px; /* 314px에서 축소 */
-        height: 400px; /* 460px에서 축소 */
+    .center_recruit .backup ul {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .common_interview .box_wrap {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+    }
+    .common_interview .box_wrap .box {
+        width: 60%;
     }
 }
 
 /* *STYLEMEDIA: 모바일 대 (768px 이하) */
 @media (max-width: 768px) {
+    br.p_br {
+        display: none;
+    }
+
+    br.m_br {
+        display: block;
+    }
+
     /* 메인 페이지 */
     .main .hiro h2 {
-        font-size: 48px; /* 65px에서 축소 */
+        font-size: 52px; /* 65px에서 축소 */
         margin-bottom: 60px; /* 80px에서 축소 */
         line-height: 1.2; /* 줄간격 조정 */
     }
 
     .main .hiro span {
-        font-size: 18px; /* 22px에서 축소 */
+        font-size: 22px;
     }
 
     .main .text_section {
@@ -1301,8 +1383,19 @@
 
     .main .text_section h3,
     .main .text_section h4 {
-        font-size: 22px; /* 26px에서 축소 */
-        margin-bottom: 40px; /* 60px에서 축소 */
+        font-size: 22px;
+        margin-bottom: 50px;
+    }
+
+    .main .text_section br.p_br {
+        display: none;
+    }
+    .main .text_section br.m_br {
+        display: block;
+    }
+    .main .text_section div.m_div {
+        display: block;
+        height: 20px;
     }
 
     .main .common_card {
@@ -1325,7 +1418,6 @@
 
     .main .point h2 {
         font-size: 36px; /* 48px에서 축소 */
-        top: 60px; /* 80px에서 축소 */
         padding: 0 20px; /* 텍스트 여백 */
     }
 
@@ -1670,5 +1762,19 @@
 
     .center_recruit .backup h4 {
         font-size: 20px; /* 24px에서 축소 */
+    }
+}
+
+/* ====================== 반응형 스타일 (모바일 소) ====================== */
+@media (max-width: 480px) {
+    /* 메인 페이지 */
+    .main .hiro h2 {
+        font-size: 42px;
+        margin-bottom: 60px;
+        line-height: 1.2;
+    }
+
+    .main .hiro span {
+        font-size: 18px;
     }
 }

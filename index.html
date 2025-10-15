@@ -28,27 +28,36 @@
 
         <!-- 헤더 - 공통
         *클래스 on으로 글씨 블루 색상 적용했습니다 -->
-        <header class="header">
-            <div class="h_container">
-                <nav class="header_wrap">
-                    <h1 class="logo">
-                        <a href="/">
-                            <img src="/images/logo.png" alt="" />
-                        </a>
-                    </h1>
+
+        <header class="header main_header">
+            <div class="h_wrap">
+                <div class="h_container">
+                    <nav class="header_wrap">
+                        <h1 class="logo">
+                            <a href="/">
+                                <img src="/images/logo.png" alt="" />
+                            </a>
+                        </h1>
+
+                        <!-- PC 메뉴 (기존) -->
+                        <ul class="nav_menu">
+                            <li><a href="/" class="on">회사소개</a></li>
+                            <li><a href="/center_recruit.html" class="">센터장 모집</a></li>
+                            <li><a href="/branch_recruit.html" class="">지사장 모집</a></li>
+                            <li><a href="/fc_recruit.html" class="">FC 모집</a></li>
+                        </ul>
+
+                        <button class="ham_btn" aria-label="메뉴 열기">
+                            <img class="ham_icon" src="/images/ham_btn.png" alt="메뉴 버튼" />
+                        </button>
+                    </nav>
+                </div>
+                <nav class="ham_gnb">
                     <ul>
-                        <li>
-                            <a href="/" class="on">회사소개</a>
-                        </li>
-                        <li>
-                            <a href="/center_recruit.html" class="">센터장 모집</a>
-                        </li>
-                        <li>
-                            <a href="/branch_recruit.html" class="">지사장 모집</a>
-                        </li>
-                        <li>
-                            <a href="/fc_recruit.html" class="">FC 모집</a>
-                        </li>
+                        <li><a href="/" class="on">회사소개</a></li>
+                        <li><a href="/center_recruit.html">센터장 모집</a></li>
+                        <li><a href="/branch_recruit.html">지사장 모집</a></li>
+                        <li><a href="/fc_recruit.html">FC 모집</a></li>
                     </ul>
                 </nav>
             </div>
@@ -58,14 +67,16 @@
             <!-- hiro 배너 영역 -->
             <section class="hiro">
                 <!-- <img src="/images/wave_banner.png" alt="" /> -->
-                <video autoplay muted loop playsinline>
+                <video autoplay muted loop playsinline preload="auto" disablepictureinpicture>
                     <source src="/images/wave_banner.mp4" type="video/mp4" />
                     브라우저가 비디오 태그를 지원하지 않습니다.
                 </video>
                 <div class="hiro_text">
                     <h2>
-                        변화하는 것에 속도를 더하고,<br />
-                        변하지 않던 것에 방향을 제시합니다.
+                        변화하는 것에<br class="m_br" />
+                        속도를 더하고,<br class="p_br" /><br class="m_br" /><br class="m_br" />
+                        변하지 않던 것에<br class="m_br" />
+                        방향을 제시합니다. <br class="m_br" />
                     </h2>
                     <span>보험의 흐름을 만드는 FM에셋의 방식</span>
                 </div>
@@ -75,10 +86,16 @@
             <section class="text_section">
                 <div class="container">
                     <h3>
-                        우리는 언제나 FC의 성공을 시스템으로 증명해왔고,<br />
-                        앞으로도 성공을 위한 지원을 멈추지 않을 것입니다.
+                        우리는 언제나 FC의 성공을<br class="m_br" />
+                        시스템으로 증명해왔고,<br class="m_br" />
+                        <div class="m_div"></div>
+                        <br class="p_br" />
+                        앞으로도 성공을 위한<br class="m_br" />지원을 멈추지 않을 것입니다.
                     </h3>
-                    <h4>중부권 1위 GA, FM에셋과 함께라면 당신의 성공이 일상이 됩니다.</h4>
+                    <h4>
+                        중부권 1위 GA, FM에셋과 함께라면<br class="m_br" />
+                        당신의 성공이 일상이 됩니다.
+                    </h4>
                 </div>
             </section>
 
@@ -90,7 +107,10 @@
                             준비된 시스템에서 시작하는<br />
                             <span>준비된 영업</span>
                         </h3>
-                        <h4 class="">누구나 쉽게 시작해도 전문가처럼 성장할 수 있도록 설계했습니다.</h4>
+                        <h4 class="">
+                            누구나 쉽게 시작해도 전문가처럼<br class="m_br" />
+                            성장할 수 있도록 설계했습니다.
+                        </h4>
 
                         <div class="card">
                             <div class="item">
@@ -193,6 +213,28 @@
                     </div>
                 </section>
             </div>
+            <script>
+                function setResponsiveScrollHeight() {
+                    const container = document.querySelector('.scroll-container');
+                    const isMobile = window.innerWidth <= 768;
+                    const isTablet = window.innerWidth <= 1200;
+
+                    if (isMobile) {
+                        container.style.height = '600vh';
+                    } else if (isTablet) {
+                        container.style.height = '400vh';
+                    } else {
+                        container.style.height = '500vh';
+                    }
+
+                    // ScrollTrigger 새로고침
+                    ScrollTrigger.refresh();
+                }
+
+                // 초기 설정 + 리사이즈 이벤트
+                setResponsiveScrollHeight();
+                window.addEventListener('resize', setResponsiveScrollHeight);
+            </script>
         </main>
 
         <!-- 푸터 - 공통 -->

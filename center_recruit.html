@@ -28,26 +28,37 @@
         <!-- 헤더 - 메인 제외 공통
         *클래스 on으로 글씨 블루 색상 적용했습니다 -->
         <header class="header sub_header">
-            <div class="h_container">
-                <nav class="header_wrap">
-                    <h1 class="logo">
-                        <a href="/">
-                            <img src="/images/logo.png" alt="" />
-                        </a>
-                    </h1>
+            <div class="h_wrap">
+                <div class="h_container">
+                    <nav class="header_wrap">
+                        <h1 class="logo">
+                            <a href="/">
+                                <img src="/images/logo.png" alt="" />
+                            </a>
+                        </h1>
+
+                        <!-- PC 메뉴 -->
+                        <ul class="nav_menu">
+                            <li><a href="/" class="">회사소개</a></li>
+                            <li><a href="/center_recruit.html" class="on">센터장 모집</a></li>
+                            <li><a href="/branch_recruit.html" class="">지사장 모집</a></li>
+                            <li><a href="/fc_recruit.html" class="">FC 모집</a></li>
+                        </ul>
+
+                        <!-- 햄버거 버튼 추가 -->
+                        <button class="ham_btn" aria-label="메뉴 열기">
+                            <img class="ham_icon" src="/images/ham_btn.png" alt="메뉴 버튼" />
+                        </button>
+                    </nav>
+                </div>
+
+                <!-- 모바일 메뉴 추가 -->
+                <nav class="ham_gnb">
                     <ul>
-                        <li>
-                            <a href="/" class="">회사소개</a>
-                        </li>
-                        <li>
-                            <a href="/center_recruit.html" class="on">센터장 모집</a>
-                        </li>
-                        <li>
-                            <a href="/branch_recruit.html" class="">지사장 모집</a>
-                        </li>
-                        <li>
-                            <a href="/fc_recruit.html" class="">FC 모집</a>
-                        </li>
+                        <li><a href="/" class="">회사소개</a></li>
+                        <li><a href="/center_recruit.html" class="on">센터장 모집</a></li>
+                        <li><a href="/branch_recruit.html" class="">지사장 모집</a></li>
+                        <li><a href="/fc_recruit.html" class="">FC 모집</a></li>
                     </ul>
                 </nav>
             </div>

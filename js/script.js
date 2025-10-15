@@ -1,5 +1,83 @@
 gsap.registerPlugin(ScrollTrigger);
 
+// 햄버거 메뉴 기능
+document.addEventListener('DOMContentLoaded', function () {
+    const hamBtn = document.querySelector('.ham_btn');
+    const hamGnb = document.querySelector('.ham_gnb');
+    const hamIcon = document.querySelector('.ham_icon');
+    const header = document.querySelector('.header');
+
+    let isMenuOpen = false;
+
+    hamBtn.addEventListener('click', function () {
+        isMenuOpen = !isMenuOpen;
+
+        if (isMenuOpen) {
+            // 메뉴 열기
+            hamGnb.classList.add('active');
+            hamIcon.src = '/images/close_btn.png';
+            hamIcon.alt = '메뉴 닫기';
+            hamBtn.setAttribute('aria-label', '메뉴 닫기');
+
+            // 메인 페이지에서 헤더 배경 활성화 (기존 GSAP 스타일과 동일하게)
+            if (document.querySelector('.main')) {
+                gsap.to('.header', {
+                    backgroundColor: 'var(--bs-white)',
+                    boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
+                    duration: 0.3,
+                });
+                gsap.to('.header li a:not(.on)', {
+                    color: 'var(--bs-black)',
+                    duration: 0.3,
+                });
+            }
+        } else {
+            // 메뉴 닫기
+            hamGnb.classList.remove('active');
+            hamIcon.src = '/images/ham_btn.png';
+            hamIcon.alt = '메뉴 버튼';
+            hamBtn.setAttribute('aria-label', '메뉴 열기');
+
+            // 메인 페이지에서 스크롤 위치에 따라 헤더 배경 처리
+            if (document.querySelector('.main') && window.scrollY < 20) {
+                gsap.to('.header', {
+                    backgroundColor: 'transparent',
+                    boxShadow: 'none',
+                    duration: 0.3,
+                });
+                gsap.to('.header li a:not(.on)', {
+                    color: 'var(--bs-white)',
+                    duration: 0.3,
+                });
+            }
+        }
+    });
+
+    // 메뉴 링크 클릭 시 메뉴 닫기
+    const menuLinks = document.querySelectorAll('.ham_gnb a');
+    menuLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+            hamGnb.classList.remove('active');
+            hamIcon.src = '/images/ham_btn.png';
+            hamIcon.alt = '메뉴 버튼';
+            hamBtn.setAttribute('aria-label', '메뉴 열기');
+            isMenuOpen = false;
+
+            if (document.querySelector('.main') && window.scrollY < 20) {
+                gsap.to('.header', {
+                    backgroundColor: 'transparent',
+                    boxShadow: 'none',
+                    duration: 0.3,
+                });
+                gsap.to('.header li a:not(.on)', {
+                    color: 'var(--bs-white)',
+                    duration: 0.3,
+                });
+            }
+        });
+    });
+});
+
 // 헤더 스크롤 애니메이션 (메인 페이지에만 적용) - 유지
 if (document.querySelector('.main')) {
     ScrollTrigger.create({
@@ -457,7 +535,7 @@ gsap.from('.center_recruit .different .icon_wrap .item', {
 gsap.from('.center_recruit .different h4', {
     scrollTrigger: {
         trigger: '.center_recruit .different h4',
-        start: 'top 85%',
+        start: 'top 75%',
         toggleActions: 'play none none reverse',
     },
     opacity: 0,
@@ -471,7 +549,7 @@ gsap.from('.center_recruit .different h4', {
 gsap.from('.center_recruit .vision .count', {
     scrollTrigger: {
         trigger: '.center_recruit .vision .count',
-        start: 'top 85%',
+        start: 'top 75%',
         toggleActions: 'play none none reverse',
     },
     opacity: 0,
