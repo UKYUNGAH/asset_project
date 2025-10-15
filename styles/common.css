@@ -277,10 +277,10 @@ main {
 footer {
     padding: 120px 0;
 }
-
+/* 
 .main_footer {
     padding: 260px 0 120px;
-}
+} */
 
 footer a:hover {
     text-decoration: underline;

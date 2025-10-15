@@ -147,7 +147,8 @@ gsap.from('.business .item', {
 });
 
 // 메인 - 롤링 섹션
-const pointTexts = gsap.utils.toArray('.point .ani_text p');
+const pointTexts = gsap.utils.toArray('.point .ani_text p').slice(0, 4);
+// const pointTexts = gsap.utils.toArray('.point .ani_text p');
 const radius = 90;
 const totalTexts = pointTexts.length;
 
