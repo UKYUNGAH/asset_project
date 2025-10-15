@@ -552,11 +552,14 @@ br.m_br {
 
 /* 배너 영역 */
 .branch_recruit .br_banner {
+    height: 350px;
     width: 100%;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background: url('../images/branch_banner.png') no-repeat center center;
     text-align: center;
-    padding: 110px 0;
     position: relative;
 }
 
@@ -568,8 +571,7 @@ br.m_br {
     position: absolute;
     top: 0;
     left: 0;
-    background: #0554c1;
-    opacity: 0.4;
+    background: rgba(0, 53, 127, 0.4);
     z-index: 1;
 }
 
@@ -1251,7 +1253,6 @@ br.m_br {
     }
 
     .branch_recruit .br_banner {
-        padding: 80px 20px; /* 110px 20px에서 축소 */
     }
 
     .branch_recruit .br_banner h2 {
@@ -1532,7 +1533,6 @@ br.m_br {
     }
 
     .branch_recruit .br_banner {
-        padding: 60px 20px; /* 80px 20px에서 축소 */
     }
 
     .branch_recruit .br_banner h2 {
@@ -1543,6 +1543,10 @@ br.m_br {
     .branch_recruit .br_banner h3 {
         font-size: 22px; /* 28px에서 축소 */
         margin-top: 20px; /* 30px에서 축소 */
+    }
+
+    .branch_recruit .m_div {
+        height: 10px;
     }
 
     .branch_recruit .jisa .container {
@@ -1626,6 +1630,7 @@ br.m_br {
 
     .branch_recruit .help .box_wrap .box .rb p {
         font-size: 18px; /* 22px에서 축소 */
+        word-break: keep-all;
     }
 
     /* 센터장 모집 페이지 */
