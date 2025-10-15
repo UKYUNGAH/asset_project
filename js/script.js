@@ -145,14 +145,12 @@ gsap.from('.business .item', {
     },
     ease: 'back.out(1.2)',
 });
-
-// 메인 - 롤링 섹션
+// ====================== 메인 - 롤링 섹션 (수정) ====================== //
 const pointTexts = gsap.utils.toArray('.point .ani_text p').slice(0, 4);
-// const pointTexts = gsap.utils.toArray('.point .ani_text p');
 const radius = 90;
 const totalTexts = pointTexts.length;
 
-// 초기 위치
+// 초기 위치 설정
 pointTexts.forEach((text, index) => {
     const angle = (index / totalTexts) * Math.PI * 2;
     const y = Math.sin(angle) * radius;
@@ -165,7 +163,7 @@ pointTexts.forEach((text, index) => {
     });
 });
 
-// 스크롤에 따른 회전
+// 스크롤에 따른 회전 - 수정: 1→2→3→4 순서로만 진행
 ScrollTrigger.create({
     trigger: '.business',
     start: 'bottom 20%',
@@ -173,19 +171,23 @@ ScrollTrigger.create({
     scrub: 1,
     onUpdate: (self) => {
         const progress = self.progress;
-        const rotationProgress = progress * (totalTexts + 1);
+
+        // 수정: totalTexts만큼만 회전 (한 바퀴 돌지 않음)
+        const rotationProgress = progress * (totalTexts - 1);
 
         pointTexts.forEach((text, index) => {
             const baseAngle = (index / totalTexts) * Math.PI * 2;
+
+            // 수정: 회전 범위를 제한
             const currentAngle = baseAngle - (rotationProgress * Math.PI * 2) / totalTexts;
 
             const y = Math.sin(currentAngle) * radius;
             const z = Math.cos(currentAngle) * radius;
             const rotateX = -((currentAngle * 180) / Math.PI);
 
-            const isFocus =
-                Math.abs(currentAngle % (Math.PI * 2)) < 0.5 ||
-                Math.abs(currentAngle % (Math.PI * 2)) > Math.PI * 2 - 0.5;
+            // 수정: focus 조건을 더 정확하게
+            const normalizedAngle = ((currentAngle % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+            const isFocus = normalizedAngle < 0.3 || normalizedAngle > Math.PI * 2 - 0.3;
 
             gsap.set(text, {
                 y: y,
