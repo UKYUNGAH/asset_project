@@ -145,47 +145,78 @@ gsap.from('.business .item', {
     },
     ease: 'back.out(1.2)',
 });
-// ====================== 메인 - 롤링 섹션 (수정) ====================== //
+
+// ====================== 메인 - 포인트 섹션 ====================== //
 const pointTexts = gsap.utils.toArray('.point .ani_text p').slice(0, 4);
-const radius = 90;
+
+// 수정: 반응형 radius 계산
+function getPointRadius() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth <= 480) {
+        return 70; // 모바일 소
+    } else if (screenWidth <= 768) {
+        return 75; // 모바일 대
+    } else if (screenWidth <= 1200) {
+        return 100; // 태블릿
+    }
+    return 120; // 데스크톱
+}
+
+let radius = getPointRadius();
 const totalTexts = pointTexts.length;
 
-// 초기 위치 설정
-pointTexts.forEach((text, index) => {
-    const angle = (index / totalTexts) * Math.PI * 2;
-    const y = Math.sin(angle) * radius;
-    const z = Math.cos(angle) * radius;
+// 초기 위치 설정 - 반원형 (0 ~ π)
+function initializePointTexts() {
+    const currentRadius = getPointRadius();
+    pointTexts.forEach((text, index) => {
+        const angle = (index / (totalTexts - 1)) * Math.PI;
+        const y = Math.sin(angle) * currentRadius;
+        const z = Math.cos(angle) * currentRadius;
 
-    gsap.set(text, {
-        y: y,
-        z: z,
-        rotateX: -((angle * 180) / Math.PI),
+        gsap.set(text, {
+            y: y,
+            z: z,
+            rotateX: -((angle * 180) / Math.PI),
+        });
     });
+}
+
+// 수정: 초기 실행
+initializePointTexts();
+
+// 수정: 리사이즈 시 반응형 업데이트
+window.addEventListener('resize', () => {
+    const newRadius = getPointRadius();
+    if (newRadius !== radius) {
+        radius = newRadius;
+        initializePointTexts();
+        ScrollTrigger.refresh(); // ScrollTrigger 업데이트
+    }
 });
 
-// 스크롤에 따른 회전 - 수정: 1→2→3→4 순서로만 진행
+// 스크롤에 따른 회전
 ScrollTrigger.create({
-    trigger: '.business',
-    start: 'bottom 20%',
-    end: '+=150%',
+    trigger: '.point', // point 섹션 진입 기준
+    start: 'top top', // 수정: point가 화면 100vh에 도달했을 때 시작
+    end: 'center top', // 수정: 롤링 완료 후 마지막 상태 유지
     scrub: 1,
+    markers: false,
     onUpdate: (self) => {
         const progress = self.progress;
-
-        // 수정: totalTexts만큼만 회전 (한 바퀴 돌지 않음)
+        // 수정: progress * (totalTexts - 1)로 변경
+        // 마지막 p가 정확히 포커스된 상태에서 끝남
         const rotationProgress = progress * (totalTexts - 1);
 
         pointTexts.forEach((text, index) => {
-            const baseAngle = (index / totalTexts) * Math.PI * 2;
-
-            // 수정: 회전 범위를 제한
-            const currentAngle = baseAngle - (rotationProgress * Math.PI * 2) / totalTexts;
+            const baseAngle = (index / (totalTexts - 1)) * Math.PI; // 수정: 반원형(π)
+            const currentAngle = baseAngle - (rotationProgress * Math.PI) / (totalTexts - 1); // 수정: 반원형 범위
 
             const y = Math.sin(currentAngle) * radius;
             const z = Math.cos(currentAngle) * radius;
             const rotateX = -((currentAngle * 180) / Math.PI);
+            // 수정: rotateY 계산 - 각도 변화에 따라 좌우 회전
+            const rotateY = Math.cos(currentAngle) * 20;
 
-            // 수정: focus 조건을 더 정확하게
             const normalizedAngle = ((currentAngle % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
             const isFocus = normalizedAngle < 0.3 || normalizedAngle > Math.PI * 2 - 0.3;
 

@@ -232,7 +232,6 @@ br.m_br {
     font-family: 'GmarketSans', sans-serif;
     position: absolute;
     top: 50%;
-    /* width: fit-content; */
     width: 100%;
     max-width: 900px;
     font-size: 46px;
@@ -1166,7 +1165,6 @@ br.m_br {
 
     .main .point h2 {
         font-size: 48px; /* 56px에서 축소 */
-        top: 100px; /* 140px에서 축소 */
     }
 
     .main .point p {
@@ -1488,9 +1486,11 @@ br.m_br {
         height: calc(var(--vh, 1vh) * 100);
     }
 
+    .main .point .ani_text {
+        height: 90%;
+    }
     .main .point h2 {
         font-size: 38px; /* 48px에서 축소 */
-        top: 80px; /* 100px에서 축소 */
     }
 
     .main .point p {
@@ -1950,7 +1950,6 @@ br.m_br {
 
     .main .point h2 {
         font-size: 30px; /* 38px에서 축소 */
-        top: 60px; /* 80px에서 축소 */
     }
 
     .main .point p {
