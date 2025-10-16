@@ -1160,16 +1160,22 @@ br.m_br {
         width: 280px; /* 314px에서 축소 */
     }
 
+    .main .point_wrap {
+        min-height: calc(var(--vh, 1vh) * 180); /* 수정: 200에서 180으로 축소 */
+    }
+
     .main .point h2 {
-        font-size: 48px;
+        font-size: 48px; /* 56px에서 축소 */
+        top: 100px; /* 140px에서 축소 */
     }
 
     .main .point p {
-        font-size: 38px;
+        font-size: 38px; /* 46px에서 축소 */
         max-width: 80%;
         padding: 15px 10px;
         border-radius: 15px;
     }
+
     /* FC 모집 페이지 */
     .fc_recruit .container {
         padding: 80px 20px; /* 120px 0에서 수정 */
@@ -1475,7 +1481,24 @@ br.m_br {
     }
 
     .main .point_wrap {
-        min-height: calc(var(--vh, 1vh) * 150);
+        min-height: calc(var(--vh, 1vh) * 150); /* 수정: 180에서 150으로 축소 */
+    }
+
+    .main .point .point_box {
+        height: calc(var(--vh, 1vh) * 100);
+    }
+
+    .main .point h2 {
+        font-size: 38px; /* 48px에서 축소 */
+        top: 80px; /* 100px에서 축소 */
+    }
+
+    .main .point p {
+        font-size: 28px; /* 38px에서 축소 */
+        max-width: 90%;
+        padding: 15px 15px;
+        border-radius: 12px;
+        border-width: 1.5px;
     }
 
     .main .common_card {
@@ -1921,8 +1944,21 @@ br.m_br {
         font-size: 18px;
     }
 
+    .main .point_wrap {
+        min-height: calc(var(--vh, 1vh) * 120); /* 150에서 120으로 축소 */
+    }
+
     .main .point h2 {
-        font-size: 30px;
+        font-size: 30px; /* 38px에서 축소 */
+        top: 60px; /* 80px에서 축소 */
+    }
+
+    .main .point p {
+        font-size: 22px; /* 28px에서 축소 */
+        max-width: 95%;
+        padding: 12px 12px;
+        border-radius: 10px;
+        border-width: 1px;
     }
 
     /* 센터장 페이지 */
