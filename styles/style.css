@@ -197,7 +197,7 @@ br.m_br {
     width: 100%;
     height: calc(var(--vh, 1vh) * 100);
     perspective: 1000px;
-    background: url('/images/fixed_bg.jpg') center / cover no-repeat;
+    background: url('/images/point_bg.jpg') center / cover no-repeat;
 }
 
 .main .point h2 {

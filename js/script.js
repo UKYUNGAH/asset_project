@@ -1,7 +1,11 @@
 gsap.registerPlugin(ScrollTrigger);
 
-// 햄버거 메뉴 기능
 document.addEventListener('DOMContentLoaded', function () {
+    // 수정: 포인트 섹션 배경이미지 미리 로드 (맨 처음)
+    const preloadImg = new Image();
+    preloadImg.src = '/images/point_bg.jpg';
+
+    // 햄버거 메뉴 기능
     const hamBtn = document.querySelector('.ham_btn');
     const hamGnb = document.querySelector('.ham_gnb');
     const hamIcon = document.querySelector('.ham_icon');
