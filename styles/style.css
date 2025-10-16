@@ -171,7 +171,7 @@ br.m_br {
 .main .point {
     width: 100%;
     height: 100%;
-    background-color: #000;
+    background-color: transparent;
     position: relative;
     overflow: clip;
 }
@@ -198,7 +198,10 @@ br.m_br {
     width: 100%;
     height: calc(var(--vh, 1vh) * 100);
     perspective: 1000px;
-    background: url('/images/fixed_bg.jpg') center / 100% 100% no-repeat;
+    /* background: url('/images/fixed_bg.jpg') center / 100% 100% no-repeat; */
+    background: url('/images/fixed_bg.jpg') center / cover no-repeat;
+    /* 수정: background-size와 no-repeat 명시 */
+    background-attachment: fixed;
 }
 
 .main .point h2 {
