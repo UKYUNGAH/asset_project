@@ -1488,6 +1488,10 @@ br.m_br {
         height: 20px;
     }
 
+    .main .point_wrap {
+        min-height: calc(var(--vh, 1vh) * 150);
+    }
+
     .main .common_card {
         padding: 80px 20px; /* 120px 0에서 수정 */
     }
