@@ -191,17 +191,6 @@ br.m_br {
     height: calc(100% + calc(var(--vh, 1vh) * 100));
 }
 
-.main .point_img {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100vh;
-    background-image: url(/images/fixed_bg.jpg);
-    background-size: cover;
-    background-position: center;
-}
-
 .main .point .point_box {
     position: -webkit-sticky;
     position: sticky;
@@ -209,10 +198,7 @@ br.m_br {
     width: 100%;
     height: calc(var(--vh, 1vh) * 100);
     perspective: 1000px;
-    background-image: url('/images/fixed_bg.jpg');
-    -webkit-background-position: center;
-    background-position: center;
-    background-repeat: no-repeat;
+    background: url('/images/fixed_bg.jpg') center / 100% 100% no-repeat;
 }
 
 .main .point h2 {
@@ -1933,6 +1919,10 @@ br.m_br {
 
     .main .hiro span {
         font-size: 18px;
+    }
+
+    .main .point h2 {
+        font-size: 30px;
     }
 
     /* 센터장 페이지 */
