@@ -199,7 +199,7 @@ br.m_br {
     perspective: 1000px;
     /* background: url('/images/point_bg.jpg') center / cover no-repeat; */
     /* 기본 배경색 (로딩 중 표시) */
-    background-color: #1a365d;
+    background-color: var(--bs-dark-blue);
 
     /* WebP 미지원 브라우저용 fallback */
     background-image: url('/images/point_bg.jpg');
