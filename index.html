@@ -9,29 +9,6 @@
         <!-- favicon -->
         <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
 
-        <style>
-            .main .point .point_box {
-                position: -webkit-sticky;
-                position: sticky;
-                top: 0;
-                width: 100%;
-                height: calc(var(--vh, 1vh) * 100);
-                perspective: 1000px;
-
-                background-color: #00357f !important;
-                background-image: url('/images/point_bg.jpg') !important;
-                background-position: center !important;
-                background-size: cover !important;
-                background-repeat: no-repeat !important;
-            }
-
-            @media (max-width: 768px) {
-                .main .point .point_box {
-                    background-color: #0f2538 !important;
-                }
-            }
-        </style>
-
         <!-- 중요한 이미지 미리 로드 - WebP와 JPG 모두 준비 -->
         <link rel="preload" href="/images/point_bg.webp" as="image" type="image/webp" />
         <link rel="preload" href="/images/point_bg.jpg" as="image" type="image/jpeg" />
