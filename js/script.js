@@ -1,10 +1,95 @@
 gsap.registerPlugin(ScrollTrigger);
 
-document.addEventListener('DOMContentLoaded', function () {
-    // 수정: 포인트 섹션 배경이미지 미리 로드 (맨 처음)
-    const preloadImg = new Image();
-    preloadImg.src = '/images/point_bg.jpg';
+// WebP 지원 감지 함수
+function supportsWebP() {
+    return new Promise((resolve) => {
+        const webP = new Image();
+        webP.onload = webP.onerror = () => {
+            resolve(webP.height === 2);
+        };
+        webP.src =
+            'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+    });
+}
 
+// 이미지 미리 로드 및 최적화
+async function preloadOptimizedImages() {
+    const isWebPSupported = await supportsWebP();
+
+    // HTML body에 WebP 지원 클래스 추가
+    document.documentElement.classList.add(isWebPSupported ? 'webp' : 'no-webp');
+
+    // 사용할 이미지 경로 결정
+    const bgImagePath = isWebPSupported ? '/images/point_bg.webp' : '/images/point_bg.jpg';
+
+    // 이미지 미리 로드
+    const preloadImage = new Image();
+
+    return new Promise((resolve) => {
+        preloadImage.onload = () => {
+            // 이미지 로드 완료 시 point_box에 직접 적용
+            const pointBox = document.querySelector('.point_box');
+            if (pointBox) {
+                pointBox.style.backgroundImage = `url('${bgImagePath}')`;
+                pointBox.classList.add('bg-loaded');
+            }
+            resolve(true);
+        };
+
+        preloadImage.onerror = () => {
+            // WebP 로드 실패 시 JPG로 fallback
+            if (isWebPSupported) {
+                const fallbackImage = new Image();
+                fallbackImage.onload = () => {
+                    const pointBox = document.querySelector('.point_box');
+                    if (pointBox) {
+                        pointBox.style.backgroundImage = "url('/images/point_bg.jpg')";
+                        pointBox.classList.add('bg-loaded');
+                    }
+                    resolve(true);
+                };
+                fallbackImage.src = '/images/point_bg.jpg';
+            } else {
+                resolve(false);
+            }
+        };
+
+        preloadImage.src = bgImagePath;
+    });
+}
+
+// DOM 로드 완료 시 실행
+document.addEventListener('DOMContentLoaded', async function () {
+    // 1. 즉시 WebP 감지 및 이미지 로드 시작
+    preloadOptimizedImages();
+
+    // 2. Intersection Observer로 추가 최적화
+    const observerOptions = {
+        root: null,
+        rootMargin: '300px', // 더 일찍 미리 로드
+        threshold: 0,
+    };
+
+    const pointObserver = new IntersectionObserver(async (entries) => {
+        for (const entry of entries) {
+            if (entry.isIntersecting) {
+                const pointBox = entry.target.querySelector('.point_box');
+                if (pointBox && !pointBox.classList.contains('bg-preloaded')) {
+                    // 아직 로드되지 않았다면 강제 로드
+                    await preloadOptimizedImages();
+                    pointBox.classList.add('bg-preloaded');
+                }
+                pointObserver.unobserve(entry.target);
+                break;
+            }
+        }
+    }, observerOptions);
+
+    // point 섹션 관찰 시작
+    const pointSection = document.querySelector('.point');
+    if (pointSection) {
+        pointObserver.observe(pointSection);
+    }
     // 햄버거 메뉴 기능
     const hamBtn = document.querySelector('.ham_btn');
     const hamGnb = document.querySelector('.ham_gnb');
@@ -704,4 +789,13 @@ gsap.from('.center_recruit .interview .box_wrap .box', {
     scale: 0.9,
     duration: 1.3,
     ease: 'power3.out',
+});
+
+// 페이지 로드 완료 시 추가 체크
+window.addEventListener('load', () => {
+    // 모든 리소스 로드 후 마지막 체크
+    const pointBox = document.querySelector('.point_box');
+    if (pointBox && !pointBox.classList.contains('bg-loaded')) {
+        preloadOptimizedImages();
+    }
 });

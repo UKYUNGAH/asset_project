@@ -197,7 +197,20 @@ br.m_br {
     width: 100%;
     height: calc(var(--vh, 1vh) * 100);
     perspective: 1000px;
-    background: url('/images/point_bg.jpg') center / cover no-repeat;
+    /* background: url('/images/point_bg.jpg') center / cover no-repeat; */
+    /* 기본 배경색 (로딩 중 표시) */
+    background-color: #1a365d;
+
+    /* WebP 미지원 브라우저용 fallback */
+    background-image: url('/images/point_bg.jpg');
+
+    /* WebP 지원 브라우저용 (더 작은 용량) */
+    background-image: url('/images/point_bg.webp');
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: local;
 }
 
 .main .point h2 {

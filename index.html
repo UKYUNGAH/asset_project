@@ -3,11 +3,19 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title></title>
+        <title>FM</title>
 
         <!-- #ISSUE: 임시로 아무이미지나 파비콘 넣어뒀습니다. 맞는 이미지로 대체해주세요!  -->
         <!-- favicon -->
         <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+
+        <!-- 중요한 이미지 미리 로드 - WebP와 JPG 모두 준비 -->
+        <link rel="preload" href="/images/point_bg.webp" as="image" type="image/webp" />
+        <link rel="preload" href="/images/point_bg.jpg" as="image" type="image/jpeg" />
+
+        <!-- 중요 이미지들 -->
+        <link rel="preload" href="/images/logo.png" as="image" />
+        <link rel="preload" href="/images/wave_banner.mp4" as="video" type="video/mp4" />
 
         <!-- css 스타일 -->
         <!-- reset.css: 브라우저 기본 스타일 초기화 -->
