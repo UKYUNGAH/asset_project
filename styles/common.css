@@ -618,13 +618,6 @@ footer h4 {
     }
 }
 
-/* 포커스 가능한 요소들의 접근성 개선 */
-.header li a:focus,
-.button_default:focus {
-    outline: 2px solid var(--bs-blue);
-    outline-offset: 2px;
-}
-
 /* 스크린 리더 전용 텍스트 */
 .sr-only {
     position: absolute;
