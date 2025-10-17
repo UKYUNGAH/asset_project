@@ -6,10 +6,9 @@ br.m_br {
     display: none;
 }
 
-main {
+.sub_page {
     overflow: hidden;
 }
-
 /* ====================== 메인 페이지   ====================== */
 /* *STYLEPAGE: main - 메인 */
 /* hiro 영역 */
