@@ -163,12 +163,11 @@ main {
     flex-direction: column;
 }
 .header .h_container {
-    height: 60px;
     line-height: 60px;
     max-width: 1200px;
     margin: 0 auto;
-    height: 100%;
     width: 100%;
+    height: 60px;
     padding: 0 10px;
     box-sizing: border-box;
 }

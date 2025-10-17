@@ -473,19 +473,60 @@ storiesTl
     );
 
 // ====================== 지사장 모집 페이지 애니메이션 ====================== //
-// 지사장 모집 - 지사 현황 섹션
-gsap.from('.branch_recruit .jisa', {
+// ====================== 지사장 모집 - 지사 현황 섹션 (jisa) ====================== //
+// jisa_inner의 배경색 전환 및 이미지 노출 애니메이션
+// 수정: 반응형 end 값 계산
+function getJisaAnimationEnd() {
+    // 수정: 반응형에 따라 애니메이션 진행 구간 조정
+    // 모든 기기에서 100vh 높이이므로 end 값 통일
+    return 'center top';
+}
+
+const jisaTimeline = gsap.timeline({
     scrollTrigger: {
         trigger: '.branch_recruit .jisa',
-        start: 'top 70%',
-        toggleActions: 'play none none reverse',
+        start: 'top top', // 섹션 진입 시 시작
+        end: getJisaAnimationEnd(), // 섹션 중간쯤에서 완료
+        scrub: 1, // 스크롤에 따라 부드럽게 움직임
+        markers: false,
+        pin: true, // 섹션을 고정하고 스크롤
     },
-    opacity: 0,
-    y: 50,
-    scale: 0.95,
-    duration: 1.8,
-    ease: 'power3.out',
 });
+
+// 수정: jisa 요소 자체에 배경색 애니메이션 (완전 검은색 -> 반투명)
+// 1단계: 배경색 전환 (0 ~ 0.5)
+jisaTimeline.to(
+    '.branch_recruit .jisa',
+    {
+        backgroundColor: 'rgba(0, 0, 0, 0.255)', // 검은색 -> 반투명
+        duration: 0.5,
+        ease: 'power2.inOut',
+    },
+    0 // 즉시 시작
+);
+
+// 2단계: 이미지 fade-in (0.2 ~ 0.8)
+jisaTimeline.to(
+    '.branch_recruit .jisa img',
+    {
+        opacity: 1, // 이미지 노출
+        duration: 0.6,
+        ease: 'power2.out',
+    },
+    0.2 // 배경색 전환이 조금 시작된 후에 시작
+);
+
+// 3단계: 제목이 아래에서 위로 올라오면서 opacity 0 -> 1 (0.3 ~ 1)
+jisaTimeline.from(
+    '.branch_recruit .jisa .title',
+    {
+        opacity: 0,
+        y: 100, // 아래에서 100px 위치에서 시작
+        duration: 0.7,
+        ease: 'power3.out',
+    },
+    0.3 // 이미지가 서서히 보여질 때쯤 시작
+);
 
 // 지사장 모집 - 파트너십 섹션
 gsap.from('.branch_recruit .partnership .branch_title', {
