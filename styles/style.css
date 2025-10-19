@@ -204,23 +204,26 @@ br.m_br2 {
     width: 100%;
     height: calc(var(--vh, 1vh) * 100);
     perspective: 1000px;
-    /* background: url('/images/point_bg.jpg') center / cover no-repeat; */
-    /* 기본 배경색 (로딩 중 표시) */
-    /* background-color: var(--bs-dark-blue); */
-    background-color: #001a3d;
-
-    /* WebP 미지원 브라우저용 fallback */
-    /* background-image: url('/images/point_bg.jpg'); */
-
-    /* WebP 지원 브라우저용 (더 작은 용량) */
-    /* background-image: url('/images/point_bg.webp'); */
-
+    background-color: var(--bs-dark-blue);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    transition: background-image 0.3s ease-in-out;
+}
 
-    /* background-attachment: local; */
+/* WebP 지원 클래스 */
+.webp .main .point .point_box {
+    background-image: url('/images/point_bg.webp');
+}
+
+/* WebP 미지원 클래스 (fallback) */
+.no-webp .main .point .point_box {
+    background-image: url('/images/point_bg.jpg');
+}
+
+/* 로딩 완료 클래스 (JS에서 추가, 부드러운 전환) */
+.main .point .point_box.bg-loaded {
+    transition: opacity 0.3s ease; /* 로드 후 부드럽게 나타남 */
+    opacity: 1;
 }
 
 .main .point h2 {
@@ -1542,7 +1545,9 @@ br.m_br2 {
     }
 
     .main .point .point_box {
-        height: calc(var(--vh, 1vh) * 100);
+        /* height: calc(var(--vh, 1vh) * 100); */
+        background-color: rgba(0, 0, 0, 0.8); /* 로딩 중 더 어두운 fallback 색상 (빈 공간 덜 티남) */
+        opacity: 0.8; /* 초기 opacity 낮춰 로드 전 부드럽게 */
     }
 
     .main .point .ani_text {
