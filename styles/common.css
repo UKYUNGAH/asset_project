@@ -168,7 +168,6 @@ main {
     margin: 0 auto;
     width: 100%;
     height: 60px;
-    padding: 0 10px;
     box-sizing: border-box;
 }
 
@@ -177,7 +176,6 @@ main {
     justify-content: space-between;
     align-items: center;
     height: 100%;
-    padding: 0 15px;
 }
 
 .header .logo {
@@ -253,6 +251,7 @@ main {
     flex-direction: column;
     gap: 0;
     align-items: start;
+    padding-bottom: 8px;
 }
 
 .header .ham_gnb li {
@@ -487,7 +486,6 @@ footer h4 {
     }
 
     .header .h_container {
-        padding: 0 5px;
     }
 
     .header .logo {

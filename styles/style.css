@@ -228,7 +228,7 @@ br.m_br2 {
     font-weight: 700;
     text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
     position: absolute;
-    top: 140px;
+    top: 200px;
     /* top: calc(50% - 200px); */
     left: 50%;
     transform: translateX(-50%);
@@ -1220,6 +1220,7 @@ br.m_br2 {
     }
 
     .main .point h2 {
+        top: 140px !important;
         font-size: 48px; /* 56px에서 축소 */
     }
 
@@ -1544,6 +1545,8 @@ br.m_br2 {
 
     .main .point .ani_text {
         height: 90%;
+        width: 90%;
+        margin: 0 auto;
     }
     .main .point h2 {
         font-size: 38px; /* 48px에서 축소 */
@@ -1642,9 +1645,14 @@ br.m_br2 {
         padding: 8px 15px;
     }
 
+    .fc_recruit .technic .content .mid img {
+        transform: rotate(90deg);
+    }
+
     .fc_recruit .technic .content .right {
         width: 100%;
         height: auto;
+        max-width: 320px;
     }
 
     .fc_recruit .technic .content .right p {
