@@ -217,7 +217,7 @@ br.m_br2 {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: local;
+    /* background-attachment: local; */
 }
 
 .main .point h2 {

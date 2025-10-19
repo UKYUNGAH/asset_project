@@ -203,37 +203,27 @@ if (document.querySelector('.main')) {
 
 // ====================== 메인 페이지 애니메이션 ====================== //
 // 메인 - 비지니스 섹션
-gsap.from('.business h3', {
+const businessTimeline = gsap.timeline({
     scrollTrigger: {
-        trigger: '.business h3',
-        start: 'top 85%', // 조금 더 일찍 시작
-        toggleActions: 'play none none reverse',
+        trigger: '.business',
+        start: 'top bottom',
+        scrub: false,
     },
-    opacity: 0,
-    y: 40, // 이동거리 줄임
-    scale: 0.95, // 살짝 스케일 효과 추가
-    duration: 1.8, // 더 여유롭게
-    ease: 'power2.out',
 });
 
-gsap.from('.business .item', {
-    scrollTrigger: {
-        trigger: '.business .card',
-        start: 'top 80%',
-        toggleActions: 'play none none reverse',
+businessTimeline.from('.business h3', { y: 40, opacity: 0, duration: 1.2, ease: 'power2.out' }).from(
+    '.business .item',
+    {
+        y: 60,
+        opacity: 0,
+        scale: 0.9,
+        rotation: 2,
+        duration: 1.4,
+        stagger: 0.2,
+        ease: 'back.out(1.2)',
     },
-    opacity: 0,
-    y: 60,
-    scale: 0.9,
-    rotation: 2,
-    duration: 1.4,
-    stagger: {
-        amount: 0.6,
-        from: 'start',
-        ease: 'power2.inOut',
-    },
-    ease: 'back.out(1.2)',
-});
+    '-=0.6'
+); // h3 애니메이션 끝나기 전에 살짝 겹치게 시작
 
 // ====================== 메인 - 포인트 섹션 ====================== //
 const pointTexts = gsap.utils.toArray('.point .ani_text p').slice(0, 4);
