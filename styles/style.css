@@ -178,7 +178,7 @@ br.m_br2 {
 .main .point {
     width: 100%;
     height: 100%;
-    background-color: var(--bs-dark-blue);
+    background-color: transparent;
     position: relative;
     overflow: clip;
 }
@@ -188,7 +188,6 @@ br.m_br2 {
     overflow: clip;
     width: 100%;
     min-height: calc(var(--vh, 1vh) * 200);
-    background-color: var(--bs-dark-blue);
 }
 
 .main .point_inner {
@@ -199,28 +198,26 @@ br.m_br2 {
 }
 
 .main .point .point_box {
-    /* position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    width: 100%;
-    height: calc(var(--vh, 1vh) * 100);
-    perspective: 1000px;
-    background-image: url('/images/point_bg.jpg'); 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: var(--bs-dark-blue);
-    transition: background-image 0.3s ease-in-out; */
     position: -webkit-sticky;
     position: sticky;
     top: 0;
     width: 100%;
     height: calc(var(--vh, 1vh) * 100);
     perspective: 1000px;
-    background-image: url(https://static.toss.im/photos/20250704-113.jpg);
-    -webkit-background-position: center;
+    /* background: url('/images/point_bg.jpg') center / cover no-repeat; */
+    /* 기본 배경색 (로딩 중 표시) */
+    background-color: var(--bs-dark-blue);
+
+    /* WebP 미지원 브라우저용 fallback */
+    background-image: url('/images/point_bg.jpg');
+
+    /* WebP 지원 브라우저용 (더 작은 용량) */
+    background-image: url('/images/point_bg.webp');
+
     background-position: center;
+    background-size: cover;
     background-repeat: no-repeat;
+    /* background-attachment: local; */
 }
 
 .main .point h2 {
