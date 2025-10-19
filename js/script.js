@@ -27,7 +27,6 @@ async function preloadOptimizedImages() {
 
     return new Promise((resolve) => {
         preloadImage.onload = () => {
-            // 이미지 로드 완료 시 point_box에 직접 적용
             const pointBox = document.querySelector('.point_box');
             if (pointBox) {
                 pointBox.classList.add('bg-loaded');
@@ -36,7 +35,6 @@ async function preloadOptimizedImages() {
         };
 
         preloadImage.onerror = () => {
-            // WebP 로드 실패 시 JPG로 fallback
             if (isWebPSupported) {
                 const fallbackImage = new Image();
                 fallbackImage.onload = () => {
@@ -63,10 +61,10 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     // 2. Intersection Observer로 추가 최적화
     const isMobile = window.innerWidth <= 768;
-    const rootMarginValue = isMobile ? '50%' : '300px';
+    const rootMarginValue = isMobile ? '100%' : '500px';
     const observerOptions = {
         root: null,
-        rootMargin: rootMarginValue, // 더 일찍 미리 로드
+        rootMargin: rootMarginValue,
         threshold: 0,
     };
 
@@ -75,7 +73,6 @@ document.addEventListener('DOMContentLoaded', async function () {
             if (entry.isIntersecting) {
                 const pointBox = entry.target.querySelector('.point_box');
                 if (pointBox && !pointBox.classList.contains('bg-preloaded')) {
-                    // 아직 로드되지 않았다면 강제 로드
                     await preloadOptimizedImages();
                     pointBox.classList.add('bg-preloaded');
                 }
@@ -102,13 +99,11 @@ document.addEventListener('DOMContentLoaded', async function () {
         isMenuOpen = !isMenuOpen;
 
         if (isMenuOpen) {
-            // 메뉴 열기
             hamGnb.classList.add('active');
             hamIcon.src = '/images/close_btn.png';
             hamIcon.alt = '메뉴 닫기';
             hamBtn.setAttribute('aria-label', '메뉴 닫기');
 
-            // 메인 페이지에서 헤더 배경 활성화 (기존 GSAP 스타일과 동일하게)
             if (document.querySelector('.main')) {
                 gsap.to('.header', {
                     backgroundColor: 'var(--bs-white)',
@@ -121,13 +116,11 @@ document.addEventListener('DOMContentLoaded', async function () {
                 });
             }
         } else {
-            // 메뉴 닫기
             hamGnb.classList.remove('active');
             hamIcon.src = '/images/ham_btn.png';
             hamIcon.alt = '메뉴 버튼';
             hamBtn.setAttribute('aria-label', '메뉴 열기');
 
-            // 메인 페이지에서 스크롤 위치에 따라 헤더 배경 처리
             if (document.querySelector('.main') && window.scrollY < 20) {
                 gsap.to('.header', {
                     backgroundColor: 'transparent',
@@ -274,26 +267,24 @@ window.addEventListener('resize', () => {
 });
 
 // 스크롤에 따른 회전
+const isMobile = window.innerWidth <= 768;
 ScrollTrigger.create({
     trigger: '.point', // point 섹션 진입 기준
     start: 'top top', // 수정: point가 화면 100vh에 도달했을 때 시작
     end: 'center top', // 수정: 롤링 완료 후 마지막 상태 유지
-    scrub: 1,
+    scrub: isMobile ? false : 1, // 모바일에서 scrub false로 렉 줄임
     markers: false,
     onUpdate: (self) => {
         const progress = self.progress;
-        // 수정: progress * (totalTexts - 1)로 변경
-        // 마지막 p가 정확히 포커스된 상태에서 끝남
         const rotationProgress = progress * (totalTexts - 1);
 
         pointTexts.forEach((text, index) => {
-            const baseAngle = (index / (totalTexts - 1)) * Math.PI; // 수정: 반원형(π)
-            const currentAngle = baseAngle - (rotationProgress * Math.PI) / (totalTexts - 1); // 수정: 반원형 범위
+            const baseAngle = (index / (totalTexts - 1)) * Math.PI;
+            const currentAngle = baseAngle - (rotationProgress * Math.PI) / (totalTexts - 1);
 
             const y = Math.sin(currentAngle) * radius;
             const z = Math.cos(currentAngle) * radius;
             const rotateX = -((currentAngle * 180) / Math.PI);
-            // 수정: rotateY 계산 - 각도 변화에 따라 좌우 회전
             const rotateY = Math.cos(currentAngle) * 20;
 
             const normalizedAngle = ((currentAngle % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
@@ -353,7 +344,6 @@ const technicTl = gsap.timeline({
 });
 
 technicTl
-    // 상단 타이틀
     .from('.fc_recruit .technic .t_title', {
         opacity: 0,
         y: 40,
@@ -361,7 +351,6 @@ technicTl
         duration: 0.8,
         ease: 'power2.out',
     })
-    // 왼쪽 박스
     .from(
         '.fc_recruit .technic .content .left',
         {
@@ -373,7 +362,6 @@ technicTl
         },
         '-=0.4'
     )
-    // 중간 화살표
     .from(
         '.fc_recruit .technic .content .mid',
         {
@@ -385,7 +373,6 @@ technicTl
         },
         '-=0.3'
     )
-    // 오른쪽 박스
     .from(
         '.fc_recruit .technic .content .right',
         {
@@ -397,7 +384,6 @@ technicTl
         },
         '-=0.4'
     )
-    // 하단 텍스트
     .from(
         '.fc_recruit .technic .bottom',
         {
@@ -462,59 +448,51 @@ storiesTl
     );
 
 // ====================== 지사장 모집 페이지 애니메이션 ====================== //
-// ====================== 지사장 모집 - 지사 현황 섹션 (jisa) ====================== //
-// jisa_inner의 배경색 전환 및 이미지 노출 애니메이션
-// 수정: 반응형 end 값 계산
+// 지사장 모집 - 지사 현황 섹션 (jisa)
 function getJisaAnimationEnd() {
-    // 수정: 반응형에 따라 애니메이션 진행 구간 조정
-    // 모든 기기에서 100vh 높이이므로 end 값 통일
     return 'center top';
 }
 
 const jisaTimeline = gsap.timeline({
     scrollTrigger: {
         trigger: '.branch_recruit .jisa',
-        start: 'top top', // 섹션 진입 시 시작
-        end: getJisaAnimationEnd(), // 섹션 중간쯤에서 완료
-        scrub: 1, // 스크롤에 따라 부드럽게 움직임
+        start: 'top top',
+        end: getJisaAnimationEnd(),
+        scrub: 1,
         markers: false,
-        pin: true, // 섹션을 고정하고 스크롤
+        pin: true,
     },
 });
 
-// 수정: jisa 요소 자체에 배경색 애니메이션 (완전 검은색 -> 반투명)
-// 1단계: 배경색 전환 (0 ~ 0.5)
 jisaTimeline.to(
     '.branch_recruit .jisa',
     {
-        backgroundColor: 'rgba(0, 0, 0, 0.255)', // 검은색 -> 반투명
+        backgroundColor: 'rgba(0, 0, 0, 0.255)',
         duration: 0.5,
         ease: 'power2.inOut',
     },
-    0 // 즉시 시작
+    0
 );
 
-// 2단계: 이미지 fade-in (0.2 ~ 0.8)
 jisaTimeline.to(
     '.branch_recruit .jisa img',
     {
-        opacity: 1, // 이미지 노출
+        opacity: 1,
         duration: 0.6,
         ease: 'power2.out',
     },
-    0.2 // 배경색 전환이 조금 시작된 후에 시작
+    0.2
 );
 
-// 3단계: 제목이 아래에서 위로 올라오면서 opacity 0 -> 1 (0.3 ~ 1)
 jisaTimeline.from(
     '.branch_recruit .jisa .title',
     {
         opacity: 0,
-        y: 100, // 아래에서 100px 위치에서 시작
+        y: 100,
         duration: 0.7,
         ease: 'power3.out',
     },
-    0.3 // 이미지가 서서히 보여질 때쯤 시작
+    0.3
 );
 
 // 지사장 모집 - 파트너십 섹션
@@ -599,7 +577,6 @@ gsap.from('.branch_recruit .interview .branch_title', {
     ease: 'power2.out',
 });
 
-// 인터뷰 박스 - 3D 효과로 적용
 gsap.from('.branch_recruit .interview .box_wrap .box', {
     scrollTrigger: {
         trigger: '.branch_recruit .interview .box_wrap',
@@ -660,7 +637,7 @@ gsap.from('.center_recruit .center_text h3', {
     opacity: 0,
     y: 60,
     scale: 0.9,
-    duration: 2.2, // 더 길게
+    duration: 2.2,
     ease: 'power2.out',
 });
 
@@ -823,7 +800,6 @@ gsap.from('.center_recruit .interview .box_wrap .box', {
 
 // 페이지 로드 완료 시 추가 체크
 window.addEventListener('load', () => {
-    // 모든 리소스 로드 후 마지막 체크
     const pointBox = document.querySelector('.point_box');
     if (pointBox && !pointBox.classList.contains('bg-loaded')) {
         preloadOptimizedImages();

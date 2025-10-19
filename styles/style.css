@@ -196,34 +196,34 @@ br.m_br2 {
     width: 100%;
     height: calc(100% + calc(var(--vh, 1vh) * 100));
 }
-
 .main .point .point_box {
-    position: -webkit-sticky;
-    position: sticky;
+    position: -webkit-sticky; /* 유지 */
+    position: sticky; /* 유지 */
     top: 0;
     width: 100%;
     height: calc(var(--vh, 1vh) * 100);
     perspective: 1000px;
-    background-color: var(--bs-dark-blue);
+    background-color: var(--bs-dark-blue); /* 로딩 중 기본 색상 */
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    will-change: background; /* 모바일 최적화 */
+    opacity: 0; /* 초기 숨김 */
+    transition: opacity 0.5s ease; /* 로드 후 부드럽게 나타남 */
 }
 
-/* WebP 지원 클래스 */
-.webp .main .point .point_box {
-    background-image: url('/images/point_bg.webp');
-}
-
-/* WebP 미지원 클래스 (fallback) */
+/* WebP 미지원 */
 .no-webp .main .point .point_box {
     background-image: url('/images/point_bg.jpg');
 }
 
-/* 로딩 완료 클래스 (JS에서 추가, 부드러운 전환) */
+/* WebP 지원 */
+.webp .main .point .point_box {
+    background-image: url('/images/point_bg.webp');
+}
+
 .main .point .point_box.bg-loaded {
-    transition: opacity 0.3s ease; /* 로드 후 부드럽게 나타남 */
-    opacity: 1;
+    opacity: 1; /* 로드 완료 시 보이게 */
 }
 
 .main .point h2 {
