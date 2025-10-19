@@ -204,16 +204,23 @@ br.m_br2 {
     width: 100%;
     height: calc(var(--vh, 1vh) * 100);
     perspective: 1000px;
-    background-color: var(--bs-dark-blue); /* 배경색 유지 */
-    background-image: url('/images/point_bg.jpg');
-    background-image: url('/images/point_bg.webp');
+    /* background: url('/images/point_bg.jpg') center / cover no-repeat; */
+    /* 기본 배경색 (로딩 중 표시) */
+    /* background-color: var(--bs-dark-blue); */
+    background-color: #001a3d;
+
+    /* WebP 미지원 브라우저용 fallback */
+    /* background-image: url('/images/point_bg.jpg'); */
+
+    /* WebP 지원 브라우저용 (더 작은 용량) */
+    /* background-image: url('/images/point_bg.webp'); */
+
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    /* 수정: 이미지 로딩 전까지 배경색 보여주기 */
-    background-attachment: local;
-    /* 추가: 모바일에서 배경이 먼저 보이도록 */
-    will-change: auto;
+    transition: background-image 0.3s ease-in-out;
+
+    /* background-attachment: local; */
 }
 
 .main .point h2 {
@@ -1536,10 +1543,6 @@ br.m_br2 {
 
     .main .point .point_box {
         height: calc(var(--vh, 1vh) * 100);
-    }
-    .main .point .point_box {
-        /* 수정: 모바일에서는 local 제거해서 배경이 스크롤되도록 */
-        background-attachment: fixed;
     }
 
     .main .point .ani_text {

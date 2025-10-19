@@ -12,13 +12,43 @@ function supportsWebP() {
     });
 }
 
-// 수정: point 섹션 이미지를 더 일찍 로드하도록
-async function preloadPointImages() {
-    const isWebPSupported = await supportsWebP();
-    const bgImagePath = isWebPSupported ? '/images/point_bg.webp' : '/images/point_bg.jpg';
+// 이미지 미리 로드 및 최적화 - 수정: 더 빠른 로딩을 위한 최적화
+async function preloadOptimizedImages() {
+    // 수정: WebP 체크를 기다리지 않고 즉시 JPG 로드 시작 (모바일 우선)
+    const isMobile = window.innerWidth <= 768;
 
+    // 모바일에서는 즉시 JPG 사용 (더 빠른 초기 로딩)
+    if (isMobile) {
+        const pointBox = document.querySelector('.point_box');
+        if (pointBox && !pointBox.classList.contains('bg-loaded')) {
+            // 즉시 저해상도 placeholder 적용
+            pointBox.style.backgroundColor = '#001a3d'; // 이미지의 대표 색상
+
+            // 실제 이미지 로드
+            const img = new Image();
+            img.onload = () => {
+                pointBox.style.backgroundImage = `url('/images/point_bg.jpg')`;
+                pointBox.classList.add('bg-loaded');
+            };
+            img.src = '/images/point_bg.jpg';
+
+            // 이미지 로딩 우선순위 높이기
+            img.loading = 'eager';
+            img.fetchPriority = 'high';
+        }
+        return;
+    }
+
+    // 데스크톱에서는 WebP 지원 체크
+    const isWebPSupported = await supportsWebP();
+    document.documentElement.classList.add(isWebPSupported ? 'webp' : 'no-webp');
+
+    const bgImagePath = isWebPSupported ? '/images/point_bg.webp' : '/images/point_bg.jpg';
     const preloadImage = new Image();
-    preloadImage.src = bgImagePath;
+
+    // 이미지 로딩 우선순위 높이기
+    preloadImage.loading = 'eager';
+    preloadImage.fetchPriority = 'high';
 
     return new Promise((resolve) => {
         preloadImage.onload = () => {
@@ -29,20 +59,49 @@ async function preloadPointImages() {
             }
             resolve(true);
         };
-        // 3초 타임아웃 설정 (로드 실패 시에도 진행)
-        setTimeout(() => resolve(false), 3000);
+
+        preloadImage.onerror = () => {
+            if (isWebPSupported) {
+                const fallbackImage = new Image();
+                fallbackImage.onload = () => {
+                    const pointBox = document.querySelector('.point_box');
+                    if (pointBox) {
+                        pointBox.style.backgroundImage = "url('/images/point_bg.jpg')";
+                        pointBox.classList.add('bg-loaded');
+                    }
+                    resolve(true);
+                };
+                fallbackImage.src = '/images/point_bg.jpg';
+            } else {
+                resolve(false);
+            }
+        };
+
+        preloadImage.src = bgImagePath;
     });
 }
 
+// DOM 로드 전에도 이미지 로딩 시작 - 수정: 더 빠른 초기화
+(function () {
+    // 페이지 로드 즉시 이미지 프리로드 시작
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = '/images/point_bg.jpg';
+    link.fetchPriority = 'high';
+    document.head.appendChild(link);
+})();
+
 // DOM 로드 완료 시 실행
 document.addEventListener('DOMContentLoaded', async function () {
-    // 수정: point 이미지를 가장 먼저 로드
-    preloadPointImages();
+    // 1. 즉시 이미지 로드 시작
+    preloadOptimizedImages();
 
-    // 2. Intersection Observer로 추가 최적화
+    // 2. Intersection Observer로 추가 최적화 - 수정: 모바일에서 더 일찍 로드
+    const isMobile = window.innerWidth <= 768;
     const observerOptions = {
         root: null,
-        rootMargin: '300px',
+        rootMargin: isMobile ? '500px' : '300px', // 모바일에서 더 일찍 감지
         threshold: 0,
     };
 
@@ -51,7 +110,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             if (entry.isIntersecting) {
                 const pointBox = entry.target.querySelector('.point_box');
                 if (pointBox && !pointBox.classList.contains('bg-preloaded')) {
-                    await preloadPointImages();
+                    await preloadOptimizedImages();
                     pointBox.classList.add('bg-preloaded');
                 }
                 pointObserver.unobserve(entry.target);
@@ -60,7 +119,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     }, observerOptions);
 
-    // point 섹션 관찰 시작
     const pointSection = document.querySelector('.point');
     if (pointSection) {
         pointObserver.observe(pointSection);
@@ -84,7 +142,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             hamIcon.alt = '메뉴 닫기';
             hamBtn.setAttribute('aria-label', '메뉴 닫기');
 
-            // 메인 페이지에서 헤더 배경 활성화
+            // 메인 페이지에서 헤더 배경 활성화 (기존 GSAP 스타일과 동일하게)
             if (document.querySelector('.main')) {
                 gsap.to('.header', {
                     backgroundColor: 'var(--bs-white)',
@@ -143,7 +201,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     });
 });
 
-// 헤더 스크롤 애니메이션 (메인 페이지에만 적용)
+// 헤더 스크롤 애니메이션 (메인 페이지에만 적용) - 유지
 if (document.querySelector('.main')) {
     ScrollTrigger.create({
         start: '20px top',
@@ -187,41 +245,34 @@ const businessTimeline = gsap.timeline({
     },
 });
 
-businessTimeline
-    .from('.business h3', {
-        y: 40,
+businessTimeline.from('.business h3', { y: 40, opacity: 0, duration: 1.2, ease: 'power2.out' }).from(
+    '.business .item',
+    {
+        y: 60,
         opacity: 0,
-        duration: 1.2,
-        ease: 'power2.out',
-    })
-    .from(
-        '.business .item',
-        {
-            y: 60,
-            opacity: 0,
-            scale: 0.9,
-            rotation: 2,
-            duration: 1.4,
-            stagger: 0.2,
-            ease: 'back.out(1.2)',
-        },
-        '-=0.6'
-    );
+        scale: 0.9,
+        rotation: 2,
+        duration: 1.4,
+        stagger: 0.2,
+        ease: 'back.out(1.2)',
+    },
+    '-=0.6'
+); // h3 애니메이션 끝나기 전에 살짝 겹치게 시작
 
 // ====================== 메인 - 포인트 섹션 ====================== //
 const pointTexts = gsap.utils.toArray('.point .ani_text p').slice(0, 4);
 
-// 반응형 radius 계산
+// 수정: 반응형 radius 계산
 function getPointRadius() {
     const screenWidth = window.innerWidth;
     if (screenWidth <= 480) {
-        return 70;
+        return 70; // 모바일 소
     } else if (screenWidth <= 768) {
-        return 75;
+        return 75; // 모바일 대
     } else if (screenWidth <= 1200) {
-        return 100;
+        return 100; // 태블릿
     }
-    return 120;
+    return 120; // 데스크톱
 }
 
 let radius = getPointRadius();
@@ -243,37 +294,41 @@ function initializePointTexts() {
     });
 }
 
-// 초기 실행
+// 수정: 초기 실행
 initializePointTexts();
 
-// 리사이즈 시 반응형 업데이트
+// 수정: 리사이즈 시 반응형 업데이트
 window.addEventListener('resize', () => {
     const newRadius = getPointRadius();
     if (newRadius !== radius) {
         radius = newRadius;
         initializePointTexts();
-        ScrollTrigger.refresh();
+        ScrollTrigger.refresh(); // ScrollTrigger 업데이트
     }
 });
 
 // 스크롤에 따른 회전
 ScrollTrigger.create({
-    trigger: '.point',
-    start: 'top top',
-    end: 'center top',
+    trigger: '.point', // point 섹션 진입 기준
+    start: 'top top', // 수정: point가 화면 100vh에 도달했을 때 시작
+    end: 'center top', // 수정: 롤링 완료 후 마지막 상태 유지
     scrub: 1,
     markers: false,
     onUpdate: (self) => {
         const progress = self.progress;
+        // 수정: progress * (totalTexts - 1)로 변경
+        // 마지막 p가 정확히 포커스된 상태에서 끝남
         const rotationProgress = progress * (totalTexts - 1);
 
         pointTexts.forEach((text, index) => {
-            const baseAngle = (index / (totalTexts - 1)) * Math.PI;
-            const currentAngle = baseAngle - (rotationProgress * Math.PI) / (totalTexts - 1);
+            const baseAngle = (index / (totalTexts - 1)) * Math.PI; // 수정: 반원형(π)
+            const currentAngle = baseAngle - (rotationProgress * Math.PI) / (totalTexts - 1); // 수정: 반원형 범위
 
             const y = Math.sin(currentAngle) * radius;
             const z = Math.cos(currentAngle) * radius;
             const rotateX = -((currentAngle * 180) / Math.PI);
+            // 수정: rotateY 계산 - 각도 변화에 따라 좌우 회전
+            const rotateY = Math.cos(currentAngle) * 20;
 
             const normalizedAngle = ((currentAngle % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
             const isFocus = normalizedAngle < 0.3 || normalizedAngle > Math.PI * 2 - 0.3;
@@ -308,6 +363,7 @@ gsap.from('.system .item', {
 });
 
 // ====================== FC 모집 페이지 애니메이션 ====================== //
+// FC 모집 - 텍스트 섹션
 gsap.from('.fc_recruit .fc_text .container', {
     scrollTrigger: {
         trigger: '.fc_recruit .fc_text .container',
@@ -317,10 +373,11 @@ gsap.from('.fc_recruit .fc_text .container', {
     opacity: 0,
     y: 50,
     scale: 0.95,
-    duration: 2,
+    duration: 2, // 더 길게
     ease: 'power3.out',
 });
 
+// FC 모집 - 영업기법 섹션
 gsap.from('.fc_recruit .technic .t_title', {
     scrollTrigger: {
         trigger: '.fc_recruit .technic .t_title',
@@ -342,6 +399,7 @@ const technicTl = gsap.timeline({
     },
 });
 
+// 왼쪽 박스
 technicTl
     .from('.fc_recruit .technic .content .left', {
         opacity: 0,
@@ -350,6 +408,7 @@ technicTl
         duration: 0.8,
         ease: 'back.out(1.4)',
     })
+    // 중간 화살표
     .from(
         '.fc_recruit .technic .content .mid',
         {
@@ -361,6 +420,7 @@ technicTl
         },
         '-=0.3'
     )
+    // 오른쪽 박스
     .from(
         '.fc_recruit .technic .content .right',
         {
@@ -372,6 +432,7 @@ technicTl
         },
         '-=0.4'
     )
+    // 하단 텍스트
     .from(
         '.fc_recruit .technic .bottom',
         {
@@ -384,6 +445,7 @@ technicTl
         '-=0.2'
     );
 
+// FC 모집 - 실적 집중 영역
 gsap.from('.fc_recruit .focus ul li', {
     scrollTrigger: {
         trigger: '.fc_recruit .focus ul',
@@ -403,6 +465,7 @@ gsap.from('.fc_recruit .focus ul li', {
     ease: 'back.out(1.3)',
 });
 
+// FC 모집 - 직원 후기
 const storiesTl = gsap.timeline({
     scrollTrigger: {
         trigger: '.fc_recruit .stories .card_wrap',
@@ -434,54 +497,62 @@ storiesTl
     );
 
 // ====================== 지사장 모집 페이지 애니메이션 ====================== //
-// 지사 현황 섹션 (jisa)
+// ====================== 지사장 모집 - 지사 현황 섹션 (jisa) ====================== //
+// jisa_inner의 배경색 전환 및 이미지 노출 애니메이션
+// 수정: 반응형 end 값 계산
 function getJisaAnimationEnd() {
+    // 수정: 반응형에 따라 애니메이션 진행 구간 조정
+    // 모든 기기에서 100vh 높이이므로 end 값 통일
     return 'center top';
 }
 
 const jisaTimeline = gsap.timeline({
     scrollTrigger: {
         trigger: '.branch_recruit .jisa',
-        start: 'top top',
-        end: getJisaAnimationEnd(),
-        scrub: 1,
+        start: 'top top', // 섹션 진입 시 시작
+        end: getJisaAnimationEnd(), // 섹션 중간쯤에서 완료
+        scrub: 1, // 스크롤에 따라 부드럽게 움직임
         markers: false,
-        pin: true,
+        pin: true, // 섹션을 고정하고 스크롤
     },
 });
 
+// 수정: jisa 요소 자체에 배경색 애니메이션 (완전 검은색 -> 반투명)
+// 1단계: 배경색 전환 (0 ~ 0.5)
 jisaTimeline.to(
     '.branch_recruit .jisa',
     {
-        backgroundColor: 'rgba(0, 0, 0, 0.255)',
+        backgroundColor: 'rgba(0, 0, 0, 0.255)', // 검은색 -> 반투명
         duration: 0.5,
         ease: 'power2.inOut',
     },
-    0
+    0 // 즉시 시작
 );
 
+// 2단계: 이미지 fade-in (0.2 ~ 0.8)
 jisaTimeline.to(
     '.branch_recruit .jisa img',
     {
-        opacity: 1,
+        opacity: 1, // 이미지 노출
         duration: 0.6,
         ease: 'power2.out',
     },
-    0.2
+    0.2 // 배경색 전환이 조금 시작된 후에 시작
 );
 
+// 3단계: 제목이 아래에서 위로 올라오면서 opacity 0 -> 1 (0.3 ~ 1)
 jisaTimeline.from(
     '.branch_recruit .jisa .title',
     {
         opacity: 0,
-        y: 100,
+        y: 100, // 아래에서 100px 위치에서 시작
         duration: 0.7,
         ease: 'power3.out',
     },
-    0.3
+    0.3 // 이미지가 서서히 보여질 때쯤 시작
 );
 
-// 파트너십 섹션
+// 지사장 모집 - 파트너십 섹션
 gsap.from('.branch_recruit .partnership .branch_title', {
     scrollTrigger: {
         trigger: '.branch_recruit .partnership',
@@ -549,7 +620,7 @@ partnershipTl
         '-=0.7'
     );
 
-// 인터뷰 섹션
+// 지사장 모집 - 인터뷰 섹션
 gsap.from('.branch_recruit .interview .branch_title', {
     scrollTrigger: {
         trigger: '.branch_recruit .interview',
@@ -563,6 +634,7 @@ gsap.from('.branch_recruit .interview .branch_title', {
     ease: 'power2.out',
 });
 
+// 인터뷰 박스 - 3D 효과로 적용
 gsap.from('.branch_recruit .interview .box_wrap .box', {
     scrollTrigger: {
         trigger: '.branch_recruit .interview .box_wrap',
@@ -577,7 +649,7 @@ gsap.from('.branch_recruit .interview .box_wrap .box', {
     ease: 'back.out(1.2)',
 });
 
-// 지사 개설 지원 섹션
+// 지사장 모집 - 지사 개설 지원 섹션
 gsap.from('.branch_recruit .help .box_wrap .box', {
     scrollTrigger: {
         trigger: '.branch_recruit .help .box_wrap',
@@ -593,6 +665,7 @@ gsap.from('.branch_recruit .help .box_wrap .box', {
 });
 
 // ====================== 센터장 모집 페이지 애니메이션 ====================== //
+// 센터장 모집 - 하는 일 섹션
 gsap.from('.center_recruit .job .box_wrap .item', {
     scrollTrigger: {
         trigger: '.center_recruit .job .box_wrap',
@@ -612,6 +685,7 @@ gsap.from('.center_recruit .job .box_wrap .item', {
     ease: 'back.out(1.3)',
 });
 
+// 센터장 모집 - 텍스트 섹션
 gsap.from('.center_recruit .center_text h3', {
     scrollTrigger: {
         trigger: '.center_recruit .center_text',
@@ -621,10 +695,11 @@ gsap.from('.center_recruit .center_text h3', {
     opacity: 0,
     y: 60,
     scale: 0.9,
-    duration: 2.2,
+    duration: 2.2, // 더 길게
     ease: 'power2.out',
 });
 
+// 센터장 모집 - 차별점 섹션
 gsap.from('.center_recruit .different .icon_wrap .item', {
     scrollTrigger: {
         trigger: '.center_recruit .different .icon_wrap',
@@ -644,6 +719,7 @@ gsap.from('.center_recruit .different .icon_wrap .item', {
     ease: 'elastic.out(1, 0.5)',
 });
 
+// 차별점 하단 텍스트
 gsap.from('.center_recruit .different h4', {
     scrollTrigger: {
         trigger: '.center_recruit .different h4',
@@ -657,6 +733,7 @@ gsap.from('.center_recruit .different h4', {
     ease: 'power3.out',
 });
 
+// 센터장 모집 - 비전 섹션
 gsap.from('.center_recruit .vision .count', {
     scrollTrigger: {
         trigger: '.center_recruit .vision .count',
@@ -670,6 +747,7 @@ gsap.from('.center_recruit .vision .count', {
     ease: 'elastic.out(1, 0.6)',
 });
 
+// 그래프 애니메이션
 gsap.from('.center_recruit .vision .graph', {
     scrollTrigger: {
         trigger: '.center_recruit .vision .graph',
@@ -730,6 +808,7 @@ gsap.from('.center_recruit .vision .graph .bottom h6', {
     ease: 'power2.out',
 });
 
+// 센터장 모집 - 센터 개설 지원 섹션
 gsap.from('.center_recruit .backup h3', {
     scrollTrigger: {
         trigger: '.center_recruit .backup',
@@ -762,6 +841,7 @@ gsap.from('.center_recruit .backup ul li', {
     ease: 'back.out(1.2)',
 });
 
+// 센터장 모집 - 센터장 인터뷰 섹션
 gsap.from('.center_recruit .interview .box_wrap .box', {
     scrollTrigger: {
         trigger: '.center_recruit .interview .box_wrap',
@@ -778,8 +858,9 @@ gsap.from('.center_recruit .interview .box_wrap .box', {
 
 // 페이지 로드 완료 시 추가 체크
 window.addEventListener('load', () => {
+    // 모든 리소스 로드 후 마지막 체크
     const pointBox = document.querySelector('.point_box');
     if (pointBox && !pointBox.classList.contains('bg-loaded')) {
-        preloadPointImages();
+        preloadOptimizedImages();
     }
 });
