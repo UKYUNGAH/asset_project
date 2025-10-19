@@ -1,5 +1,8 @@
 gsap.registerPlugin(ScrollTrigger);
 
+// 즉시 실행: 배경색 먼저 설정
+document.documentElement.style.setProperty('--point-bg-color', '#000612');
+
 // WebP 지원 감지 함수
 function supportsWebP() {
     return new Promise((resolve) => {
@@ -12,56 +15,90 @@ function supportsWebP() {
     });
 }
 
-// 이미지 미리 로드 및 최적화
-async function preloadOptimizedImages() {
+// 개선된 이미지 프리로딩 - 더 적극적인 접근
+async function aggressivePreloadImages() {
     const isWebPSupported = await supportsWebP();
-
-    // HTML body에 WebP 지원 클래스 추가
-    document.documentElement.classList.add(isWebPSupported ? 'webp' : 'no-webp');
-
-    // 사용할 이미지 경로 결정
     const bgImagePath = isWebPSupported ? '/images/point_bg.webp' : '/images/point_bg.jpg';
 
-    // 이미지 미리 로드
-    const preloadImage = new Image();
+    // HTML head에 preload link 동적 추가 (가장 높은 우선순위)
+    const preloadLink = document.createElement('link');
+    preloadLink.rel = 'preload';
+    preloadLink.as = 'image';
+    preloadLink.href = bgImagePath;
+    preloadLink.fetchPriority = 'high'; // 최고 우선순위
+    document.head.appendChild(preloadLink);
 
-    return new Promise((resolve) => {
-        preloadImage.onload = () => {
-            // 이미지 로드 완료 시 point_box에 직접 적용
-            const pointBox = document.querySelector('.point_box');
-            if (pointBox) {
-                pointBox.style.backgroundImage = `url('${bgImagePath}')`;
-                pointBox.classList.add('bg-loaded');
-            }
+    // Promise 기반 이미지 로드
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+
+        // iOS Safari 최적화: 즉시 crossOrigin 설정
+        img.crossOrigin = 'anonymous';
+        img.decoding = 'async';
+
+        img.onload = () => {
+            console.log('Background image loaded successfully');
+            applyBackgroundImage(bgImagePath);
             resolve(true);
         };
 
-        preloadImage.onerror = () => {
-            // WebP 로드 실패 시 JPG로 fallback
-            if (isWebPSupported) {
-                const fallbackImage = new Image();
-                fallbackImage.onload = () => {
-                    const pointBox = document.querySelector('.point_box');
-                    if (pointBox) {
-                        pointBox.style.backgroundImage = "url('/images/point_bg.jpg')";
-                        pointBox.classList.add('bg-loaded');
-                    }
-                    resolve(true);
-                };
-                fallbackImage.src = '/images/point_bg.jpg';
+        img.onerror = () => {
+            console.error('Failed to load background image');
+            // WebP 실패시 JPG로 폴백
+            if (isWebPSupported && bgImagePath.includes('.webp')) {
+                loadFallbackImage('/images/point_bg.jpg');
             } else {
-                resolve(false);
+                reject(false);
             }
         };
 
-        preloadImage.src = bgImagePath;
+        img.src = bgImagePath;
     });
+}
+
+// 배경 이미지 적용 함수
+function applyBackgroundImage(imagePath) {
+    const pointBox = document.querySelector('.point_box');
+    if (!pointBox) return;
+
+    // iOS Safari 최적화: transform3d로 하드웨어 가속 활성화
+    pointBox.style.transform = 'translate3d(0,0,0)';
+    pointBox.style.willChange = 'background-image';
+
+    // 배경 이미지 적용
+    pointBox.style.backgroundImage = `url('${imagePath}')`;
+    pointBox.classList.add('bg-loaded');
+
+    // 짧은 지연 후 will-change 제거 (성능 최적화)
+    setTimeout(() => {
+        pointBox.style.willChange = 'auto';
+    }, 1000);
+}
+
+// 폴백 이미지 로드
+function loadFallbackImage(fallbackPath) {
+    const fallbackImg = new Image();
+    fallbackImg.onload = () => {
+        applyBackgroundImage(fallbackPath);
+    };
+    fallbackImg.src = fallbackPath;
 }
 
 // DOM 로드 완료 시 실행
 document.addEventListener('DOMContentLoaded', async function () {
-    // 1. 즉시 WebP 감지 및 이미지 로드 시작
-    preloadOptimizedImages();
+    // 즉시 배경색 적용으로 빈 화면 방지
+    const pointBox = document.querySelector('.point_box');
+    if (pointBox) {
+        pointBox.style.backgroundColor = '#000612';
+        pointBox.style.opacity = '1';
+    }
+
+    // 이미지 프리로딩 시작
+    try {
+        await aggressivePreloadImages();
+    } catch (error) {
+        console.warn('Background image preloading failed, using fallback');
+    }
 
     // 2. Intersection Observer로 추가 최적화
     const observerOptions = {
@@ -74,9 +111,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         for (const entry of entries) {
             if (entry.isIntersecting) {
                 const pointBox = entry.target.querySelector('.point_box');
-                if (pointBox && !pointBox.classList.contains('bg-preloaded')) {
+                if (pointBox && !pointBox.classList.contains('bg-loaded')) {
                     // 아직 로드되지 않았다면 강제 로드
-                    await preloadOptimizedImages();
+                    await aggressivePreloadImages();
                     pointBox.classList.add('bg-preloaded');
                 }
                 pointObserver.unobserve(entry.target);
@@ -90,6 +127,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (pointSection) {
         pointObserver.observe(pointSection);
     }
+
     // 햄버거 메뉴 기능
     const hamBtn = document.querySelector('.ham_btn');
     const hamGnb = document.querySelector('.ham_gnb');
@@ -167,6 +205,32 @@ document.addEventListener('DOMContentLoaded', async function () {
     });
 });
 
+// 추가 최적화: 페이지 가시성 변경 시 재시도
+document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+        const pointBox = document.querySelector('.point_box');
+        if (pointBox && !pointBox.classList.contains('bg-loaded')) {
+            aggressivePreloadImages();
+        }
+    }
+});
+
+// iOS Safari 특별 처리: 스크롤 시작 전에 강제 로드
+let hasScrolled = false;
+window.addEventListener(
+    'scroll',
+    () => {
+        if (!hasScrolled) {
+            hasScrolled = true;
+            const pointBox = document.querySelector('.point_box');
+            if (pointBox && !pointBox.classList.contains('bg-loaded')) {
+                aggressivePreloadImages();
+            }
+        }
+    },
+    { once: true }
+);
+
 // 헤더 스크롤 애니메이션 (메인 페이지에만 적용) - 유지
 if (document.querySelector('.main')) {
     ScrollTrigger.create({
@@ -228,7 +292,7 @@ businessTimeline.from('.business h3', { y: 40, opacity: 0, duration: 1.2, ease: 
 // ====================== 메인 - 포인트 섹션 ====================== //
 const pointTexts = gsap.utils.toArray('.point .ani_text p').slice(0, 4);
 
-// 수정: 반응형 radius 계산
+// 반응형 radius 계산
 function getPointRadius() {
     const screenWidth = window.innerWidth;
     if (screenWidth <= 480) {
@@ -260,10 +324,10 @@ function initializePointTexts() {
     });
 }
 
-// 수정: 초기 실행
+// 초기 실행
 initializePointTexts();
 
-// 수정: 리사이즈 시 반응형 업데이트
+// 리사이즈 시 반응형 업데이트
 window.addEventListener('resize', () => {
     const newRadius = getPointRadius();
     if (newRadius !== radius) {
@@ -276,24 +340,24 @@ window.addEventListener('resize', () => {
 // 스크롤에 따른 회전
 ScrollTrigger.create({
     trigger: '.point', // point 섹션 진입 기준
-    start: 'top top', // 수정: point가 화면 100vh에 도달했을 때 시작
-    end: 'center top', // 수정: 롤링 완료 후 마지막 상태 유지
+    start: 'top top', // point가 화면 100vh에 도달했을 때 시작
+    end: 'center top', // 롤링 완료 후 마지막 상태 유지
     scrub: 1,
     markers: false,
     onUpdate: (self) => {
         const progress = self.progress;
-        // 수정: progress * (totalTexts - 1)로 변경
+        // progress * (totalTexts - 1)로 변경
         // 마지막 p가 정확히 포커스된 상태에서 끝남
         const rotationProgress = progress * (totalTexts - 1);
 
         pointTexts.forEach((text, index) => {
-            const baseAngle = (index / (totalTexts - 1)) * Math.PI; // 수정: 반원형(π)
-            const currentAngle = baseAngle - (rotationProgress * Math.PI) / (totalTexts - 1); // 수정: 반원형 범위
+            const baseAngle = (index / (totalTexts - 1)) * Math.PI; // 반원형(π)
+            const currentAngle = baseAngle - (rotationProgress * Math.PI) / (totalTexts - 1); // 반원형 범위
 
             const y = Math.sin(currentAngle) * radius;
             const z = Math.cos(currentAngle) * radius;
             const rotateX = -((currentAngle * 180) / Math.PI);
-            // 수정: rotateY 계산 - 각도 변화에 따라 좌우 회전
+            // rotateY 계산 - 각도 변화에 따라 좌우 회전
             const rotateY = Math.cos(currentAngle) * 20;
 
             const normalizedAngle = ((currentAngle % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
@@ -465,9 +529,9 @@ storiesTl
 // ====================== 지사장 모집 페이지 애니메이션 ====================== //
 // ====================== 지사장 모집 - 지사 현황 섹션 (jisa) ====================== //
 // jisa_inner의 배경색 전환 및 이미지 노출 애니메이션
-// 수정: 반응형 end 값 계산
+// 반응형 end 값 계산
 function getJisaAnimationEnd() {
-    // 수정: 반응형에 따라 애니메이션 진행 구간 조정
+    // 반응형에 따라 애니메이션 진행 구간 조정
     // 모든 기기에서 100vh 높이이므로 end 값 통일
     return 'center top';
 }
@@ -483,7 +547,7 @@ const jisaTimeline = gsap.timeline({
     },
 });
 
-// 수정: jisa 요소 자체에 배경색 애니메이션 (완전 검은색 -> 반투명)
+// jisa 요소 자체에 배경색 애니메이션 (완전 검은색 -> 반투명)
 // 1단계: 배경색 전환 (0 ~ 0.5)
 jisaTimeline.to(
     '.branch_recruit .jisa',
@@ -827,6 +891,6 @@ window.addEventListener('load', () => {
     // 모든 리소스 로드 후 마지막 체크
     const pointBox = document.querySelector('.point_box');
     if (pointBox && !pointBox.classList.contains('bg-loaded')) {
-        preloadOptimizedImages();
+        aggressivePreloadImages();
     }
 });

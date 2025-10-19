@@ -1,33 +1,60 @@
 <!DOCTYPE html>
 <html lang="ko">
+    <!-- 최적화된 head 섹션 - iOS Safari 배경 이미지 로딩 개선 -->
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>FM에셋 종합자산관리전문회사</title>
 
-        <!-- #ISSUE: 임시로 아무이미지나 파비콘 넣어뒀습니다. 맞는 이미지로 대체해주세요!  -->
         <!-- favicon -->
         <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
 
-        <!-- 중요한 이미지 미리 로드 - WebP와 JPG 모두 준비 -->
-        <link rel="preload" href="/images/point_bg.webp" as="image" type="image/webp" />
-        <link rel="preload" href="/images/point_bg.jpg" as="image" type="image/jpeg" />
+        <!-- 수정: 배경 이미지 최고 우선순위로 프리로드 -->
+        <link rel="preload" href="/images/point_bg.webp" as="image" type="image/webp" fetchpriority="high" />
+        <link rel="preload" href="/images/point_bg.jpg" as="image" type="image/jpeg" fetchpriority="high" />
 
-        <!-- 중요 이미지들 -->
+        <!-- 기존 중요한 이미지들 -->
         <link rel="preload" href="/images/logo.png" as="image" />
         <link rel="preload" href="/images/wave_banner.mp4" as="video" type="video/mp4" />
 
-        <!-- css 스타일 -->
-        <!-- reset.css: 브라우저 기본 스타일 초기화 -->
-        <link rel="stylesheet" href="/styles/reset.css" />
-        <!-- common.css: 헤더, 푸터, 버튼 등 공통 요소 스타일 -->
-        <link rel="stylesheet" href="/styles/common.css" />
-        <!-- style.css: 각 페이지별 고유 스타일 -->
-        <link rel="stylesheet" href="/styles/style.css" />
-        <!-- <link rel="stylesheet" href="/styles/style2.css" /> -->
+        <!-- 수정: CSS에 배경 인라인 스타일 추가 (가장 빠른 로딩) -->
+        <style>
+            /* 즉시 적용되는 배경색으로 깜빡임 방지 */
+            .main .point .point_box {
+                background-color: #000612 !important;
+                background-image: url('/images/point_bg.webp'), url('/images/point_bg.jpg');
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-attachment: local;
+            }
 
-        <!-- JS -->
+            /* WebP 미지원 브라우저 대응 */
+            .no-webp .main .point .point_box {
+                background-image: url('/images/point_bg.jpg') !important;
+            }
+        </style>
+
+        <!-- CSS 파일들 -->
+        <link rel="stylesheet" href="/styles/reset.css" />
+        <link rel="stylesheet" href="/styles/common.css" />
+        <link rel="stylesheet" href="/styles/style.css" />
+
+        <!-- JS 파일 - defer로 비차단 로딩 -->
         <script src="/js/script.js" defer></script>
+
+        <!-- 수정: WebP 감지 스크립트를 즉시 실행 -->
+        <script>
+            // WebP 지원 감지를 즉시 실행하여 HTML 클래스 추가
+            (function () {
+                const webP = new Image();
+                webP.onload = webP.onerror = function () {
+                    document.documentElement.classList.add(webP.height === 2 ? 'webp' : 'no-webp');
+                };
+                webP.src =
+                    'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+            })();
+        </script>
     </head>
     <body>
         <!-- *PAGE: 메인 페이지 
