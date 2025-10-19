@@ -196,34 +196,28 @@ br.m_br2 {
     width: 100%;
     height: calc(100% + calc(var(--vh, 1vh) * 100));
 }
+
 .main .point .point_box {
-    position: -webkit-sticky; /* 유지 */
-    position: sticky; /* 유지 */
+    position: -webkit-sticky;
+    position: sticky;
     top: 0;
     width: 100%;
     height: calc(var(--vh, 1vh) * 100);
     perspective: 1000px;
-    background-color: var(--bs-dark-blue); /* 로딩 중 기본 색상 */
+    /* background: url('/images/point_bg.jpg') center / cover no-repeat; */
+    /* 기본 배경색 (로딩 중 표시) */
+    background-color: var(--bs-dark-blue);
+
+    /* WebP 미지원 브라우저용 fallback */
+    background-image: url('/images/point_bg.jpg');
+
+    /* WebP 지원 브라우저용 (더 작은 용량) */
+    background-image: url('/images/point_bg.webp');
+
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    will-change: background; /* 모바일 최적화 */
-    opacity: 0; /* 초기 숨김 */
-    transition: opacity 0.5s ease; /* 로드 후 부드럽게 나타남 */
-}
-
-/* WebP 미지원 */
-.no-webp .main .point .point_box {
-    background-image: url('/images/point_bg.jpg');
-}
-
-/* WebP 지원 */
-.webp .main .point .point_box {
-    background-image: url('/images/point_bg.webp');
-}
-
-.main .point .point_box.bg-loaded {
-    opacity: 1; /* 로드 완료 시 보이게 */
+    /* background-attachment: local; */
 }
 
 .main .point h2 {
@@ -1545,9 +1539,7 @@ br.m_br2 {
     }
 
     .main .point .point_box {
-        /* height: calc(var(--vh, 1vh) * 100); */
-        background-color: rgba(0, 0, 0, 0.8); /* 로딩 중 더 어두운 fallback 색상 (빈 공간 덜 티남) */
-        opacity: 0.8; /* 초기 opacity 낮춰 로드 전 부드럽게 */
+        height: calc(var(--vh, 1vh) * 100);
     }
 
     .main .point .ani_text {
