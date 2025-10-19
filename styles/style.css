@@ -190,13 +190,25 @@ br.m_br2 {
     min-height: calc(var(--vh, 1vh) * 200);
     background-color: var(--bs-dark-blue);
 }
+.main .point .point_inner {
+    position: absolute;
+    top: calc(var(--vh, 1vh) * -50);
+    width: 100%;
+    height: calc(100% + calc(var(--vh, 1vh) * 100));
+    background-image: url('/images/point_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: var(--bs-dark-blue);
+}
 
+/* 
 .main .point_inner {
     position: absolute;
     top: calc(var(--vh, 1vh) * -50);
     width: 100%;
     height: calc(100% + calc(var(--vh, 1vh) * 100));
-}
+} */
 
 .main .point .point_box {
     /* position: -webkit-sticky;
@@ -211,17 +223,10 @@ br.m_br2 {
     background-repeat: no-repeat;
     background-color: var(--bs-dark-blue);
     transition: background-image 0.3s ease-in-out; */
-    position: -webkit-sticky;
     position: sticky;
     top: 0;
-    width: 100%;
-    height: calc(var(--vh, 1vh) * 100);
-    perspective: 1000px;
-    background-image: url(https://static.toss.im/photos/20250704-113.jpg);
-    -webkit-background-position: center;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0;
+    height: 100vh;
+    background: transparent; /* ← 완전히 투명 */
 }
 
 .main .point h2 {
