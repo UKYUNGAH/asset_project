@@ -27,13 +27,12 @@ async function preloadOptimizedImages() {
 
     return new Promise((resolve) => {
         preloadImage.onload = () => {
-            // 이미지 로드 완료 시 point_box에 직접 적용
             const pointBox = document.querySelector('.point_box');
             if (pointBox) {
-                pointBox.style.backgroundImage = `url('${bgImagePath}')`;
-                pointBox.classList.add('bg-loaded');
+                gsap.to(pointBox, { opacity: 0, duration: 0 }); // 처음 숨기고
+                pointBox.style.backgroundImage = `url('${bgImagePath}')`; // WebP 교체
+                gsap.to(pointBox, { opacity: 1, duration: 0.6, ease: 'power2.out' }); // 부드럽게 나타남
             }
-            resolve(true);
         };
 
         preloadImage.onerror = () => {
