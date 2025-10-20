@@ -717,7 +717,9 @@ gsap.from('.branch_recruit .interview .branch_title', {
     ease: 'power2.out',
 });
 
+// 지사장 인터뷰 (모바일 + PC)
 if (isMobile()) {
+    // 🔧 추가: 지사장 페이지 모바일 애니메이션
     document.querySelectorAll('.branch_recruit .interview .box_wrap .box').forEach((card) => {
         gsap.from(card, {
             scrollTrigger: {
@@ -729,11 +731,11 @@ if (isMobile()) {
             y: 80,
             scale: 0.9,
             duration: 1.2,
-            stagger: 0.3,
             ease: 'back.out(1.2)',
         });
     });
 } else {
+    // 기존 PC 애니메이션 유지
     gsap.from('.branch_recruit .interview .box_wrap .box', {
         scrollTrigger: {
             trigger: '.branch_recruit .interview .box_wrap',
@@ -1008,9 +1010,10 @@ gsap.from('.center_recruit .backup h3', {
     ease: 'power2.out',
 });
 
-// 공통 인터뷰 섹션 (수정: 모바일은 각 카드마다 개별 trigger)
+// 센터장 인터뷰 (모바일 + PC)
 if (isMobile()) {
-    document.querySelectorAll('.common_interview .box_wrap .box').forEach((card) => {
+    // 🔧 추가: 센터장 페이지 모바일 애니메이션
+    document.querySelectorAll('.center_recruit .interview .box_wrap .box').forEach((card) => {
         gsap.from(card, {
             scrollTrigger: {
                 trigger: card,
@@ -1024,10 +1027,8 @@ if (isMobile()) {
             ease: 'back.out(1.2)',
         });
     });
-}
-
-// 센터장 인터뷰 (PC만 - 모바일은 이미 위에 있음)
-if (!isMobile()) {
+} else {
+    // 기존 PC 애니메이션 유지
     gsap.from('.center_recruit .interview .box_wrap .box', {
         scrollTrigger: {
             trigger: '.center_recruit .interview .box_wrap',
@@ -1042,7 +1043,6 @@ if (!isMobile()) {
         ease: 'power3.out',
     });
 }
-
 // 페이지 로드 완료 시 추가 체크
 window.addEventListener('load', () => {
     const pointBox = document.querySelector('.point_box');
