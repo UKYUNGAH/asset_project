@@ -1,15 +1,10 @@
 /* ====================== *STYLEGLOBAL: 공통 STYLE ====================== */
-/* 
-*프로젝트 전반에 걸쳐 일관된 색상과 효과를 사용하기 위한 CSS 입니다
-* 수정 시 전체 사이트에 영향을 미치므로 신중하게 변경해주세요! */
-
 /* 폰트 설정 */
-/* PAPERLOGY 폰트 4종 가중치 설정 (4Regular, 6SemiBold, 7ExtraBold, 8ExtraBold) */
 @font-face {
     font-family: 'PAPERLOGY';
     src: url('../fonts/PAPERLOGY-4Regular.otf') format('opentype'),
         url('../fonts/PAPERLOGY-4Regular.woff2') format('woff2'), url('../fonts/PAPERLOGY-4Regular.woff') format('woff');
-    font-weight: 400; /* 4 Regular */
+    font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
@@ -19,7 +14,7 @@
     src: url('../fonts/PAPERLOGY-6SemiBold.otf') format('opentype'),
         url('../fonts/PAPERLOGY-6SemiBold.woff2') format('woff2'),
         url('../fonts/PAPERLOGY-6SemiBold.woff') format('woff');
-    font-weight: 600; /* 6 SemiBold */
+    font-weight: 600;
     font-style: normal;
     font-display: swap;
 }
@@ -29,7 +24,7 @@
     src: url('../fonts/PAPERLOGY-7ExtraBold.otf') format('opentype'),
         url('../fonts/PAPERLOGY-7ExtraBold.woff2') format('woff2'),
         url('../fonts/PAPERLOGY-7ExtraBold.woff') format('woff');
-    font-weight: 700; /* 7 ExtraBold */
+    font-weight: 700;
     font-style: normal;
     font-display: swap;
 }
@@ -39,60 +34,54 @@
     src: url('../fonts/PAPERLOGY-8ExtraBold.otf') format('opentype'),
         url('../fonts/PAPERLOGY-8ExtraBold.woff2') format('woff2'),
         url('../fonts/PAPERLOGY-8ExtraBold.woff') format('woff');
-    font-weight: 800; /* 8 ExtraBold */
+    font-weight: 800;
     font-style: normal;
     font-display: swap;
 }
 
-/* 서브 폰트 - G마켓 산스 Bold */
 @font-face {
     font-family: 'GmarketSans';
     src: url('../fonts/GmarketSansBold.otf') format('opentype'), url('../fonts/GmarketSansBold.woff2') format('woff2'),
         url('../fonts/GmarketSansBold.woff') format('woff');
-    font-weight: 700; /* Bold */
+    font-weight: 700;
     font-style: normal;
     font-display: swap;
 }
 
-/* 서브 폰트 - Tmon몬소리 */
 @font-face {
     font-family: 'TmonMonsori';
     src: url('../fonts/TmonMonsori.otf') format('opentype'), url('../fonts/TmonMonsori.woff2') format('woff2'),
         url('../fonts/TmonMonsori.woff') format('woff');
-    font-weight: 400; /* Regular */
+    font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
-/* 기본 폰트 설정 */
+/* 기본 설정 */
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'PAPERLOGY', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-weight: 400; /* 기본은 4 Regular */
+    font-weight: 400;
     line-height: 1.4;
     box-sizing: border-box;
 }
 
-/* 반응형 폰트 사이즈 설정
- * 기본 폰트 사이즈를 62.5%로 설정하여 1rem = 10px 기준으로 만듦 */
-html {
-    font-size: 62.5%; /* 1rem = 10px (1920px 이상) */
-    box-sizing: border-box;
-}
-
-/* 색상 변수 정의 */
-/* 프로젝트 전체에서 사용할 CSS 변수 - 새로운 컬러 아이덴티티 반영 */
+/* 색상 변수 */
 :root {
-    /* 기존 색상 변수 */
     --bs-black: #000000;
     --bs-white: #ffffff;
-    --bs-sky-blue: #4b95f8; /* 메인 블루 색상 */
-    --bs-blue: #0554c1; /* 메인 블루 색상 */
-    --bs-dark-blue: #00367f; /* 다크 블루 색상 */
-    --bs-gray: #e6ebf2; /* 그레이 색상 */
-    --bs-bg-gray: #eef1f5; /* 배경 그레이 색상 */
+    --bs-sky-blue: #4b95f8;
+    --bs-blue: #0554c1;
+    --bs-dark-blue: #00367f;
+    --bs-gray: #e6ebf2;
+    --bs-bg-gray: #eef1f5;
 }
 
-/* 서브 폰트 클래스 */
+/* 폰트 클래스 */
 .font_gmarket {
     font-family: 'GmarketSans', sans-serif;
     font-weight: 700;
@@ -103,14 +92,14 @@ html {
     font-weight: 400;
 }
 
-/* 컨테이너 기본 설정 - 최대 너비 1240px, 중앙 정렬 */
+/* 컨테이너 */
 .container {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* 기본 버튼 스타일 - 둥근 모서리, 흰색 텍스트 */
+/* 기본 버튼 */
 .button_default {
     display: inline-block;
     border-radius: 10px;
@@ -120,23 +109,16 @@ html {
 }
 
 .button_default:hover {
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* 호버 시 더 큰 그림자 */
-    transform: translateY(-3px); /* 위로 3px 떠오름 */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px);
 }
 
-/* 텍스트 색상 클래스 */
+/* 텍스트 색상 */
 .blue {
     color: var(--bs-blue);
 }
 
-.blue2 {
-    color: var(--bs-blue2);
-}
-
-main {
-}
-
-/* ====================== 헤더 HEADER ====================== */
+/* ====================== 헤더 ====================== */
 .header {
     width: 100%;
     position: fixed;
@@ -148,7 +130,6 @@ main {
     will-change: transform, background, box-shadow;
 }
 
-/* 서브 페이지 헤더 기본 스타일 */
 .header.sub_header {
     background: var(--bs-white);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -162,6 +143,7 @@ main {
     display: flex;
     flex-direction: column;
 }
+
 .header .h_container {
     line-height: 60px;
     max-width: 1200px;
@@ -183,11 +165,13 @@ main {
     line-height: 1;
     flex-shrink: 0;
 }
+
 .header .logo a {
     display: flex;
     height: 44px;
     line-height: 44px;
 }
+
 .header .logo img {
     max-width: 90px;
     height: auto;
@@ -208,10 +192,12 @@ main {
     padding: 12px 10px;
     color: var(--bs-white);
 }
+
 .header li a:hover {
     background: rgba(170, 170, 170, 0.1);
     border-radius: 10px;
 }
+
 .header li a.on {
     color: var(--bs-blue);
     font-weight: 500;
@@ -234,7 +220,7 @@ main {
     object-fit: contain;
 }
 
-/* 모바일 슬라이드 메뉴 - 헤더 아래 붙어서 */
+/* 모바일 슬라이드 메뉴 */
 .header .ham_gnb {
     max-height: 0;
     overflow: hidden;
@@ -270,15 +256,10 @@ main {
     color: var(--bs-blue);
 }
 
-/* ====================== 푸터 FOOTER ====================== */
-/* footer.css */
+/* ====================== 푸터 ====================== */
 footer {
     padding: 120px 0;
 }
-/* 
-.main_footer {
-    padding: 260px 0 120px;
-} */
 
 footer a:hover {
     text-decoration: underline;
@@ -301,118 +282,393 @@ footer h4 {
     margin-bottom: 5px;
 }
 
-/* ====================== 배너 BANNER ====================== */
-
-/* ======================  플로팅 FLOATING ====================== */
+/* ====================== 플로팅 ====================== */
 .floating {
+    width: 200px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    z-index: 998;
+    animation: slideUp 0.5s ease-out;
+    text-align: center;
 }
 
-/* 화면 너비에 따른 폰트 크기 조정 - 브레이크 포인트별 비율 조정 */
-@media (max-width: 1919px) {
-    html {
-        font-size: 58%; /* 9.28px */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-@media (max-width: 1680px) {
-    html {
-        font-size: 55%; /* 8.8px */
+.floating .top {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.floating .top_img {
+    display: flex;
+    justify-content: center;
+}
+
+.floating .top_img img {
+    width: 130px;
+}
+
+.floating .phone {
+    width: 100%;
+    max-width: 180px;
+    padding: 10px 16px;
+    background: #1db446;
+    color: var(--bs-white);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.floating .phone:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.floating .phone .title {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.floating .consult {
+    width: 100%;
+    max-width: 180px;
+    padding: 14px 16px;
+    background: #0066ff;
+    color: var(--bs-white);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.floating .consult:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.floating .consult img {
+    width: 28px;
+}
+
+.floating .consult .title {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.floating .kakao {
+    width: 100%;
+    max-width: 180px;
+    padding: 14px 16px;
+    background: #ffd000;
+    color: #3c1e1e;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.floating .kakao:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.floating .kakao img {
+    width: 32px;
+    object-fit: contain;
+}
+
+.floating .kakao_title {
+    font-size: 14px;
+    font-weight: 900;
+}
+
+/* ====================== 모달 ====================== */
+.modal {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    z-index: 999;
+    top: 0;
+    left: 0;
+}
+
+.modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal .modal_bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.modal .modal_wrap {
+    position: relative;
+    background: var(--bs-white);
+    width: 90%;
+    max-width: 450px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
     }
 }
 
-@media (max-width: 1440px) {
-    html {
-        font-size: 52.5%; /* 8.4px */
-    }
+.modal .modal_inner {
+    position: relative;
+    padding: 40px 20px 30px;
+    text-align: center;
 }
 
-@media (max-width: 1280px) {
-    html {
-        font-size: 50%; /* 8px */
-    }
+.modal .modal_inner > p {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    word-break: keep-all;
+    color: #000;
 }
 
-@media (max-width: 1024px) {
-    html {
-        font-size: 48%; /* 7.68px */
-    }
+.modal .select_box {
+    margin-bottom: 16px;
 }
 
-/* ====================== 반응형 스타일 (태블릿) ====================== */
+.modal .select_box select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    background: white;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23333' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+    transition: border-color 0.2s;
+}
+
+.modal .select_box select:focus {
+    outline: none;
+    border-color: #0066ff;
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+}
+
+.modal .input_box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.modal .input_box input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.modal .input_box input:focus {
+    outline: none;
+    border-color: #0066ff;
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+}
+
+.modal .input_box input::placeholder {
+    color: #999;
+}
+
+.modal .check {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+    text-align: left;
+    background: #f9f9f9;
+    padding: 14px;
+    border-radius: 6px;
+}
+
+.modal .check label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    color: #333;
+    user-select: none;
+}
+
+.modal .check input[type='checkbox'] {
+    appearance: auto !important;
+    -webkit-appearance: auto !important;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    flex-shrink: 0;
+    accent-color: #0066ff;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #ccc;
+}
+
+.modal .check em {
+    font-style: normal;
+    color: #333;
+}
+
+.modal .check label:first-child em {
+    font-weight: 700;
+    color: #000;
+}
+
+.modal .button-modal {
+    width: 100%;
+    padding: 14px 20px;
+    background: var(--bs-blue);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.modal .button-modal:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(193, 193, 193, 0.3);
+}
+
+.modal .button-modal:active {
+    transform: translateY(0);
+}
+
+.modal .close_btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s;
+}
+
+.modal .close_btn:hover {
+    opacity: 0.7;
+}
+
+.modal .close_btn img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+/* ====================== 반응형 (모두 한 곳에 모음) ====================== */
+
+/* 수정: 불필요한 html font-size 미디어쿼리 제거 */
+/* 1919px, 1680px 등의 세부 조정은 실무에서 거의 쓰이지 않음 */
+
 @media (max-width: 1200px) {
     .container {
-        padding: 0 30px; /* 태블릿에서 패딩 증가 */
-    }
-
-    .header {
-        padding: 0 20px; /* 패딩 증가 */
-    }
-
-    .header .h_container {
-        height: 55px;
-        line-height: 55px;
+        padding: 0 30px;
     }
 
     .header .logo {
-        height: 40px; /* 로고 크기 축소 */
+        height: 40px;
     }
 
     .header .logo img {
-        max-width: 80px; /* 로고 이미지 축소 */
+        max-width: 80px;
     }
 
     .header ul {
-        gap: 12px; /* 메뉴 간격 축소 */
+        gap: 12px;
     }
 
     .header li a {
-        font-size: 14px; /* 폰트 크기 축소 */
-        padding: 10px 8px; /* 패딩 축소 */
+        font-size: 14px;
+        padding: 10px 8px;
     }
 
     footer {
-        padding: 80px 30px; /* 푸터 패딩 조정 */
+        padding: 80px 30px;
     }
 
     .main_footer {
-        padding: 180px 30px 80px; /* 메인 푸터 패딩 조정 */
+        padding: 180px 30px 80px;
     }
 }
 
-@media (max-width: 992px) {
-    .header {
-    }
-
-    .header .header_wrap {
-    }
-
-    .header ul {
-    }
-
-    .header li a {
-        font-size: 13px;
-    }
-}
-
-/* ====================== 반응형 스타일 (모바일 대) ====================== */
 @media (max-width: 768px) {
     html {
-        font-size: 46%; /* 7.36px */
+        font-size: 56%;
     }
 
     .container {
         padding: 0 20px;
     }
 
-    .header {
-    }
-
     .header .h_container {
-        position: relative;
+        padding: 0 20px;
     }
 
     .header .logo {
-        height: 35px; /* 로고 높이 더 축소 */
+        height: 35px;
     }
 
     .header .logo a {
@@ -421,12 +677,11 @@ footer h4 {
     }
 
     .header .logo img {
-        max-width: 70px; /* 로고 이미지 더 축소 */
+        max-width: 70px;
     }
 
     .header ul.nav_menu {
         display: none;
-        gap: 8px; /* 메뉴 간격 더 축소 */
     }
 
     .header .ham_btn {
@@ -437,59 +692,99 @@ footer h4 {
         display: block;
     }
 
-    .header .ham_gnb ul {
-    }
-    .header .ham_gnb li {
-    }
-    .header .ham_gnb li a {
-    }
-    .header .ham_gnb li a.on {
-    }
-
     .button_default {
-        padding: 12px 18px; /* 버튼 패딩 축소 */
-        border-radius: 8px; /* 테두리 반지름 축소 */
-        font-size: 14px; /* 폰트 크기 조정 */
+        padding: 12px 18px;
+        border-radius: 8px;
+        font-size: 14px;
     }
 
     footer {
-        padding: 60px 20px; /* 푸터 패딩 축소 */
+        padding: 60px 20px;
     }
 
     .main_footer {
-        padding: 120px 20px 60px; /* 메인 푸터 패딩 축소 */
+        padding: 120px 20px 60px;
     }
 
     footer p,
     footer strong,
     footer h4 {
-        font-size: 13px; /* 푸터 폰트 크기 축소 */
+        font-size: 13px;
     }
 
     footer .company,
     footer .service,
     footer .warning {
-        margin-bottom: 25px; /* 여백 축소 */
+        margin-bottom: 25px;
+    }
+
+    .floating {
+        bottom: 16px;
+        right: 16px;
+        gap: 10px;
+    }
+
+    .floating .top_img img {
+        width: 100px;
+    }
+
+    .modal .modal_inner {
+        padding: 36px 16px 24px;
+    }
+
+    .modal .modal_inner > p {
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+
+    .modal .select_box select,
+    .modal .input_box input {
+        font-size: 12px;
+        padding: 10px 12px;
+    }
+
+    .modal .check {
+        padding: 12px;
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+
+    .modal .check label {
+        font-size: 11px;
+    }
+
+    .modal .check input[type='checkbox'] {
+        width: 16px;
+        height: 16px;
+    }
+
+    .modal .button-modal {
+        padding: 12px 16px;
+        font-size: 13px;
+    }
+
+    .modal .close_btn {
+        width: 28px;
+        height: 28px;
+    }
+
+    .modal .close_btn img {
+        width: 20px;
+        height: 20px;
     }
 }
 
-/* ====================== 반응형 스타일 (모바일 소) ====================== */
 @media (max-width: 480px) {
     html {
-        font-size: 44%; /* 7.04px */
+        font-size: 50%;
     }
 
     .container {
-    }
-
-    .header {
-    }
-
-    .header .h_container {
+        padding: 0 15px;
     }
 
     .header .logo {
-        height: 30px; /* 로고 높이 최소화 */
+        height: 30px;
     }
 
     .header .logo a {
@@ -498,124 +793,169 @@ footer h4 {
     }
 
     .header .logo img {
-        max-width: 60px; /* 로고 이미지 최소화 */
+        max-width: 60px;
     }
 
     .header ul {
-        gap: 5px; /* 메뉴 간격 최소화 */
-        flex-wrap: wrap; /* 메뉴 랩핑 허용 */
+        gap: 5px;
+        flex-wrap: wrap;
     }
 
     .header li a {
-        font-size: 11px; /* 폰트 크기 최소화 */
-        padding: 4px 3px; /* 패딩 최소화 */
-        line-height: 1.2; /* 줄간격 조정 */
+        font-size: 11px;
+        padding: 4px 3px;
+        line-height: 1.2;
     }
 
     .button_default {
-        padding: 10px 15px; /* 버튼 패딩 최소화 */
-        border-radius: 6px; /* 테두리 반지름 최소화 */
-        font-size: 12px; /* 폰트 크기 최소화 */
+        padding: 10px 15px;
+        border-radius: 6px;
+        font-size: 12px;
     }
 
     footer {
-        padding: 40px 15px; /* 푸터 패딩 최소화 */
+        padding: 40px 15px;
     }
 
     .main_footer {
-        padding: 80px 15px 40px; /* 메인 푸터 패딩 최소화 */
+        padding: 80px 15px 40px;
     }
 
     footer p,
     footer strong,
     footer h4 {
-        font-size: 12px; /* 푸터 폰트 크기 최소화 */
-        line-height: 1.4; /* 줄간격 조정 */
+        font-size: 12px;
+        line-height: 1.4;
     }
 
     footer .company,
     footer .service,
     footer .warning {
-        margin-bottom: 20px; /* 여백 최소화 */
+        margin-bottom: 20px;
     }
 
-    /* 모바일에서 텍스트 가독성을 위한 추가 조정 */
     footer .warning p {
-        font-size: 11px; /* 주의사항 텍스트 더 작게 */
+        font-size: 11px;
     }
 
-    /* 모바일에서 긴 텍스트 줄바꿈 처리 */
     footer .company p {
-        word-break: keep-all; /* 한글 단어 단위 줄바꿈 */
-        line-height: 1.5; /* 줄간격 증가 */
+        word-break: keep-all;
+        line-height: 1.5;
+    }
+
+    .floating {
+        bottom: 8px;
+        right: 8px;
+        gap: 6px;
+        width: 180px;
+    }
+
+    .floating .top_img img {
+        width: 80px;
+    }
+
+    .floating .phone {
+        padding: 8px 10px;
+    }
+
+    .floating .title,
+    .floating .kakao_title {
+        font-size: 12px !important;
+    }
+
+    .floating .consult img {
+        width: 20px;
+    }
+
+    .floating .kakao img {
+        width: 24px;
+    }
+
+    .modal .modal_wrap {
+        width: 85%;
+    }
+
+    .modal .modal_inner {
+        padding: 30px 14px 20px;
+    }
+
+    .modal .modal_inner > p {
+        font-size: 12px;
+    }
+
+    .modal .select_box select,
+    .modal .input_box input {
+        font-size: 11px;
+        padding: 9px 10px;
+    }
+
+    .modal .check {
+        padding: 10px;
+        gap: 6px;
+    }
+
+    .modal .check label {
+        font-size: 10px;
+    }
+
+    .modal .check input[type='checkbox'] {
+        width: 14px;
+        height: 14px;
+    }
+
+    .modal .button-modal {
+        padding: 10px 14px;
+        font-size: 12px;
     }
 }
 
 /* ====================== 터치 디바이스 최적화 ====================== */
 @media (hover: none) and (pointer: coarse) {
-    /* 터치 디바이스에서 호버 효과 비활성화 */
     .header li a:hover {
-        background: none; /* 호버 배경 제거 */
+        background: none;
     }
 
     .button_default:hover {
-        transform: none; /* 호버 변형 제거 */
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* 기본 그림자만 유지 */
+        transform: none;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
 
     footer a:hover {
-        text-decoration: none; /* 호버 밑줄 제거 */
+        text-decoration: none;
     }
 
-    /* 터치 디바이스에서 터치 영역 확대 */
     .header li a {
-        min-height: 44px; /* 터치 영역 최소 크기 보장 */
+        min-height: 44px;
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
     .button_default {
-        min-height: 44px; /* 터치 영역 최소 크기 보장 */
+        min-height: 44px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
     }
 }
 
-/* ====================== 고해상도 디스플레이 최적화 ====================== */
+/* ====================== 고해상도 디스플레이 ====================== */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    /* 레티나 디스플레이에서 선명한 텍스트 렌더링 */
     body {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
-
-    .header .logo img {
-        image-rendering: -webkit-optimize-contrast; /* 로고 이미지 최적화 */
-        image-rendering: crisp-edges;
-    }
 }
 
-/* ====================== 접근성 향상 ====================== */
+/* ====================== 접근성 ====================== */
 @media (prefers-reduced-motion: reduce) {
-    /* 모션 감소 설정 사용자를 위한 애니메이션 비활성화 */
     * {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
-
-    .header {
-        transition: none !important;
-    }
-
-    .button_default {
-        transition: none !important;
-    }
 }
 
-/* 스크린 리더 전용 텍스트 */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -629,64 +969,8 @@ footer h4 {
 }
 
 /* ====================== 성능 최적화 ====================== */
-/* GPU 가속을 위한 will-change 속성 */
-.header {
-    will-change: transform, background-color, box-shadow;
-}
-
-.button_default {
-    will-change: transform, box-shadow;
-}
-
-/* 레이아웃 쉬프트 방지 */
 img {
     max-width: 100%;
     height: auto;
     display: block;
-}
-
-/* 폰트 로딩 최적화 */
-@font-face {
-    font-family: 'PAPERLOGY';
-    font-display: swap; /* 폰트 로딩 중 대체 폰트 표시 */
-}
-
-/* ====================== 인쇄 스타일 ====================== */
-@media print {
-    .header {
-        position: static; /* 고정 헤더 해제 */
-        box-shadow: none;
-        background: transparent !important;
-    }
-
-    .header li a {
-        color: var(--bs-black) !important;
-    }
-
-    footer {
-        padding: 20px 0;
-    }
-
-    .button_default {
-        background: transparent;
-        color: var(--bs-black);
-        border: 1px solid var(--bs-black);
-    }
-
-    /* 불필요한 요소 숨기기 */
-    .header ul {
-        display: none;
-    }
-}
-
-/* ====================== 다크 모드 지원 (선택사항) ====================== */
-@media (prefers-color-scheme: dark) {
-    /* 다크 모드에서도 기본 색상 유지하되, 필요시 조정 가능 */
-    :root {
-        /* 다크 모드 색상 변수 (필요시 활성화)
-        --bs-bg-gray: #1a1a1a;
-        --bs-white: #f5f5f5;
-        --bs-black: #ffffff;
-        */
-    }
 }

@@ -61,6 +61,163 @@
         *공통 스타일은 common.css에 정의되어 있습니다.
         *개별 페이지 스타일은 style.css에서 관리합니다! -->
 
+        <!-- 플로팅 모달 -->
+        <div class="modal" id="consultationModal">
+            <div class="modal_bg"></div>
+            <div class="modal_wrap">
+                <div class="modal_inner">
+                    <p># 상담신청</p>
+
+                    <!-- 셀렉트 박스 -->
+                    <div class="select_box">
+                        <select id="consultType">
+                            <option value="">상담신청</option>
+                            <option value="신입 합목">신입 합목</option>
+                            <option value="지사장 지원">지사장 지원</option>
+                            <option value="FC입사 상담">FC입사 상담</option>
+                            <option value="수평이전 프로젝트">수평이전 프로젝트</option>
+                            <option value="센터장 지원 상담">센터장 지원 상담</option>
+                        </select>
+                    </div>
+
+                    <!-- 입력 박스 -->
+                    <div class="input_box">
+                        <input type="text" id="inputName" placeholder="방문자 이름 입력" />
+                        <input type="text" id="inputPhone" placeholder="휴대폰 번호 입력" />
+                    </div>
+
+                    <!-- 동의 체크박스 -->
+                    <div class="check">
+                        <label for="agree_all_consult">
+                            <input type="checkbox" id="agree_all_consult" name="agree_all_consult" />
+                            <em>전체 동의</em>
+                        </label>
+                        <label for="agree_two_consult">
+                            <input type="checkbox" id="agree_two_consult" name="agree_two_consult" />
+                            <em>개인정보 취급방침 및 서비스 이용약관</em>
+                        </label>
+                        <label for="agree_third_consult">
+                            <input type="checkbox" id="agree_third_consult" name="agree_third_consult" />
+                            <em>민감정보 제3자 제공 동의</em>
+                        </label>
+                    </div>
+
+                    <!-- 버튼 -->
+                    <button type="button" class="button-modal button btn_small" id="submitBtn">상담신청하기</button>
+                    <button class="close_btn" id="closeBtn">
+                        <img src="/images/close_btn.png" alt="닫기 버튼" />
+                    </button>
+                </div>
+            </div>
+        </div>
+        <script>
+            // 모달 제어 스크립트
+            const modal = document.getElementById('consultationModal');
+            const closeBtn = document.getElementById('closeBtn');
+            const submitBtn = document.getElementById('submitBtn');
+            const modalBg = modal.querySelector('.modal_bg');
+
+            // 전체 동의 체크박스
+            const agreeAllCheckbox = document.getElementById('agree_all_consult');
+            const agreeTwoCheckbox = document.getElementById('agree_two_consult');
+            const agreeThirdCheckbox = document.getElementById('agree_third_consult');
+
+            // 모달 열기 함수 (전역 - onclick에서 사용)
+            function openConsultationModal() {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            // 모달 닫기 함수 (전역 - 필요시 사용)
+            function closeConsultationModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+                resetForm();
+            }
+
+            // 폼 초기화
+            function resetForm() {
+                document.getElementById('consultType').value = '';
+                document.getElementById('inputName').value = '';
+                document.getElementById('inputPhone').value = '';
+                agreeAllCheckbox.checked = false;
+                agreeTwoCheckbox.checked = false;
+                agreeThirdCheckbox.checked = false;
+            }
+
+            // 닫기 버튼 클릭
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeConsultationModal);
+            }
+
+            // 배경 클릭 시 닫기
+            if (modalBg) {
+                modalBg.addEventListener('click', closeConsultationModal);
+            }
+
+            // 전체 동의 체크박스 - 모두 선택/해제
+            if (agreeAllCheckbox) {
+                agreeAllCheckbox.addEventListener('change', () => {
+                    agreeTwoCheckbox.checked = agreeAllCheckbox.checked;
+                    agreeThirdCheckbox.checked = agreeAllCheckbox.checked;
+                });
+            }
+
+            // 개별 체크박스 변경 시 전체 동의 상태 업데이트
+            [agreeTwoCheckbox, agreeThirdCheckbox].forEach((checkbox) => {
+                if (checkbox) {
+                    checkbox.addEventListener('change', () => {
+                        if (agreeTwoCheckbox.checked && agreeThirdCheckbox.checked) {
+                            agreeAllCheckbox.checked = true;
+                        } else {
+                            agreeAllCheckbox.checked = false;
+                        }
+                    });
+                }
+            });
+
+            // 제출 버튼 클릭
+            if (submitBtn) {
+                submitBtn.addEventListener('click', () => {
+                    const consultType = document.getElementById('consultType').value;
+                    const name = document.getElementById('inputName').value;
+                    const phone = document.getElementById('inputPhone').value;
+
+                    // 유효성 검사
+                    if (!consultType) {
+                        alert('상담신청 항목을 선택해주세요.');
+                        return;
+                    }
+
+                    if (!name.trim()) {
+                        alert('이름을 입력해주세요.');
+                        return;
+                    }
+
+                    if (!phone.trim()) {
+                        alert('휴대폰 번호를 입력해주세요.');
+                        return;
+                    }
+
+                    if (!agreeTwoCheckbox.checked || !agreeThirdCheckbox.checked) {
+                        alert('필수 약관에 동의해주세요.');
+                        return;
+                    }
+
+                    // 제출 처리
+                    console.log('상담신청:', { consultType, name, phone });
+                    alert('상담 신청이 완료되었습니다.');
+                    closeConsultationModal();
+                });
+            }
+
+            // ESC 키 눌렀을 때 닫기
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    closeConsultationModal();
+                }
+            });
+        </script>
         <!-- 헤더 - 공통
         *클래스 on으로 글씨 블루 색상 적용했습니다 -->
 
@@ -286,6 +443,34 @@
                 </div>
             </div>
         </footer>
+
+        <!-- 플로팅효과 섹션 -->
+        <div class="floating">
+            <div class="top">
+                <div class="top_img">
+                    <img src="/images/f_i1.png" alt="" />
+                </div>
+                <!-- 전화 상담 -->
+                <a href="tel:1600-6910" class="phone">
+                    <p class="title">
+                        전화상담<br />
+                        1600-6910
+                    </p>
+                </a>
+            </div>
+
+            <!-- 종합상담 접수 -->
+            <button type="button" onclick="openConsultationModal()" class="consult">
+                <img src="images/f_i2.png" alt="" />
+                <p class="title">종합상담접수</p>
+            </button>
+
+            <!-- 카톡 상담 -->
+            <a href="/" class="kakao" target="_blank">
+                <img src="/images/f_kakao.png" alt="" />
+                <p class="kakao_title">카카오톡 상담하기</p>
+            </a>
+        </div>
 
         <!-- GSAP CDN -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
