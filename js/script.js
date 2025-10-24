@@ -82,10 +82,15 @@ function loadFallbackImage(fallbackPath) {
 
 // 이미지 사전 로드
 async function aggressivePreloadImages() {
+    // 로컬 파일 실행 시 건너뛰기
+    if (window.location.protocol === 'file:') {
+        console.log('로컬 개발 환경 - 배경 이미지 로드 건너뜀');
+        return;
+    }
+
     const isWebPSupported = await supportsWebP();
     const bgImagePath = isWebPSupported ? '../images/point_bg.webp' : '../images/point_bg.jpg';
 
-    // preload 링크 생성 (우선순위 높음)
     const preloadLink = document.createElement('link');
     preloadLink.rel = 'preload';
     preloadLink.as = 'image';
@@ -106,9 +111,8 @@ async function aggressivePreloadImages() {
 
         img.onerror = () => {
             console.error('Failed to load background image');
-            // WebP 실패 시 PNG로 폴백
             if (isWebPSupported && bgImagePath.includes('.webp')) {
-                loadFallbackImage('../images/point_bg.jpg');
+                loadFallbackImage('../images/point_bg.jpg'); // PNG 대신 JPG
             } else {
                 reject(false);
             }
