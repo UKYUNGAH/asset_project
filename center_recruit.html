@@ -17,6 +17,9 @@
         <!-- style.css: 각 페이지별 고유 스타일 -->
         <link rel="stylesheet" href="/styles/style.css" />
 
+        <!-- AOS 라이브러리 불러오기-->
+        <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         <!-- JS -->
         <script src="/js/script.js" defer></script>
     </head>
@@ -26,7 +29,8 @@
         *개별 페이지 스타일은 style.css에서 관리합니다! -->
 
         <!-- 헤더 - 메인 제외 공통
-        *클래스 on으로 글씨 블루 색상 적용했습니다 -->
+        *클래스 on으로 글씨 블루 색상 적용했습니다 
+        * sub_header는 fc모집, 센터장 모집, 지점장 모집에만 있습니다-->
         <header class="header sub_header">
             <div class="h_wrap">
                 <div class="h_container">
@@ -76,7 +80,7 @@
                         먼저 시작하고<br class="m_br" />
                         시장을 선점하세요
                     </h2>
-                    <p>보험의 흐름을 만드는 FM에셋의 방식</p>
+                    <p>찾아가는 영업의 끝, <br class="m_br" />찾아오는 영업의 시작</p>
                 </div>
             </section>
 
@@ -86,7 +90,7 @@
                     <h3 class="c_title_small"><span>보험금 청구 센터</span>에서 하는 일</h3>
                     <p class="c_sub_title">고객의 권리를 찾아, FC최고의 무기로 만듭니다.</p>
                     <div class="box_wrap">
-                        <div class="item">
+                        <div class="item" data-aos="zoom-in">
                             <div class="left">
                                 <img src="/images/center_s2_1.png" alt="" />
                             </div>
@@ -100,7 +104,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="item">
+                        <div class="item" data-aos="zoom-in">
                             <div class="left">
                                 <img src="/images/center_s2_2.png" alt="" />
                             </div>
@@ -121,7 +125,7 @@
             <!-- 텍스트 영역 -->
             <section class="center_text">
                 <div class="container">
-                    <h3 class="c_title_small">
+                    <h3 class="c_title_small" data-aos="fade-up">
                         <span>보험금 청구 센터</span>는<br class="m_br" />
                         FC님을 보상 전문가로 만들어,<br />
                         <br class="m_br" />
@@ -134,26 +138,28 @@
             <!-- 청구 센터 차별점 영역 -->
             <section class="different">
                 <div class="container">
-                    <div class="title">
-                        <h3 class="c_title_small">FM에셋 보험금 청구 센터의 차별점</h3>
-                        <p class="c_sub_title">AI 보장 맵핑으로 고객의 권리를 찾아줍니다.</p>
+                    <div class="d_inner" data-aos="fade-up">
+                        <div class="title">
+                            <h3 class="c_title_small">FM에셋 보험금 청구 센터의 차별점</h3>
+                            <p class="c_sub_title">AI 보장 맵핑으로 고객의 권리를 찾아줍니다.</p>
+                        </div>
+                        <div class="icon_wrap">
+                            <div class="item">
+                                <img src="/images/center_s4_1.png" alt="" />
+                            </div>
+                            <div class="item">
+                                <img src="/images/center_s4_2.png" alt="" />
+                            </div>
+                            <div class="item">
+                                <img src="/images/center_s4_3.png" alt="" />
+                            </div>
+                        </div>
+                        <h4 class="c_sub_title">
+                            진단코드와 보장 맵핑을 통해<br class="m_br" />
+                            고객이 누락된 보험금 찾기 및 <br />
+                            고객의 보장 공백에 대한 근거 제시
+                        </h4>
                     </div>
-                    <div class="icon_wrap">
-                        <div class="item">
-                            <img src="/images/center_s4_1.png" alt="" />
-                        </div>
-                        <div class="item">
-                            <img src="/images/center_s4_2.png" alt="" />
-                        </div>
-                        <div class="item">
-                            <img src="/images/center_s4_3.png" alt="" />
-                        </div>
-                    </div>
-                    <h4 class="c_sub_title">
-                        진단코드와 보장 맵핑을 통해<br class="m_br" />
-                        고객이 누락된 보험금 찾기 및 <br />
-                        고객의 보장 공백에 대한 근거 제시
-                    </h4>
                 </div>
             </section>
 
@@ -217,7 +223,7 @@
             <section class="backup">
                 <div class="container">
                     <h3 class="c_title_large">센터 개설 지원</h3>
-                    <ul>
+                    <ul data-aos="fade-up">
                         <li>
                             <div class="box">
                                 <img src="/images/center_s6_1.png" alt="" />
@@ -262,7 +268,7 @@
             <section class="common_interview interview">
                 <div class="container">
                     <div class="c_title_large">센터장 인터뷰</div>
-                    <div class="box_wrap">
+                    <div class="box_wrap" data-aos="fade-up">
                         <div class="box box1">
                             <div class="top">
                                 <div class="back_img"></div>

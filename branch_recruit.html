@@ -17,6 +17,9 @@
         <!-- style.css: 각 페이지별 고유 스타일 -->
         <link rel="stylesheet" href="/styles/style.css" />
 
+        <!-- AOS 라이브러리 불러오기-->
+        <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         <!-- JS -->
         <script src="/js/script.js" defer></script>
     </head>
@@ -26,7 +29,8 @@
         *개별 페이지 스타일은 style.css에서 관리합니다! -->
 
         <!-- 헤더 - 메인 제외 공통
-        *클래스 on으로 글씨 블루 색상 적용했습니다 -->
+        *클래스 on으로 글씨 블루 색상 적용했습니다 
+        * sub_header는 fc모집, 센터장 모집, 지사장 모집에만 있습니다-->
         <header class="header sub_header">
             <div class="h_wrap">
                 <div class="h_container">
@@ -65,25 +69,25 @@
         </header>
 
         <main class="sub_page branch_recruit">
-            <!-- 지점장모집 배너 영역 -->
+            <!-- 지사장모집 배너 영역 -->
             <div class="br_banner">
                 <div class="ment">
                     <h2>
                         보험을 넘어<br class="m_br" />
                         미래를 바꾸는 여정, <br />
                         <div class="m_div"></div>
-                        이 특별한 성공과 함께 하실<br class="m_br" />
-                        파트너를 모십니다.
+                        이 특별한 성공과 함께할<br class="m_br" />
+                        파트너를 찾습니다.
                     </h2>
                     <h3>보험의 흐름을 만드는 FM에셋의 방식</h3>
                 </div>
             </div>
 
-            <!-- 지점장모집 지사현황 텍스트 영역 -->
+            <!-- 지사장모집 지사 현황 텍스트 영역 -->
             <section class="jisa">
                 <div class="jisa_inner">
-                    <img src="/images/jisa_bg.jpg" alt="" />
-                    <h3 class="title">
+                    <img src="/images/jisa_bg.png" alt="" />
+                    <h3 class="title" data-aos="fade-up">
                         전국<br class="m_br" />
                         500개 지점
                     </h3>
@@ -95,7 +99,7 @@
                 <div class="container">
                     <div class="branch_title">파트너쉽 혜택</div>
                     <div class="box_wrap">
-                        <div class="box box1">
+                        <div class="box box1" data-aos="fade-up" data-aos-delay="0">
                             <div class="top">
                                 <div class="back_line back_line1"></div>
                                 <img src="./images/branch_partner1.png" alt="" />
@@ -106,7 +110,7 @@
                                 최대 98% 적용
                             </h4>
                         </div>
-                        <div class="box box2">
+                        <div class="box box2" data-aos="fade-up" data-aos-delay="0">
                             <div class="top">
                                 <div class="back_line back_line2"></div>
                                 <img src="./images/branch_partner3.png" alt="" />
@@ -117,7 +121,7 @@
                                 최대 180% 부여
                             </h4>
                         </div>
-                        <div class="box box3">
+                        <div class="box box3" data-aos="fade-up" data-aos-delay="300">
                             <div class="top">
                                 <div class="back_line back_line3"></div>
                                 <img src="./images/branch_partner2.png" alt="" />
@@ -129,7 +133,7 @@
                             </h4>
                         </div>
 
-                        <div class="box box4">
+                        <div class="box box4" data-aos="fade-up" data-aos-delay="300">
                             <div class="top">
                                 <div class="back_line back_line4"></div>
                                 <img src="./images/branch_partner4.png" alt="" />
@@ -148,7 +152,7 @@
             <section class="common_interview interview">
                 <div class="container">
                     <div class="branch_title">지사장 인터뷰</div>
-                    <div class="box_wrap">
+                    <div class="box_wrap" data-aos="fade-up">
                         <div class="box box1">
                             <div class="top">
                                 <div class="back_img"></div>

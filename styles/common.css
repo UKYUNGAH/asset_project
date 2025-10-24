@@ -1,9 +1,11 @@
 /* ====================== *STYLEGLOBAL: 공통 STYLE ====================== */
 /* 폰트 설정 */
+/* 폰트 설정 */
+/* PAPERLOGY 폰트 - CDN 우선, 로컬 fallback */
 @font-face {
     font-family: 'PAPERLOGY';
-    src: url('../fonts/PAPERLOGY-4Regular.otf') format('opentype'),
-        url('../fonts/PAPERLOGY-4Regular.woff2') format('woff2'), url('../fonts/PAPERLOGY-4Regular.woff') format('woff');
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2') format('woff2'),
+        url('../fonts/Paperlogy-4Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -11,9 +13,17 @@
 
 @font-face {
     font-family: 'PAPERLOGY';
-    src: url('../fonts/PAPERLOGY-6SemiBold.otf') format('opentype'),
-        url('../fonts/PAPERLOGY-6SemiBold.woff2') format('woff2'),
-        url('../fonts/PAPERLOGY-6SemiBold.woff') format('woff');
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-5Medium.woff2') format('woff2'),
+        url('../fonts/Paperlogy-5Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PAPERLOGY';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-6SemiBold.woff2') format('woff2'),
+        url('../fonts/Paperlogy-6SemiBold.ttf') format('truetype');
     font-weight: 600;
     font-style: normal;
     font-display: swap;
@@ -21,9 +31,8 @@
 
 @font-face {
     font-family: 'PAPERLOGY';
-    src: url('../fonts/PAPERLOGY-7ExtraBold.otf') format('opentype'),
-        url('../fonts/PAPERLOGY-7ExtraBold.woff2') format('woff2'),
-        url('../fonts/PAPERLOGY-7ExtraBold.woff') format('woff');
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2') format('woff2'),
+        url('../fonts/Paperlogy-7Bold.ttf') format('truetype');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -31,28 +40,9 @@
 
 @font-face {
     font-family: 'PAPERLOGY';
-    src: url('../fonts/PAPERLOGY-8ExtraBold.otf') format('opentype'),
-        url('../fonts/PAPERLOGY-8ExtraBold.woff2') format('woff2'),
-        url('../fonts/PAPERLOGY-8ExtraBold.woff') format('woff');
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2') format('woff2'),
+        url('../fonts/Paperlogy-8ExtraBold.ttf') format('truetype');
     font-weight: 800;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'GmarketSans';
-    src: url('../fonts/GmarketSansBold.otf') format('opentype'), url('../fonts/GmarketSansBold.woff2') format('woff2'),
-        url('../fonts/GmarketSansBold.woff') format('woff');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'TmonMonsori';
-    src: url('../fonts/TmonMonsori.otf') format('opentype'), url('../fonts/TmonMonsori.woff2') format('woff2'),
-        url('../fonts/TmonMonsori.woff') format('woff');
-    font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
@@ -81,36 +71,11 @@ body {
     --bs-bg-gray: #eef1f5;
 }
 
-/* 폰트 클래스 */
-.font_gmarket {
-    font-family: 'GmarketSans', sans-serif;
-    font-weight: 700;
-}
-
-.font_tmon {
-    font-family: 'TmonMonsori', sans-serif;
-    font-weight: 400;
-}
-
 /* 컨테이너 */
 .container {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-}
-
-/* 기본 버튼 */
-.button_default {
-    display: inline-block;
-    border-radius: 10px;
-    padding: 14px 0;
-    color: #fff;
-    transition: all 0.3s ease;
-}
-
-.button_default:hover {
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    transform: translateY(-3px);
 }
 
 /* 텍스트 색상 */
@@ -189,6 +154,7 @@ body {
 .header li a {
     font-size: 16px;
     line-height: 1.4;
+    font-weight: 500;
     padding: 12px 10px;
     color: var(--bs-white);
 }
@@ -220,7 +186,6 @@ body {
     object-fit: contain;
 }
 
-/* 모바일 슬라이드 메뉴 */
 .header .ham_gnb {
     max-height: 0;
     overflow: hidden;
@@ -618,14 +583,15 @@ footer h4 {
     object-fit: contain;
 }
 
-/* ====================== 반응형 (모두 한 곳에 모음) ====================== */
-
-/* 수정: 불필요한 html font-size 미디어쿼리 제거 */
-/* 1919px, 1680px 등의 세부 조정은 실무에서 거의 쓰이지 않음 */
-
+/* ====================== 반응형 ====================== */
+/* *STYLEMEDIA: 공통 - 태블릿 (1200px 이하) */
 @media (max-width: 1200px) {
     .container {
         padding: 0 30px;
+    }
+
+    .header .h_container {
+        padding: 0 20px;
     }
 
     .header .logo {
@@ -654,6 +620,7 @@ footer h4 {
     }
 }
 
+/* *STYLEMEDIA: 공통 - 모바일 대 (768px 이하) */
 @media (max-width: 768px) {
     html {
         font-size: 56%;
@@ -690,12 +657,6 @@ footer h4 {
 
     .header .ham_gnb {
         display: block;
-    }
-
-    .button_default {
-        padding: 12px 18px;
-        border-radius: 8px;
-        font-size: 14px;
     }
 
     footer {
@@ -774,6 +735,7 @@ footer h4 {
     }
 }
 
+/* *STYLEMEDIA: 공통 - 모바일 소 (480px 이하) */
 @media (max-width: 480px) {
     html {
         font-size: 50%;
@@ -805,12 +767,6 @@ footer h4 {
         font-size: 11px;
         padding: 4px 3px;
         line-height: 1.2;
-    }
-
-    .button_default {
-        padding: 10px 15px;
-        border-radius: 6px;
-        font-size: 12px;
     }
 
     footer {
@@ -915,11 +871,6 @@ footer h4 {
         background: none;
     }
 
-    .button_default:hover {
-        transform: none;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    }
-
     footer a:hover {
         text-decoration: none;
     }
@@ -927,13 +878,6 @@ footer h4 {
     .header li a {
         min-height: 44px;
         display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .button_default {
-        min-height: 44px;
-        display: inline-flex;
         align-items: center;
         justify-content: center;
     }

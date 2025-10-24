@@ -12,10 +12,13 @@ br.m_br2 {
 
 .sub_page {
     overflow: hidden;
+    padding-top: 60px;
 }
+
 /* ====================== 메인 페이지   ====================== */
 /* *STYLEPAGE: main - 메인 */
-/* hiro 영역 */
+
+/* 메인 - hiro 배너 영역 */
 .main .hiro {
     width: 100%;
     height: 100vh;
@@ -33,7 +36,6 @@ br.m_br2 {
     pointer-events: none; /* 클릭 방지 */
 }
 
-/* 비디오 컨트롤 완전 제거 */
 .main .hiro video::-webkit-media-controls {
     display: none !important;
 }
@@ -60,7 +62,6 @@ br.m_br2 {
 }
 
 .main .hiro h2 {
-    font-family: 'GmarketSans', sans-serif;
     font-size: 88px;
     font-weight: 900;
     line-height: 1.4;
@@ -73,7 +74,6 @@ br.m_br2 {
 }
 
 .main .hiro span {
-    font-family: 'TmonMonsori', sans-serif;
     font-size: 26px;
     font-weight: 500;
     color: var(--bs-blue);
@@ -84,7 +84,7 @@ br.m_br2 {
     padding: 5px 10px;
 }
 
-/* text section 영역 */
+/* 메인 - 텍스트 섹션 영역 */
 .main .text_section {
     padding: 185px 0;
     text-align: center;
@@ -92,7 +92,7 @@ br.m_br2 {
 
 .main .text_section h3 {
     font-size: 30px;
-    font-weight: 400;
+    font-weight: 500;
     margin-bottom: 60px;
 }
 
@@ -107,7 +107,7 @@ br.m_br2 {
     height: 20px;
 }
 
-/* 영업카드 영역 & 시스템 카드 영역 */
+/* 메인 - 비지니스 영역 & 시스템  영역 */
 .main .common_card {
     padding: 180px 0;
     text-align: center;
@@ -117,7 +117,7 @@ br.m_br2 {
 .main .common_card h3 {
     margin-bottom: 16px;
     font-size: 40px;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .main .common_card h3 span {
@@ -127,7 +127,7 @@ br.m_br2 {
 .main .common_card h4 {
     margin-bottom: 100px;
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 700;
 }
 
 .main .common_card .card {
@@ -145,6 +145,7 @@ br.m_br2 {
     padding: 16px 20px 30px;
     background: var(--bs-white);
     border-radius: 20px;
+    background: linear-gradient(#b7bbfa, #5762ff);
 }
 
 .main .common_card .box {
@@ -152,8 +153,7 @@ br.m_br2 {
     justify-content: center;
     width: 100%;
     height: 170px;
-    margin-bottom: 36px;
-    background: linear-gradient(#e1e3ff, #7a83ff);
+    margin-bottom: 10px;
 }
 
 .main .common_card .box img {
@@ -163,18 +163,24 @@ br.m_br2 {
     box-sizing: border-box;
 }
 
+.main .common_card .box img.b_card_i3 {
+    width: 73%;
+}
+
 .main .common_card h5 {
     margin-bottom: 26px;
     font-size: 30px;
     font-weight: 600;
-    color: var(--bs-blue);
+    color: var(--bs-white);
 }
 
 .main .common_card p {
     font-size: 18px;
+    font-weight: 500;
+    color: var(--bs-white);
 }
 
-/* 3. Point 섹션 - 중간에 고정 */
+/* 메인 - 롤링 영역 */
 .main .point {
     width: 100%;
     height: 100%;
@@ -204,46 +210,33 @@ br.m_br2 {
     width: 100%;
     height: calc(var(--vh, 1vh) * 100);
     perspective: 1000px;
-
-    /* 수정: 즉시 배경색 적용으로 빈 화면 방지 */
-    background-color: var(--bs-dark-blue); /* 또는 #000612 */
-
-    /* iOS Safari 최적화: 하드웨어 가속 및 레이어링 */
+    background-color: var(--bs-dark-blue);
+    /* iOS Safari 최적화 */
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-
     /* 배경 이미지 설정 - 폴백과 함께 */
-    background-image: url('/images/point_bg.webp'), /* WebP 우선 */ url('/images/point_bg.jpg'); /* JPG 폴백 */
+    background-image: url('/images/point_bg.webp'), /* WebP 우선 */ url('/images/point_bg.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: local; /* iOS Safari에서 fixed 대신 local 사용 */
-
-    /* 수정: 초기 상태는 불투명하게 설정 */
     opacity: 1;
-
     /* iOS Safari 성능 최적화 */
     -webkit-overflow-scrolling: touch;
     will-change: auto; /* 초기에는 auto, 필요시에만 변경 */
 }
 
-/* 배경 이미지 로드 완료 시 전환 효과 */
 .main .point .point_box.bg-loaded {
-    /* 부드러운 전환 효과 (선택적) */
     transition: background-image 0.3s ease-in-out;
 }
 
-/* iOS Safari 전용 최적화 */
 @supports (-webkit-touch-callout: none) {
     .main .point .point_box {
-        /* iOS에서 sticky 성능 개선 */
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
-
-        /* iOS에서 배경 첨부 최적화 */
-        background-attachment: scroll; /* fixed 대신 scroll 사용 */
+        background-attachment: scroll;
     }
 }
 
@@ -253,10 +246,9 @@ br.m_br2 {
 }
 
 .no-webp .main .point .point_box {
-    background-image: url('/images/point_bg.jpg');
+    background-image: url('/images/point_bg.png');
 }
 
-/* 추가: 로딩 상태 표시용 (선택적) */
 .main .point .point_box:not(.bg-loaded)::before {
     content: '';
     position: absolute;
@@ -267,13 +259,12 @@ br.m_br2 {
     background-color: var(--bs-dark-blue);
     z-index: -1;
 }
+
 .main .point h2 {
-    font-family: 'GmarketSans', sans-serif;
     text-align: center;
     color: #fff;
     font-size: 56px;
     font-weight: 700;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
     position: absolute;
     top: 200px;
     /* top: calc(50% - 200px); */
@@ -295,7 +286,6 @@ br.m_br2 {
 }
 
 .main .point p {
-    font-family: 'GmarketSans', sans-serif;
     position: absolute;
     top: 50%;
     width: 100%;
@@ -310,50 +300,52 @@ br.m_br2 {
     margin: 0;
     transition: color 0.3s ease;
     padding: 20px 0;
-    border: 2px solid rgba(227, 227, 227, 0.4);
-    border-radius: 20px;
 }
 
-/* 포커스 상태 */
 .main .point p.focus {
     color: #fff;
     border-color: #fff;
 }
 
-/* 시스템 영역 */
-.main .system .box img {
-    width: 60%;
+/* 메인 - 시스템 영역 */
+.main .common_card h4 {
+    font-weight: 500;
 }
 
-.sub_page {
-    padding-top: 60px;
+.main .system .box img {
+    width: 63%;
+}
+
+.main .system .box img.s_card_i1 {
+    width: 68%;
 }
 
 /* ====================== FC 모집 페이지   ====================== */
 /* *STYLEPAGE: fc_recruit - FC 모집 */
-/* 공통 */
-.fc_recruit {
-}
+
+/* FC 모집 - 공통 */
 .fc_recruit .container {
     padding: 120px 0;
 }
+
 .fc_recruit .fc_title {
     font-size: 50px;
     font-weight: 900;
-    font-family: 'TmonMonsori', sans-serif;
 }
 
-/* 배너 영역 */
+/* FC 모집 - 배너 영역 */
 .fc_recruit .fc_banner {
     position: relative;
     width: 100%;
     height: 600px;
 }
+
 .fc_recruit .fc_banner img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
+
 .fc_recruit .fc_banner h2 {
     position: absolute;
     top: 50%;
@@ -366,35 +358,33 @@ br.m_br2 {
     text-align: center;
 }
 
-/* 텍스트 섹션 + 로고 영역(fm에셋은?) */
+/* FC 모집 - 텍스트 영역 */
 .fc_recruit .fc_text .container {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 60px;
 }
-.fc_recruit .fc_text .left {
-}
-.fc_recruit .fc_text .right {
-}
+
 .fc_recruit .fc_text h3 {
     color: var(--bs-blue);
     margin-bottom: 48px;
 }
+
 .fc_recruit .fc_text p {
     font-size: 30px;
 }
+
 .fc_recruit .fc_text img {
     width: 280px;
 }
 
-/* 영업기법 영역 */
+/* FC 모집 - 영업기법 영역 */
 .fc_recruit .technic {
     background: var(--bs-bg-gray);
     text-align: center;
 }
-.fc_recruit .technic .t_title {
-}
+
 .fc_recruit .technic .t_title p {
     color: var(--bs-dark-blue);
     background: var(--bs-white);
@@ -404,11 +394,11 @@ br.m_br2 {
     border-radius: 100px;
     margin-bottom: 34px;
 }
+
 .fc_recruit .technic .t_title h3 {
     margin-bottom: 80px;
 }
-.fc_recruit .technic .content {
-}
+
 .fc_recruit .technic .content .top {
     height: 200px;
     display: flex;
@@ -417,6 +407,7 @@ br.m_br2 {
     gap: 70px;
     margin-bottom: 80px;
 }
+
 .fc_recruit .technic .content .left {
     text-align: left;
     width: 360px;
@@ -424,24 +415,27 @@ br.m_br2 {
     flex-direction: column;
     gap: 16px;
 }
+
 .fc_recruit .technic .content .left p {
     font-size: 26px;
     background: var(--bs-white);
     padding: 10px 20px;
     border-radius: 10px;
 }
+
 .fc_recruit .technic .content .left span {
     color: var(--bs-dark-blue);
     font-weight: 600;
 }
-.fc_recruit .technic .content .mid {
-}
+
 .fc_recruit .technic .content .mid img {
     width: 20px;
 }
+
 .fc_recruit .technic .content .right {
     height: 200px;
 }
+
 .fc_recruit .technic .content .right p {
     font-size: 34px;
     font-weight: 600;
@@ -454,18 +448,21 @@ br.m_br2 {
     align-items: center;
     border-radius: 10px;
 }
+
 .fc_recruit .technic .bottom {
     font-size: 26px;
     color: #000612;
 }
 
-/* 실적 집중 영역 */
+/* FC 모집 - 실적 집중 영역 */
 .fc_recruit .focus {
     text-align: center;
 }
+
 .fc_recruit .focus .fc_title {
     margin-bottom: 70px;
 }
+
 .fc_recruit .focus ul {
     display: flex;
     justify-content: center;
@@ -473,12 +470,14 @@ br.m_br2 {
     flex-wrap: wrap;
     gap: 20px;
 }
+
 .fc_recruit .focus li {
     width: 480px;
     height: 292px;
     border-radius: 20px;
     position: relative;
 }
+
 .fc_recruit .focus img {
     border-radius: 20px;
     width: 100%;
@@ -503,26 +502,30 @@ br.m_br2 {
     font-size: 20px;
     font-weight: 700;
 }
+
 .fc_recruit .focus .text_wrap strong {
     display: block;
     font-size: 24px;
     font-weight: 800;
 }
 
-/* 직원 후기 영역 */
+/* FC 모집 - 직원 후기 영역 */
 .fc_recruit .stories {
     text-align: center;
     background: var(--bs-bg-gray);
 }
+
 .fc_recruit .stories .container {
     width: 1000px;
 }
+
 .fc_recruit .stories .card_wrap {
     display: flex;
     flex-direction: column;
     gap: 40px;
     margin-bottom: 105px;
 }
+
 .fc_recruit .stories .card {
     padding: 35px 0;
     display: flex;
@@ -531,20 +534,24 @@ br.m_br2 {
     background: var(--bs-white);
     border-radius: 15px;
 }
+
 .fc_recruit .stories .left {
     display: flex;
     justify-content: center;
     width: 40%;
 }
+
 .fc_recruit .stories .right {
     width: 58%;
     text-align: center;
 }
+
 .fc_recruit .stories img {
     max-height: 300px;
     width: auto;
     object-fit: cover;
 }
+
 .fc_recruit .stories h4.title {
     display: inline-block;
     min-width: 340px;
@@ -557,34 +564,37 @@ br.m_br2 {
     margin-bottom: 30px;
     border-radius: 100px;
 }
+
 .fc_recruit .stories h5.text {
     font-size: 22px;
     font-weight: 400;
 }
+
 .fc_recruit .stories .fc_title {
-    font-family: 'PAPERLOGY', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     font-weight: 800;
 }
+
 .fc_recruit .stories .fc_title span {
     color: var(--bs-dark-blue);
 }
 
 /* ====================== 지사장 모집 페이지   ====================== */
 /* *STYLEPAGE: branch_recruit - 지사장 모집 */
-/* 배너, 텍스트 섹션 제외한 나머지 섹션 공통*/
+
+/* 지사장 모집 - 배너, 텍스트 섹션 제외한 나머지 섹션 공통*/
 .branch_recruit .container {
     padding: 180px 0;
 }
 
 .branch_recruit .branch_title {
-    font-weight: 800;
+    font-weight: 600;
     font-size: 46px;
     text-align: center;
 }
 
-/* 배너 영역 */
+/* 지사장 모집 - 배너 영역 */
 .branch_recruit .br_banner {
-    height: 430px;
+    height: 620px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -603,7 +613,6 @@ br.m_br2 {
     position: absolute;
     top: 0;
     left: 0;
-    /* background: rgba(0, 53, 127, 0.4); */
     background: linear-gradient(to bottom, rgba(0, 53, 127, 0.4) 0%, rgba(0, 0, 0, 0.8) 80%, #000 100%);
     z-index: 1;
 }
@@ -626,44 +635,27 @@ br.m_br2 {
     margin-top: 30px;
 }
 
-/* 지사장 모집 텍스트 영역 */
-/* 수정: jisa에 초기 검은색 배경 추가 */
+/* 지사장 모집 - 지사 현황 텍스트 영역 */
 .branch_recruit .jisa {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh; /* height: 100vh; 대신 min-height */
+    height: calc(100vh - var(--header-height, 0px)); /* 헤더 높이만큼 빼기, 필요 시 */
     position: relative;
-    background: rgba(0, 0, 0, 1); /* 초기: 완전 검은색 */
-    will-change: background-color;
+    /* background: rgba(0, 0, 0, 1); */
+    /* will-change: background-color; */
 }
 
 .branch_recruit .jisa .jisa_inner {
     position: relative;
     width: 100%;
     height: 100%;
-    /* jisa_inner::after는 제거하거나 background: none으로 설정 */
 }
 
-.branch_recruit .jisa .jisa_inner::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: none; /* 배경 제거 */
-    z-index: 1;
-}
-
-/* 수정: 이미지 초기 상태 opacity 0으로 설정 */
 .branch_recruit .jisa img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-
     display: block;
-    position: relative;
-    opacity: 0; /* 초기: 보이지 않음 */
-    will-change: opacity;
 }
 
 .branch_recruit .jisa .title {
@@ -672,14 +664,16 @@ br.m_br2 {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    /* transform: translate(-50%, -50%); */
+    margin-left: -50%;
+    margin-top: -50px;
     width: 100%;
     text-align: center;
     z-index: 1;
-    will-change: transform, opacity;
+    opacity: 0;
 }
 
-/* 지사장 파트너쉽 영역 */
+/* 지사장 모집 - 파트너쉽 혜택 영역 */
 .branch_recruit .partnership {
     background: #eef1f5;
 }
@@ -753,10 +747,10 @@ br.m_br2 {
     z-index: 2;
 }
 
-/* **공통 인터뷰 영역 - 지사장 인터뷰, 센터장 인터뷰 영역은 클래스명 common_interview로 관리됩니다 */
-.common_interview {
-}
-
+/* **공통 인터뷰 영역 - 
+지사장 모집: 지사장 인터뷰, 
+센터장 모집: 센터장 인터뷰 영역은 클래스명 
+  common_interview로 관리됩니다 */
 .common_interview .box_wrap {
     width: 100%;
     display: flex;
@@ -780,6 +774,10 @@ br.m_br2 {
 .common_interview .box_wrap .box img {
     display: block;
     width: 100%;
+    height: 400px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 15px;
 }
 
 .common_interview .box_wrap .box h3 {
@@ -797,11 +795,7 @@ br.m_br2 {
     margin-top: 15px;
 }
 
-/* 지사장 인터뷰 영역 */
-.branch_recruit .interview {
-}
-
-/* 지사 개설 지원 */
+/* 지사장 모집 - 지사 개설 지원 영역 */
 .branch_recruit .help {
     background: #eef1f5;
 }
@@ -877,33 +871,38 @@ br.m_br2 {
 
 /* ====================== 센터장 모집 페이지   ====================== */
 /* *STYLEPAGE: center_recruit - 센터장 모집 */
-/* 공통 */
+
+/* 센터장 모집 - 공통 */
 .center_recruit {
     text-align: center;
 }
+
 .center_recruit .container {
     padding: 180px 0;
 }
+
 .center_recruit .c_title_large {
     font-size: 40px;
-    font-weight: 700;
-    font-family: 'GmarketSans', sans-serif;
-}
-.center_recruit .c_title_small {
-    font-size: 40px;
-    font-weight: 700;
-    font-family: 'GmarketSans', sans-serif;
-}
-.center_recruit .c_sub_title {
-    font-size: 26px;
+    font-weight: 600;
 }
 
-/* 배너 영역 */
+.center_recruit .c_title_small {
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.center_recruit .c_sub_title {
+    font-size: 26px;
+    font-weight: 500;
+}
+
+/* 센터장 모집 - 배너 영역 */
 .center_recruit .c_banner {
     position: relative;
     width: 100%;
     height: 450px;
 }
+
 .center_recruit .c_banner::after {
     content: '';
     position: absolute;
@@ -914,13 +913,13 @@ br.m_br2 {
     background: var(--bs-dark-blue);
     opacity: 0.4;
 }
-.center_recruit .c_banner .container {
-}
+
 .center_recruit .c_banner img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
+
 .center_recruit .c_banner .inner {
     position: absolute;
     top: 50%;
@@ -929,35 +928,39 @@ br.m_br2 {
     z-index: 1;
     width: 100%;
 }
+
 .center_recruit .c_banner h2 {
     font-size: 50px;
-    font-weight: 800;
+    font-weight: 700;
     color: var(--bs-white);
     margin-bottom: 60px;
 }
+
 .center_recruit .c_banner p {
     font-size: 30px;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--bs-white);
 }
 
-/* 하는 일 영역 */
-.center_recruit .job {
-}
+/* 센터장 모집 - 하는 일 영역 */
 .center_recruit .job h3 {
     margin-bottom: 8px;
 }
+
 .center_recruit .job span {
     color: var(--bs-dark-blue);
 }
+
 .center_recruit .job .c_sub_title {
     margin-bottom: 64px;
 }
+
 .center_recruit .job .box_wrap {
     display: flex;
     justify-content: center;
     gap: 30px;
 }
+
 .center_recruit .job .item {
     width: 500px;
     border-radius: 20px;
@@ -968,57 +971,60 @@ br.m_br2 {
     justify-content: space-between;
     flex-wrap: wrap;
 }
+
 .center_recruit .job .left {
     width: 38%;
     max-width: 168px;
 }
+
 .center_recruit .job .left img {
     width: 100%;
 }
+
 .center_recruit .job .right {
     width: 55%;
 }
+
 .center_recruit .job .right h4 {
     font-size: 24px;
+    font-weight: 600;
     padding: 5px 10px;
     border-radius: 100px;
     background: var(--bs-blue);
     color: var(--bs-white);
     margin-bottom: 24px;
 }
+
 .center_recruit .job .right p {
     font-size: 20px;
+    font-weight: 500;
     margin-bottom: 0;
 }
 
-/* 텍스트 영역 */
+/* 센터장 모집 - 텍스트 영역 */
 .center_recruit .center_text {
     background: var(--bs-bg-gray);
 }
-.center_recruit .center_text .container {
-}
+
 .center_recruit .center_text h3 {
     font-size: 40px;
     font-weight: 500;
 }
+
 .center_recruit .center_text span {
     color: var(--bs-blue);
 }
 
-/* 청구센터 차별점 영역 */
-.center_recruit .different {
-}
-.center_recruit .different .container {
-}
-.center_recruit .different .title {
-}
+/* 센터장 모집 - 청구센터 차별점 영역 */
 .center_recruit .different h3 {
     margin-bottom: 16px;
     color: var(--bs-blue);
 }
+
 .center_recruit .different p {
     margin-bottom: 62px;
 }
+
 .center_recruit .different .icon_wrap {
     display: flex;
     align-items: center;
@@ -1026,6 +1032,7 @@ br.m_br2 {
     gap: 95px;
     margin-bottom: 72px;
 }
+
 .center_recruit .different .item {
     width: 198px;
     height: 198px;
@@ -1035,30 +1042,29 @@ br.m_br2 {
     justify-content: center;
     align-items: center;
 }
+
 .center_recruit .different img {
     max-width: 135px;
 }
+
 .center_recruit .different h4 {
     font-weight: 400;
 }
 
-/* 비전 영역 */
-
+/* 센터장 모집 - 비전 영역 */
 .center_recruit .vision {
     background: var(--bs-bg-gray);
 }
 
-.center_recruit .vision .container {
-}
-.center_recruit .vision .title {
-}
 .center_recruit .vision h3 {
     margin-bottom: 16px;
     color: var(--bs-blue);
 }
+
 .center_recruit .vision p {
     margin-bottom: 88px;
 }
+
 .center_recruit .vision .count {
     width: 1000px;
     margin: 0 auto;
@@ -1071,18 +1077,22 @@ br.m_br2 {
     border: 4px solid #adc1dc;
     margin-bottom: 76px;
 }
+
 .center_recruit .vision h4 {
     font-size: 28px;
     font-weight: 500;
 }
+
 .center_recruit .vision h4.target {
     color: var(--bs-sky-blue);
     font-weight: 600;
 }
+
 .center_recruit .vision img {
     width: 28px;
 }
 
+/* 센터장 모집 - 비전 영역(그래프) */
 .center_recruit .graph {
     display: flex;
     flex-direction: column;
@@ -1096,6 +1106,7 @@ br.m_br2 {
     display: flex;
     align-items: end;
 }
+
 .center_recruit .graph .bottom {
     display: flex;
     align-items: center;
@@ -1114,7 +1125,7 @@ br.m_br2 {
     width: 100%;
     margin-bottom: 15px;
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--bs-sky-blue);
 }
 
@@ -1149,25 +1160,23 @@ br.m_br2 {
 .center_recruit .graph h6 {
     width: 20%;
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 500;
 }
 
-/* 센터 개설 지원 영역 */
-.center_recruit .backup {
-}
-.center_recruit .backup .container {
-}
+/* 센터장 모집 - 센터 개설 지원 영역 */
 .center_recruit .backup h3 {
     margin-bottom: 80px;
+    font-weight: 600;
 }
+
 .center_recruit .backup ul {
     display: flex;
     justify-content: center;
     gap: 30px;
 }
+
 .center_recruit .backup li {
     width: 314px;
-    height: 460px;
     background: #eaf1f9;
     border-radius: 20px;
     padding: 20px 40px;
@@ -1175,76 +1184,72 @@ br.m_br2 {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    background: linear-gradient(#b7bbfa, #5762ff);
 }
+
 .center_recruit .backup .box {
-    width: 230px;
-    height: 230px;
-    border-radius: 100%;
-    background: var(--bs-white);
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 20px 0;
 }
+
 .center_recruit .backup img {
-    max-width: 124px;
+    max-width: 110px;
 }
+
 .center_recruit .backup .bi_2 {
-    max-width: 100%;
-    width: 83%;
-    margin-right: 50px;
+    max-width: 140px;
 }
+
 .center_recruit .backup h4 {
     font-size: 24px;
     font-weight: 600;
-    color: var(--bs-blue);
-}
-.center_recruit .backup p {
-    font-size: 18px;
+    color: var(--bs-white);
+    margin-bottom: 14px;
 }
 
-/* 센터장 인터뷰 영역 */
+.center_recruit .backup p {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--bs-white);
+}
+
+/* 센터장 모집 - 센터장 인터뷰 영역 */
 .center_recruit .interview {
     background: var(--bs-bg-gray);
 }
 
 /* ====================== 반응형 스타일 ====================== */
-
-/* ====================== 반응형 스타일 ====================== */
-
-/* *STYLEMEDIA: 태블릿 (1200px 이하) */
+/* *STYLEMEDIA: 페이지 - 태블릿 (1200px 이하) */
 @media (max-width: 1200px) {
-    .sub_page {
-        padding-top: 55px;
-    }
     /* 메인 페이지 */
     .main .hiro h2 {
         font-size: 50px;
     }
 
-    .main .hiro span {
-    }
-
     .main .text_section {
-        padding: 120px 0; /* 185px에서 축소 */
+        padding: 120px 0;
     }
 
     .main .text_section h3,
     .main .text_section h4 {
-        font-size: 26px; /* 30px에서 축소 */
+        font-size: 26px;
     }
 
     .main .common_card {
-        padding: 120px 0; /* 180px에서 축소 */
+        padding: 120px 0;
     }
 
     .main .common_card h3 {
-        font-size: 36px; /* 40px에서 축소 */
-        margin-bottom: 40px; /* 50px에서 축소 */
+        font-size: 36px;
+        margin-bottom: 40px;
     }
 
     .main .common_card h4 {
-        font-size: 18px; /* 20px에서 축소 */
-        margin-bottom: 80px; /* 100px에서 축소 */
+        font-size: 18px;
+        margin-bottom: 80px;
     }
 
     .main .common_card h5 {
@@ -1254,126 +1259,121 @@ br.m_br2 {
     .main .common_card p {
         font-size: 15px;
     }
+
     .main .common_card .card {
-        gap: 20px; /* 30px에서 축소 */
+        gap: 20px;
     }
 
     .main .common_card .item {
-        width: 280px; /* 314px에서 축소 */
+        width: 280px;
     }
 
     .main .point_wrap {
-        min-height: calc(var(--vh, 1vh) * 180); /* 수정: 200에서 180으로 축소 */
+        min-height: calc(var(--vh, 1vh) * 180);
     }
 
     .main .point h2 {
         top: 140px !important;
-        font-size: 48px; /* 56px에서 축소 */
+        font-size: 48px;
     }
 
     .main .point p {
-        font-size: 38px; /* 46px에서 축소 */
+        font-size: 38px;
         max-width: 80%;
         padding: 15px 10px;
         border-radius: 15px;
     }
 
-    /* FC 모집 페이지 */
     .fc_recruit .container {
-        padding: 80px 20px; /* 120px 0에서 수정 */
+        padding: 80px 20px;
     }
 
     .fc_recruit .fc_title {
-        font-size: 42px; /* 50px에서 축소 */
+        font-size: 42px;
     }
 
     .fc_recruit .fc_banner {
-        height: 450px; /* 600px에서 축소 */
+        height: 450px;
     }
 
     .fc_recruit .fc_banner h2 {
-        font-size: 55px; /* 70px에서 축소 */
+        font-size: 55px;
     }
 
     .fc_recruit .fc_text .container {
-        gap: 40px; /* 60px에서 축소 */
+        gap: 40px;
     }
 
     .fc_recruit .fc_text p {
-        font-size: 26px; /* 30px에서 축소 */
+        font-size: 26px;
     }
 
     .fc_recruit .fc_text img {
-        width: 220px; /* 280px에서 축소 */
+        width: 220px;
     }
 
     .fc_recruit .focus ul {
-        gap: 15px; /* 20px에서 축소 */
+        gap: 15px;
     }
 
     .fc_recruit .focus li {
-        width: 400px; /* 480px에서 축소 */
-        height: 250px; /* 292px에서 축소 */
+        width: 400px;
+        height: 250px;
     }
 
-    /* 지사장 모집 페이지 */
     .branch_recruit .container {
-        padding: 120px 20px; /* 180px 0에서 수정 */
+        padding: 120px 20px;
     }
 
     .branch_recruit .branch_title {
-        font-size: 38px; /* 46px에서 축소 */
-    }
-
-    .branch_recruit .br_banner {
+        font-size: 38px;
     }
 
     .branch_recruit .br_banner h2 {
-        font-size: 40px; /* 48px에서 축소 */
+        font-size: 40px;
     }
 
     .branch_recruit .br_banner h3 {
-        font-size: 28px; /* 34px에서 축소 */
+        font-size: 28px;
     }
 
     .branch_recruit .partnership .box_wrap .box h3 {
-        font-size: 26px; /* 30px에서 축소 */
+        font-size: 26px;
     }
 
     .branch_recruit .partnership .box_wrap .box {
-        padding: 30px; /* 40px에서 축소 */
+        padding: 30px;
     }
 
-    /* 센터장 모집 페이지 */
     .center_recruit .container {
-        padding: 120px 20px; /* 180px 20px에서 축소 */
+        padding: 120px 20px;
     }
 
     .center_recruit .c_title_large,
     .center_recruit .c_title_small {
-        font-size: 34px; /* 40px에서 축소 */
+        font-size: 34px;
     }
 
     .center_recruit .c_sub_title {
-        font-size: 22px; /* 26px에서 축소 */
+        font-size: 22px;
     }
 
     .center_recruit .c_banner {
-        height: 350px; /* 450px에서 축소 */
+        height: 350px;
     }
 
     .center_recruit .c_banner h2 {
-        font-size: 42px; /* 50px에서 축소 */
-        margin-bottom: 40px; /* 60px에서 축소 */
+        font-size: 42px;
+        margin-bottom: 40px;
     }
 
     .center_recruit .c_banner p {
-        font-size: 26px; /* 30px에서 축소 */
+        font-size: 26px;
     }
 
     .center_recruit .job .item {
-        width: 420px; /* 500px에서 축소 */
-        padding: 30px 20px; /* 40px 26px에서 축소 */
+        width: 420px;
+        padding: 30px 20px;
     }
 
     .center_recruit .job .right h4 {
@@ -1389,12 +1389,12 @@ br.m_br2 {
     }
 
     .center_recruit .different .icon_wrap {
-        gap: 60px; /* 95px에서 축소 */
+        gap: 60px;
     }
 
     .center_recruit .different .item {
-        width: 160px; /* 198px에서 축소 */
-        height: 160px; /* 198px에서 축소 */
+        width: 160px;
+        height: 160px;
     }
 
     .center_recruit .different img {
@@ -1407,11 +1407,11 @@ br.m_br2 {
 
     .center_recruit .vision .count {
         width: auto;
-        padding: 25px 60px; /* 33px 100px에서 축소 */
+        padding: 25px 60px;
     }
 
     .center_recruit .vision h4 {
-        font-size: 24px; /* 28px에서 축소 */
+        font-size: 24px;
     }
 
     .center_recruit .backup ul {
@@ -1430,117 +1430,114 @@ br.m_br2 {
         width: 60%;
     }
 
-    /* FC 모집 페이지 태블릿 */
+    /* FC 모집 페이지 */
     .fc_recruit .container {
-        padding: 80px 30px; /* 기본 120px에서 축소 */
+        padding: 80px 30px;
     }
 
     .fc_recruit .fc_title {
-        font-size: 42px; /* 50px에서 축소 */
+        font-size: 42px;
     }
 
     .fc_recruit .fc_banner {
-        height: 450px; /* 600px에서 축소 */
+        height: 450px;
     }
 
     .fc_recruit .fc_banner h2 {
-        font-size: 55px; /* 70px에서 축소 */
+        font-size: 55px;
         line-height: 1.2;
     }
 
     .fc_recruit .fc_text .container {
-        gap: 40px; /* 60px에서 축소 */
+        gap: 40px;
     }
 
     .fc_recruit .fc_text p {
-        font-size: 26px; /* 30px에서 축소 */
+        font-size: 26px;
     }
 
     .fc_recruit .fc_text img {
-        width: 220px; /* 280px에서 축소 */
+        width: 220px;
     }
 
-    /* 영업기법 영역 */
     .fc_recruit .technic .t_title p {
-        font-size: 22px; /* 26px에서 축소 */
+        font-size: 22px;
     }
 
     .fc_recruit .technic .content .top {
-        gap: 50px; /* 70px에서 축소 */
-        margin-bottom: 60px; /* 80px에서 축소 */
+        gap: 50px;
+        margin-bottom: 60px;
     }
 
     .fc_recruit .technic .content .left {
-        width: 320px; /* 360px에서 축소 */
+        width: 320px;
     }
 
     .fc_recruit .technic .content .left p {
-        font-size: 22px; /* 26px에서 축소 */
+        font-size: 22px;
         padding: 8px 16px;
     }
 
     .fc_recruit .technic .content .right p {
-        font-size: 30px; /* 34px에서 축소 */
-        padding: 0 60px; /* 75px에서 축소 */
+        font-size: 30px;
+        padding: 0 60px;
     }
 
     .fc_recruit .technic .bottom {
-        font-size: 22px; /* 26px에서 축소 */
+        font-size: 22px;
     }
 
-    /* 실적 집중 영역 */
     .fc_recruit .focus .fc_title {
-        margin-bottom: 50px; /* 70px에서 축소 */
+        margin-bottom: 50px;
     }
 
     .fc_recruit .focus ul {
-        gap: 15px; /* 20px에서 축소 */
+        gap: 15px;
     }
 
     .fc_recruit .focus li {
-        width: 400px; /* 480px에서 축소 */
-        height: 250px; /* 292px에서 축소 */
+        width: 400px;
+        height: 250px;
     }
 
     .fc_recruit .focus .text_wrap p {
-        font-size: 18px; /* 20px에서 축소 */
+        font-size: 18px;
     }
 
     .fc_recruit .focus .text_wrap strong {
-        font-size: 20px; /* 24px에서 축소 */
+        font-size: 20px;
     }
 
-    /* 직원 후기 영역 */
     .fc_recruit .stories .container {
-        width: 900px; /* 1000px에서 축소 */
+        width: 900px;
         padding: 80px 30px;
     }
 
     .fc_recruit .stories .card_wrap {
-        gap: 30px; /* 40px에서 축소 */
-        margin-bottom: 80px; /* 105px에서 축소 */
+        gap: 30px;
+        margin-bottom: 80px;
     }
 
     .fc_recruit .stories .card {
-        padding: 25px 0; /* 35px에서 축소 */
+        padding: 25px 0;
     }
 
     .fc_recruit .stories img {
-        max-height: 250px; /* 300px에서 축소 */
+        max-height: 250px;
     }
 
     .fc_recruit .stories h4.title {
-        min-width: 300px; /* 340px에서 축소 */
-        font-size: 22px; /* 26px에서 축소 */
-        margin-bottom: 25px; /* 30px에서 축소 */
+        min-width: 300px;
+        font-size: 22px;
+        margin-bottom: 25px;
     }
 
     .fc_recruit .stories h5.text {
-        font-size: 20px; /* 22px에서 축소 */
+        font-size: 20px;
     }
 }
 
-/* *STYLEMEDIA: 모바일 대 (768px 이하) */
+/* *STYLEMEDIA: 페이지 - 모바일 대 (768px 이하) */
 @media (max-width: 768px) {
     br.p_br {
         display: none;
@@ -1550,11 +1547,10 @@ br.m_br2 {
         display: block;
     }
 
-    /* 메인 페이지 */
     .main .hiro h2 {
-        font-size: 52px; /* 65px에서 축소 */
-        margin-bottom: 60px; /* 80px에서 축소 */
-        line-height: 1.2; /* 줄간격 조정 */
+        font-size: 52px;
+        margin-bottom: 60px;
+        line-height: 1.2;
     }
 
     .main .hiro span {
@@ -1562,7 +1558,7 @@ br.m_br2 {
     }
 
     .main .text_section {
-        padding: 80px 20px; /* 120px 0에서 수정 */
+        padding: 80px 20px;
     }
 
     .main .text_section h3,
@@ -1583,7 +1579,7 @@ br.m_br2 {
     }
 
     .main .point_wrap {
-        min-height: calc(var(--vh, 1vh) * 150); /* 수정: 180에서 150으로 축소 */
+        min-height: calc(var(--vh, 1vh) * 150);
     }
 
     .main .point .point_box {
@@ -1598,12 +1594,13 @@ br.m_br2 {
         width: 90%;
         margin: 0 auto;
     }
+
     .main .point h2 {
-        font-size: 38px; /* 48px에서 축소 */
+        font-size: 38px;
     }
 
     .main .point p {
-        font-size: 28px; /* 38px에서 축소 */
+        font-size: 28px;
         max-width: 90%;
         padding: 15px 15px;
         border-radius: 12px;
@@ -1611,39 +1608,38 @@ br.m_br2 {
     }
 
     .main .common_card {
-        padding: 80px 20px; /* 120px 0에서 수정 */
+        padding: 80px 20px;
     }
 
     .main .common_card h3 {
-        font-size: 30px; /* 36px에서 축소 */
+        font-size: 30px;
     }
 
     .main .common_card .card {
-        flex-direction: column; /* 세로 배열 */
-        gap: 30px; /* 간격 조정 */
+        flex-direction: column;
+        gap: 30px;
     }
 
     .main .common_card .item {
-        width: 100%; /* 전체 너비 */
-        max-width: 350px; /* 최대 너비 제한 */
+        width: 100%;
+        max-width: 350px;
     }
 
-    /* FC 모집 페이지 추가 수정 */
     .fc_recruit .container {
-        padding: 60px 20px; /* 80px에서 축소 */
+        padding: 60px 20px;
     }
 
     .fc_recruit .fc_title {
-        font-size: 28px; /* 32px에서 축소 */
+        font-size: 28px;
         line-height: 1.3;
     }
 
     .fc_recruit .fc_banner {
-        height: 300px; /* 350px에서 축소 */
+        height: 300px;
     }
 
     .fc_recruit .fc_banner h2 {
-        font-size: 32px; /* 40px에서 축소 */
+        font-size: 32px;
         line-height: 1.2;
         padding: 0 20px;
     }
@@ -1654,17 +1650,16 @@ br.m_br2 {
     }
 
     .fc_recruit .fc_text p {
-        font-size: 20px; /* 22px에서 축소 */
+        font-size: 20px;
         line-height: 1.4;
     }
 
     .fc_recruit .fc_text img {
-        width: 112px; /* 180px에서 축소 */
+        width: 112px;
     }
 
-    /* 영업기법 영역 모바일 최적화 */
     .fc_recruit .technic .t_title p {
-        font-size: 18px; /* 20px에서 축소 */
+        font-size: 18px;
         padding: 6px 10px;
         margin-bottom: 20px;
     }
@@ -1691,7 +1686,7 @@ br.m_br2 {
     }
 
     .fc_recruit .technic .content .left p {
-        font-size: 16px; /* 20px에서 축소 */
+        font-size: 16px;
         padding: 8px 15px;
     }
 
@@ -1706,18 +1701,17 @@ br.m_br2 {
     }
 
     .fc_recruit .technic .content .right p {
-        font-size: 22px; /* 26px에서 축소 */
+        font-size: 22px;
         padding: 15px 20px;
         line-height: 1.3;
     }
 
     .fc_recruit .technic .bottom {
-        font-size: 18px; /* 20px에서 축소 */
+        font-size: 18px;
         padding: 0 20px;
         line-height: 1.4;
     }
 
-    /* 실적 집중 영역 */
     .fc_recruit .focus .fc_title {
         margin-bottom: 40px;
         font-size: 28px;
@@ -1731,8 +1725,8 @@ br.m_br2 {
 
     .fc_recruit .focus li {
         width: 100%;
-        max-width: 350px; /* 400px에서 축소 */
-        height: 200px; /* 220px에서 축소 */
+        max-width: 350px;
+        height: 200px;
     }
 
     .fc_recruit .focus .text_wrap {
@@ -1740,18 +1734,17 @@ br.m_br2 {
     }
 
     .fc_recruit .focus .text_wrap p {
-        font-size: 16px; /* 텍스트 크기 조정 */
+        font-size: 16px;
         padding: 0 15px;
         line-height: 1.3;
     }
 
     .fc_recruit .focus .text_wrap strong {
-        font-size: 18px; /* 20px에서 축소 */
+        font-size: 18px;
         display: block;
         margin-bottom: 5px;
     }
 
-    /* 직원 후기 영역 */
     .fc_recruit .stories .container {
         width: 100%;
         max-width: 100%;
@@ -1775,19 +1768,19 @@ br.m_br2 {
     }
 
     .fc_recruit .stories img {
-        max-height: 180px; /* 200px에서 축소 */
+        max-height: 180px;
         margin-bottom: 15px;
     }
 
     .fc_recruit .stories h4.title {
         min-width: auto;
-        font-size: 18px; /* 20px에서 축소 */
+        font-size: 18px;
         margin-bottom: 15px;
         padding: 8px 15px;
     }
 
     .fc_recruit .stories h5.text {
-        font-size: 16px; /* 18px에서 축소 */
+        font-size: 16px;
         line-height: 1.4;
     }
 
@@ -1795,22 +1788,19 @@ br.m_br2 {
         font-size: 24px;
         line-height: 1.3;
     }
-    /* 지사장 모집 페이지 */
-    .branch_recruit .branch_title {
-        font-size: 30px; /* 38px에서 축소 */
-    }
 
-    .branch_recruit .br_banner {
+    .branch_recruit .branch_title {
+        font-size: 30px;
     }
 
     .branch_recruit .br_banner h2 {
-        font-size: 32px; /* 40px에서 축소 */
-        line-height: 1.2; /* 줄간격 조정 */
+        font-size: 32px;
+        line-height: 1.2;
     }
 
     .branch_recruit .br_banner h3 {
-        font-size: 22px; /* 28px에서 축소 */
-        margin-top: 20px; /* 30px에서 축소 */
+        font-size: 22px;
+        margin-top: 20px;
     }
 
     .branch_recruit .m_div {
@@ -1818,51 +1808,51 @@ br.m_br2 {
     }
 
     .branch_recruit .jisa .container {
-        padding: 80px 20px; /* 130px 20px에서 축소 */
+        padding: 80px 20px;
     }
 
     .branch_recruit .jisa .sub_title {
-        font-size: 18px; /* 22px에서 축소 */
+        font-size: 18px;
     }
 
     .branch_recruit .partnership .box_wrap {
-        flex-direction: column; /* 세로 배열 */
-        align-items: center; /* 중앙 정렬 */
+        flex-direction: column;
+        align-items: center;
     }
 
     .branch_recruit .partnership .box_wrap .box {
-        width: 100%; /* 전체 너비 */
-        max-width: 400px; /* 최대 너비 */
-        padding: 25px; /* 30px에서 축소 */
-        margin-top: 20px; /* 45px에서 축소 */
+        width: 100%;
+        max-width: 400px;
+        padding: 25px;
+        margin-top: 20px;
     }
 
     .branch_recruit .partnership .box_wrap .box h3 {
-        font-size: 22px; /* 26px에서 축소 */
+        font-size: 22px;
     }
 
     .branch_recruit .partnership .box_wrap .box h4 {
-        font-size: 16px; /* 18px에서 축소 */
+        font-size: 16px;
     }
 
     .common_interview .box_wrap {
-        flex-direction: column; /* 세로 배열 */
-        align-items: center; /* 중앙 정렬 */
-        gap: 30px; /* 20px에서 증가 */
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
     }
 
     .common_interview .box_wrap .box {
-        width: 100%; /* 전체 너비 */
-        max-width: 350px; /* 최대 너비 */
-        min-width: auto; /* 최소 너비 해제 */
+        width: 100%;
+        max-width: 350px;
+        min-width: auto;
     }
 
     .common_interview .box_wrap .box h3 {
-        font-size: 24px; /* 30px에서 축소 */
+        font-size: 24px;
     }
 
     .common_interview .box_wrap .box p {
-        font-size: 16px; /* 18px에서 축소 */
+        font-size: 16px;
     }
 
     .branch_recruit .jisa .title {
@@ -1871,18 +1861,18 @@ br.m_br2 {
     }
 
     .branch_recruit .help .box_wrap .box {
-        flex-direction: column; /* 세로 배열 */
-        text-align: center; /* 중앙 정렬 */
+        flex-direction: column;
+        text-align: center;
     }
 
     .branch_recruit .help .box_wrap .box1 .lb,
     .branch_recruit .help .box_wrap .box2 .lb,
     .branch_recruit .help .box_wrap .box3 .lb {
-        width: 100%; /* 전체 너비 */
-        border-right: none; /* 오른쪽 테두리 제거 */
-        border-bottom: 10px solid; /* 아래쪽 테두리 추가 */
-        min-width: auto; /* 최소 너비 해제 */
-        padding: 20px; /* 패딩 증가 */
+        width: 100%;
+        border-right: none;
+        border-bottom: 10px solid;
+        min-width: auto;
+        padding: 20px;
     }
 
     .branch_recruit .help .box_wrap .box1 .lb {
@@ -1898,25 +1888,21 @@ br.m_br2 {
     }
 
     .branch_recruit .help .box_wrap .box .rb h3 {
-        font-size: 22px; /* 28px에서 축소 */
+        font-size: 22px;
     }
 
     .branch_recruit .help .box_wrap .box .rb p {
-        font-size: 18px; /* 22px에서 축소 */
+        font-size: 18px;
         word-break: keep-all;
     }
 
-    /* 센터장 모집 페이지 */
     .center_recruit .c_title_large,
     .center_recruit .c_title_small {
-        font-size: 28px; /* 34px에서 축소 */
+        font-size: 28px;
     }
 
     .center_recruit .c_sub_title {
-        font-size: 18px; /* 22px에서 축소 */
-    }
-
-    .center_recruit .c_banner {
+        font-size: 18px;
     }
 
     .center_recruit .c_banner h2 {
@@ -1927,13 +1913,14 @@ br.m_br2 {
     .center_recruit .c_banner p {
         font-size: 20px;
     }
+
     .center_recruit .c_banner .m_div {
         height: 8px;
     }
 
     .center_recruit .job .box_wrap {
-        flex-direction: column; /* 세로 배열 */
-        align-items: center; /* 중앙 정렬 */
+        flex-direction: column;
+        align-items: center;
     }
 
     .center_recruit .job .item {
@@ -1964,95 +1951,94 @@ br.m_br2 {
     }
 
     .center_recruit .center_text h3 {
-        font-size: 30px; /* 40px에서 축소 */
-        padding: 0 20px; /* 텍스트 여백 */
+        font-size: 30px;
+        padding: 0 20px;
     }
 
     .center_recruit .different .icon_wrap {
-        flex-direction: column; /* 세로 배열 */
-        gap: 30px; /* 60px에서 축소 */
+        flex-direction: column;
+        gap: 30px;
     }
 
     .center_recruit .different .item {
-        width: 140px; /* 160px에서 축소 */
-        height: 140px; /* 160px에서 축소 */
+        width: 140px;
+        height: 140px;
     }
 
     .center_recruit .different img {
-        max-width: 100px; /* 135px에서 축소 */
+        max-width: 100px;
     }
 
     .center_recruit .vision .count {
         flex-direction: column;
         gap: 10px;
-        padding: 15px 30px; /* 25px 60px에서 축소 */
+        padding: 15px 30px;
     }
 
     .center_recruit .vision h4 {
-        font-size: 20px; /* 24px에서 축소 */
-        text-align: center; /* 중앙 정렬 */
+        font-size: 20px;
+        text-align: center;
     }
 
     .center_recruit .vision img {
-        transform: rotate(90deg); /* 화살표 90도 회전 */
+        transform: rotate(90deg);
         width: 16px;
     }
 
     .center_recruit .graph {
-        padding: 20px 10px; /* 30px 20px에서 축소 */
-        overflow-x: auto; /* 가로 스크롤 허용 */
+        padding: 20px 10px;
+        overflow-x: auto;
     }
 
     .center_recruit .graph .top,
     .center_recruit .graph .bottom {
-        min-width: 400px; /* 최소 너비 설정 */
+        min-width: 400px;
     }
 
     .center_recruit .graph h5 {
-        font-size: 14px; /* 18px에서 축소 */
+        font-size: 14px;
     }
 
     .center_recruit .graph .stick {
-        width: 40px; /* 50px에서 축소 */
+        width: 40px;
     }
 
     .center_recruit .graph h6 {
-        font-size: 16px; /* 20px에서 축소 */
+        font-size: 16px;
     }
 
     .center_recruit .backup ul {
-        flex-direction: column; /* 세로 배열 */
-        align-items: center; /* 중앙 정렬 */
+        flex-direction: column;
+        align-items: center;
     }
 
     .center_recruit .backup li {
-        width: 100%; /* 전체 너비 */
-        max-width: 300px; /* 최대 너비 */
-        height: 350px; /* 400px에서 축소 */
-        padding: 20px 30px; /* 패딩 조정 */
+        width: 100%;
+        max-width: 300px;
+        height: 350px;
+        padding: 20px 30px;
     }
 
     .center_recruit .backup .box {
-        width: 180px; /* 230px에서 축소 */
-        height: 180px; /* 230px에서 축소 */
+        width: 180px;
+        height: 180px;
     }
 
     .center_recruit .backup img {
-        max-width: 100px; /* 124px에서 축소 */
+        max-width: 100px;
     }
 
     .center_recruit .backup h4 {
-        font-size: 20px; /* 24px에서 축소 */
+        font-size: 20px;
     }
 }
 
-/* ====================== 반응형 스타일 (모바일 소) ====================== */
+/* *STYLEMEDIA: 페이지 - 모바일 소 (480px 이하) */
 @media (max-width: 480px) {
     .container {
         padding: 0;
     }
 
-    /* 메인 페이지 */
     .main .hiro h2 {
         font-size: 42px;
         margin-bottom: 60px;
@@ -2064,23 +2050,19 @@ br.m_br2 {
     }
 
     .main .point_wrap {
-        min-height: calc(var(--vh, 1vh) * 120); /* 150에서 120으로 축소 */
+        min-height: calc(var(--vh, 1vh) * 120);
     }
 
     .main .point h2 {
-        font-size: 30px; /* 38px에서 축소 */
+        font-size: 30px;
     }
 
     .main .point p {
-        font-size: 22px; /* 28px에서 축소 */
+        font-size: 22px;
         max-width: 95%;
         padding: 12px 12px;
         border-radius: 10px;
         border-width: 1px;
-    }
-
-    /* 센터장 페이지 */
-    .center_recruit .c_banner {
     }
 
     .center_recruit .c_banner h2 {
@@ -2135,8 +2117,7 @@ br.m_br2 {
         font-size: 18px;
     }
 
-    .fc_recruit .fc_text img {
-        width: 96px;
+    .fc_recruit .fc_text .right {
         display: none;
     }
 

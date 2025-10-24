@@ -11,7 +11,7 @@
 
         <!-- 수정: 배경 이미지 최고 우선순위로 프리로드 -->
         <link rel="preload" href="/images/point_bg.webp" as="image" type="image/webp" fetchpriority="high" />
-        <link rel="preload" href="/images/point_bg.jpg" as="image" type="image/jpeg" fetchpriority="high" />
+        <link rel="preload" href="/images/point_bg.png" as="image" type="image/jpeg" fetchpriority="high" />
 
         <!-- 기존 중요한 이미지들 -->
         <link rel="preload" href="/images/logo.png" as="image" />
@@ -22,7 +22,7 @@
             /* 즉시 적용되는 배경색으로 깜빡임 방지 */
             .main .point .point_box {
                 background-color: #000612 !important;
-                background-image: url('/images/point_bg.webp'), url('/images/point_bg.jpg');
+                background-image: url('/images/point_bg.webp'), url('/images/point_bg.png');
                 background-position: center;
                 background-size: cover;
                 background-repeat: no-repeat;
@@ -31,7 +31,7 @@
 
             /* WebP 미지원 브라우저 대응 */
             .no-webp .main .point .point_box {
-                background-image: url('/images/point_bg.jpg') !important;
+                background-image: url('/images/point_bg.png') !important;
             }
         </style>
 
@@ -39,6 +39,10 @@
         <link rel="stylesheet" href="/styles/reset.css" />
         <link rel="stylesheet" href="/styles/common.css" />
         <link rel="stylesheet" href="/styles/style.css" />
+
+        <!-- AOS 라이브러리 불러오기-->
+        <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
         <!-- JS 파일 - defer로 비차단 로딩 -->
         <script src="/js/script.js" defer></script>
@@ -110,117 +114,9 @@
                 </div>
             </div>
         </div>
-        <script>
-            // 모달 제어 스크립트
-            const modal = document.getElementById('consultationModal');
-            const closeBtn = document.getElementById('closeBtn');
-            const submitBtn = document.getElementById('submitBtn');
-            const modalBg = modal.querySelector('.modal_bg');
 
-            // 전체 동의 체크박스
-            const agreeAllCheckbox = document.getElementById('agree_all_consult');
-            const agreeTwoCheckbox = document.getElementById('agree_two_consult');
-            const agreeThirdCheckbox = document.getElementById('agree_third_consult');
-
-            // 모달 열기 함수 (전역 - onclick에서 사용)
-            function openConsultationModal() {
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-
-            // 모달 닫기 함수 (전역 - 필요시 사용)
-            function closeConsultationModal() {
-                modal.classList.remove('active');
-                document.body.style.overflow = '';
-                resetForm();
-            }
-
-            // 폼 초기화
-            function resetForm() {
-                document.getElementById('consultType').value = '';
-                document.getElementById('inputName').value = '';
-                document.getElementById('inputPhone').value = '';
-                agreeAllCheckbox.checked = false;
-                agreeTwoCheckbox.checked = false;
-                agreeThirdCheckbox.checked = false;
-            }
-
-            // 닫기 버튼 클릭
-            if (closeBtn) {
-                closeBtn.addEventListener('click', closeConsultationModal);
-            }
-
-            // 배경 클릭 시 닫기
-            if (modalBg) {
-                modalBg.addEventListener('click', closeConsultationModal);
-            }
-
-            // 전체 동의 체크박스 - 모두 선택/해제
-            if (agreeAllCheckbox) {
-                agreeAllCheckbox.addEventListener('change', () => {
-                    agreeTwoCheckbox.checked = agreeAllCheckbox.checked;
-                    agreeThirdCheckbox.checked = agreeAllCheckbox.checked;
-                });
-            }
-
-            // 개별 체크박스 변경 시 전체 동의 상태 업데이트
-            [agreeTwoCheckbox, agreeThirdCheckbox].forEach((checkbox) => {
-                if (checkbox) {
-                    checkbox.addEventListener('change', () => {
-                        if (agreeTwoCheckbox.checked && agreeThirdCheckbox.checked) {
-                            agreeAllCheckbox.checked = true;
-                        } else {
-                            agreeAllCheckbox.checked = false;
-                        }
-                    });
-                }
-            });
-
-            // 제출 버튼 클릭
-            if (submitBtn) {
-                submitBtn.addEventListener('click', () => {
-                    const consultType = document.getElementById('consultType').value;
-                    const name = document.getElementById('inputName').value;
-                    const phone = document.getElementById('inputPhone').value;
-
-                    // 유효성 검사
-                    if (!consultType) {
-                        alert('상담신청 항목을 선택해주세요.');
-                        return;
-                    }
-
-                    if (!name.trim()) {
-                        alert('이름을 입력해주세요.');
-                        return;
-                    }
-
-                    if (!phone.trim()) {
-                        alert('휴대폰 번호를 입력해주세요.');
-                        return;
-                    }
-
-                    if (!agreeTwoCheckbox.checked || !agreeThirdCheckbox.checked) {
-                        alert('필수 약관에 동의해주세요.');
-                        return;
-                    }
-
-                    // 제출 처리
-                    console.log('상담신청:', { consultType, name, phone });
-                    alert('상담 신청이 완료되었습니다.');
-                    closeConsultationModal();
-                });
-            }
-
-            // ESC 키 눌렀을 때 닫기
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && modal.classList.contains('active')) {
-                    closeConsultationModal();
-                }
-            });
-        </script>
         <!-- 헤더 - 공통
         *클래스 on으로 글씨 블루 색상 적용했습니다 -->
-
         <header class="header main_header">
             <div class="h_wrap">
                 <div class="h_container">
@@ -258,7 +154,6 @@
         <main class="main">
             <!-- hiro 배너 영역 -->
             <section class="hiro">
-                <!-- <img src="/images/wave_banner.png" alt="" /> -->
                 <video autoplay muted loop playsinline preload="auto" disablepictureinpicture>
                     <source src="/images/wave_banner.mp4" type="video/mp4" />
                     브라우저가 비디오 태그를 지원하지 않습니다.
@@ -291,10 +186,10 @@
                 </div>
             </section>
 
-            <!-- 영업 카드 영역 -->
+            <!-- 비지니스 영역 -->
             <section class="business common_card">
                 <div class="container">
-                    <h3>
+                    <h3 class="card">
                         준비된 시스템에서 시작하는<br />
                         <span>준비된 영업</span>
                     </h3>
@@ -303,7 +198,7 @@
                         성장할 수 있도록 설계했습니다.
                     </h4>
 
-                    <div class="card">
+                    <div class="card" data-aos="fade-up">
                         <div class="item">
                             <div class="box">
                                 <img src="/images/business_i1.png" alt="" />
@@ -330,7 +225,7 @@
 
                         <div class="item">
                             <div class="box">
-                                <img src="/images/business_i3.png" alt="" />
+                                <img src="/images/business_i3.png" alt="" class="b_card_i3" />
                             </div>
                             <h5>고객 발굴</h5>
                             <p>
@@ -343,6 +238,7 @@
                 </div>
             </section>
 
+            <!-- 롤링 섹션 영역 -->
             <section class="point">
                 <div class="point_wrap">
                     <div class="point_inner">
@@ -362,15 +258,16 @@
                 </div>
             </section>
 
+            <!-- 시스템 영역 -->
             <section class="system common_card">
                 <div class="container">
                     <h3>FM에셋만의 시스템</h3>
                     <h4 class="">최고의 전문가를 위한 최고의 성장 시스템을 제공합니다.</h4>
 
-                    <div class="card">
+                    <div class="card" data-aos="fade-up">
                         <div class="item">
                             <div class="box">
-                                <img src="/images/system_i1.png" alt="" />
+                                <img src="/images/system_i1.png" alt="" class="s_card_i1" />
                             </div>
                             <h5>TS 승급제도</h5>
                             <p>
@@ -444,7 +341,7 @@
             </div>
         </footer>
 
-        <!-- 플로팅효과 섹션 -->
+        <!-- 플로팅 -->
         <div class="floating">
             <div class="top">
                 <div class="top_img">
