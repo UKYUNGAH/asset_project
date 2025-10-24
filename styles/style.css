@@ -1250,6 +1250,7 @@ br.m_br2 {
     .main .common_card h4 {
         font-size: 18px;
         margin-bottom: 80px;
+        word-break: keep-all;
     }
 
     .main .common_card h5 {
@@ -1782,6 +1783,7 @@ br.m_br2 {
     .fc_recruit .stories h5.text {
         font-size: 16px;
         line-height: 1.4;
+        word-break: keep-all;
     }
 
     .fc_recruit .stories .fc_title {
