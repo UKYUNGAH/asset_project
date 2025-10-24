@@ -6,23 +6,37 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>FM에셋 종합자산관리전문회사</title>
 
-        <!-- favicon -->
-        <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+        <!-- 기본 메타 태그 -->
+        <meta name="description" content="FM에셋 - 25년 업력의 대형 GA, 보험 영업의 새로운 기준" />
+        <meta name="keywords" content="FM에셋, 보험대리점, GA, FC모집, 지사장모집, 센터장모집, 보험영업" />
+        <meta name="author" content="FM에셋" />
+
+        <!-- Open Graph (카카오톡, 페이스북 공유) -->
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="FM에셋 - 보험 영업의 새로운 기준" />
+        <meta property="og:description" content="2000년 설립, 25년 업력의 대형 GA. FC/지사장/센터장 모집 중" />
+        <!-- 교체 필요 -->
+        <meta property="og:image" content="./images/og_img.svg" />
+        <meta property="og:url" content="https://fm-asset.vercel.app/" />
+        <meta property="og:site_name" content="FM에셋" />
+
+        <!-- favicon 교체 필요 -->
+        <link rel="icon" href="./images/favicon.ico" type="images/x-icon" />
 
         <!-- 수정: 배경 이미지 최고 우선순위로 프리로드 -->
-        <link rel="preload" href="/images/point_bg.webp" as="image" type="image/webp" fetchpriority="high" />
-        <link rel="preload" href="/images/point_bg.png" as="image" type="image/jpeg" fetchpriority="high" />
+        <link rel="preload" href="./images/point_bg.webp" as="image" type="images/webp" fetchpriority="high" />
+        <link rel="preload" href="./images/point_bg.jpg" as="image" type="images/jpeg" fetchpriority="high" />
 
         <!-- 기존 중요한 이미지들 -->
-        <link rel="preload" href="/images/logo.png" as="image" />
-        <link rel="preload" href="/images/wave_banner.mp4" as="video" type="video/mp4" />
+        <link rel="preload" href="./images/logo.png" as="image" />
+        <link rel="preload" href="./images/wave_banner.mp4" as="video" type="video/mp4" />
 
         <!-- 수정: CSS에 배경 인라인 스타일 추가 (가장 빠른 로딩) -->
         <style>
             /* 즉시 적용되는 배경색으로 깜빡임 방지 */
             .main .point .point_box {
                 background-color: #000612 !important;
-                background-image: url('/images/point_bg.webp'), url('/images/point_bg.png');
+                background-image: url('./images/point_bg.webp'), url('./images/point_bg.jpg');
                 background-position: center;
                 background-size: cover;
                 background-repeat: no-repeat;
@@ -31,21 +45,21 @@
 
             /* WebP 미지원 브라우저 대응 */
             .no-webp .main .point .point_box {
-                background-image: url('/images/point_bg.png') !important;
+                background-image: url('./images/point_bg.jpg') !important;
             }
         </style>
 
         <!-- CSS 파일들 -->
-        <link rel="stylesheet" href="/styles/reset.css" />
-        <link rel="stylesheet" href="/styles/common.css" />
-        <link rel="stylesheet" href="/styles/style.css" />
+        <link rel="stylesheet" href="./styles/reset.css" />
+        <link rel="stylesheet" href="./styles/common.css" />
+        <link rel="stylesheet" href="./styles/style.css" />
 
         <!-- AOS 라이브러리 불러오기-->
         <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
         <!-- JS 파일 - defer로 비차단 로딩 -->
-        <script src="/js/script.js" defer></script>
+        <script src="./js/script.js" defer></script>
 
         <!-- 수정: WebP 감지 스크립트를 즉시 실행 -->
         <script>
@@ -56,7 +70,7 @@
                     document.documentElement.classList.add(webP.height === 2 ? 'webp' : 'no-webp');
                 };
                 webP.src =
-                    'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+                    'data:images/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
             })();
         </script>
     </head>
@@ -109,7 +123,7 @@
                     <!-- 버튼 -->
                     <button type="button" class="button-modal button btn_small" id="submitBtn">상담신청하기</button>
                     <button class="close_btn" id="closeBtn">
-                        <img src="/images/close_btn.png" alt="닫기 버튼" />
+                        <img src="./images/close_btn.png" alt="닫기 버튼" />
                     </button>
                 </div>
             </div>
@@ -122,30 +136,30 @@
                 <div class="h_container">
                     <nav class="header_wrap">
                         <h1 class="logo">
-                            <a href="/">
-                                <img src="/images/logo.png" alt="" />
+                            <a href="./index.html">
+                                <img src="./images/logo.png" alt="" />
                             </a>
                         </h1>
 
                         <!-- PC 메뉴 (기존) -->
                         <ul class="nav_menu">
-                            <li><a href="/" class="on">회사소개</a></li>
-                            <li><a href="/center_recruit.html" class="">센터장 모집</a></li>
-                            <li><a href="/branch_recruit.html" class="">지사장 모집</a></li>
-                            <li><a href="/fc_recruit.html" class="">FC 모집</a></li>
+                            <li><a href="./index.html" class="on">회사소개</a></li>
+                            <li><a href="./center_recruit.html" class="">센터장 모집</a></li>
+                            <li><a href="./branch_recruit.html" class="">지사장 모집</a></li>
+                            <li><a href="./fc_recruit.html" class="">FC 모집</a></li>
                         </ul>
 
                         <button class="ham_btn" aria-label="메뉴 열기">
-                            <img class="ham_icon" src="/images/ham_btn.png" alt="메뉴 버튼" />
+                            <img class="ham_icon" src="./images/ham_btn.png" alt="메뉴 버튼" />
                         </button>
                     </nav>
                 </div>
                 <nav class="ham_gnb">
                     <ul>
-                        <li><a href="/" class="on">회사소개</a></li>
-                        <li><a href="/center_recruit.html">센터장 모집</a></li>
-                        <li><a href="/branch_recruit.html">지사장 모집</a></li>
-                        <li><a href="/fc_recruit.html">FC 모집</a></li>
+                        <li><a href="./index.html" class="on">회사소개</a></li>
+                        <li><a href="./center_recruit.html">센터장 모집</a></li>
+                        <li><a href="./branch_recruit.html">지사장 모집</a></li>
+                        <li><a href="./fc_recruit.html">FC 모집</a></li>
                     </ul>
                 </nav>
             </div>
@@ -155,7 +169,7 @@
             <!-- hiro 배너 영역 -->
             <section class="hiro">
                 <video autoplay muted loop playsinline preload="auto" disablepictureinpicture>
-                    <source src="/images/wave_banner.mp4" type="video/mp4" />
+                    <source src="./images/wave_banner.mp4" type="video/mp4" />
                     브라우저가 비디오 태그를 지원하지 않습니다.
                 </video>
                 <div class="hiro_text">
@@ -201,7 +215,7 @@
                     <div class="card" data-aos="fade-up">
                         <div class="item">
                             <div class="box">
-                                <img src="/images/business_i1.png" alt="" />
+                                <img src="./images/business_i1.png" alt="" />
                             </div>
                             <h5>보험 컨설팅</h5>
                             <p>
@@ -213,7 +227,7 @@
 
                         <div class="item">
                             <div class="box">
-                                <img src="/images/business_i2.png" alt="" />
+                                <img src="./images/business_i2.png" alt="" />
                             </div>
                             <h5>보험금 청구 센터</h5>
                             <p>
@@ -225,7 +239,7 @@
 
                         <div class="item">
                             <div class="box">
-                                <img src="/images/business_i3.png" alt="" class="b_card_i3" />
+                                <img src="./images/business_i3.png" alt="" class="b_card_i3" />
                             </div>
                             <h5>고객 발굴</h5>
                             <p>
@@ -267,7 +281,7 @@
                     <div class="card" data-aos="fade-up">
                         <div class="item">
                             <div class="box">
-                                <img src="/images/system_i1.png" alt="" class="s_card_i1" />
+                                <img src="./images/system_i1.png" alt="" class="s_card_i1" />
                             </div>
                             <h5>TS 승급제도</h5>
                             <p>
@@ -279,7 +293,7 @@
 
                         <div class="item">
                             <div class="box">
-                                <img src="/images/system_i2.png" alt="" />
+                                <img src="./images/system_i2.png" alt="" />
                             </div>
                             <h5>투명한 수수료</h5>
                             <p>
@@ -291,7 +305,7 @@
 
                         <div class="item">
                             <div class="box">
-                                <img src="/images/system_i3.png" alt="" />
+                                <img src="./images/system_i3.png" alt="" />
                             </div>
                             <h5>차별화된 시스템</h5>
                             <p>
@@ -345,7 +359,7 @@
         <div class="floating">
             <div class="top">
                 <div class="top_img">
-                    <img src="/images/f_i1.png" alt="" />
+                    <img src="./images/f_i1.png" alt="" />
                 </div>
                 <!-- 전화 상담 -->
                 <a href="tel:1600-6910" class="phone">
@@ -358,13 +372,13 @@
 
             <!-- 종합상담 접수 -->
             <button type="button" onclick="openConsultationModal()" class="consult">
-                <img src="images/f_i2.png" alt="" />
+                <img src="./images/f_i2.png" alt="" />
                 <p class="title">종합상담접수</p>
             </button>
 
             <!-- 카톡 상담 -->
             <a href="/" class="kakao" target="_blank">
-                <img src="/images/f_kakao.png" alt="" />
+                <img src="./images/f_kakao.png" alt="" />
                 <p class="kakao_title">카카오톡 상담하기</p>
             </a>
         </div>

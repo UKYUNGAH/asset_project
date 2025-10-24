@@ -83,7 +83,7 @@ function loadFallbackImage(fallbackPath) {
 // 이미지 사전 로드
 async function aggressivePreloadImages() {
     const isWebPSupported = await supportsWebP();
-    const bgImagePath = isWebPSupported ? '/images/point_bg.webp' : '/images/point_bg.png';
+    const bgImagePath = isWebPSupported ? '../images/point_bg.webp' : '../images/point_bg.jpg';
 
     // preload 링크 생성 (우선순위 높음)
     const preloadLink = document.createElement('link');
@@ -108,7 +108,7 @@ async function aggressivePreloadImages() {
             console.error('Failed to load background image');
             // WebP 실패 시 PNG로 폴백
             if (isWebPSupported && bgImagePath.includes('.webp')) {
-                loadFallbackImage('/images/point_bg.png');
+                loadFallbackImage('../images/point_bg.jpg');
             } else {
                 reject(false);
             }
@@ -203,7 +203,7 @@ function initHeader() {
         if (isMenuOpen) {
             // 메뉴 열기
             hamGnb.classList.add('active');
-            hamIcon.src = '/images/close_btn.png';
+            hamIcon.src = '../images/close_btn.png';
             hamIcon.alt = '메뉴 닫기';
             hamBtn.setAttribute('aria-label', '메뉴 닫기');
 
@@ -233,7 +233,7 @@ function initHeader() {
     // 메뉴 닫기 함수
     function closeMenu() {
         hamGnb.classList.remove('active');
-        hamIcon.src = '/images/ham_btn.png';
+        hamIcon.src = '../images/ham_btn.png';
         hamIcon.alt = '메뉴 버튼';
         hamBtn.setAttribute('aria-label', '메뉴 열기');
         isMenuOpen = false;

@@ -217,7 +217,7 @@ br.m_br2 {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     /* 배경 이미지 설정 - 폴백과 함께 */
-    background-image: url('/images/point_bg.webp'), /* WebP 우선 */ url('/images/point_bg.jpg');
+    background-image: url('../images/point_bg.webp'), /* WebP 우선 */ url('../images/point_bg.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -242,11 +242,11 @@ br.m_br2 {
 
 /* WebP 지원 여부에 따른 조건부 스타일 */
 .webp .main .point .point_box {
-    background-image: url('/images/point_bg.webp');
+    background-image: url('../images/point_bg.webp');
 }
 
 .no-webp .main .point .point_box {
-    background-image: url('/images/point_bg.png');
+    background-image: url('../images/point_bg.jpg');
 }
 
 .main .point .point_box:not(.bg-loaded)::before {
