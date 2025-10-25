@@ -659,6 +659,9 @@ footer h4 {
         display: block;
     }
 
+    .header .ham_gnb a {
+        font-size: 14px;
+    }
     footer {
         padding: 60px 20px;
     }
@@ -770,7 +773,7 @@ footer h4 {
     }
 
     .header .ham_gnb a {
-        font-size: 11px;
+        font-size: 12px;
     }
 
     footer {
