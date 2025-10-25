@@ -769,6 +769,10 @@ footer h4 {
         line-height: 1.2;
     }
 
+    .header .ham_gnb a {
+        font-size: 11px;
+    }
+
     footer {
         padding: 40px 15px;
     }
