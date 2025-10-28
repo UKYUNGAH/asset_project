@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <!-- 최적화된 head 섹션 - iOS Safari 배경 이미지 로딩 개선 -->
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>FM에셋 종합자산관리전문회사</title>
+
+        <!-- #ISSUE: 임시로 넣어뒀기 때문에 기업에 맞는 글과, 이미지로 교체 필요 -->
+        <!-- 기본 메타 태그 -->
+        <meta name="description" content="FM에셋 - 25년 업력의 대형 GA, 보험 영업의 새로운 기준" />
+        <meta name="keywords" content="FM에셋, 보험대리점, GA, FC모집, 지사장모집, 센터장모집, 보험영업" />
+        <meta name="author" content="FM에셋" />
+
+        <!-- Open Graph (카카오톡, 페이스북 공유) -->
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="FM에셋 - 보험 영업의 새로운 기준" />
+        <meta property="og:description" content="2000년 설립, 25년 업력의 대형 GA. FC/지사장/센터장 모집 중" />
+        <meta property="og:image" content="./images/og_img.svg" />
+        <meta property="og:url" content="https://fm-asset.vercel.app/" />
+        <meta property="og:site_name" content="FM에셋" />
+
+        <!-- #ISSUE: 임시로 아무이미지나 파비콘 넣어뒀습니다. 맞는 이미지로 대체해주세요! -->
+        <link rel="icon" href="./images/favicon.ico" type="images/x-icon" />
+
+        <!-- 이미지 프리로드 -->
+        <link rel="preload" href="./images/wave_banner.mp4" as="video" type="video/mp4" fetchpriority="high" />
+        <link rel="preload" href="./images/point_bg.webp" as="image" type="image/webp" fetchpriority="high" />
+        <link rel="preload" href="./images/point_bg.jpg" as="image" type="image/jpeg" fetchpriority="high" />
+        <link rel="preload" href="./images/logo.png" as="image" />
+
+        <!-- CSS에 배경 인라인 스타일 추가 (롤링섹션 ios버벅임 이슈로 인해 필요) -->
+        <style>
+            /* 즉시 적용되는 배경색으로 깜빡임 방지 */
+            .main .point .point_box {
+                background-color: #000612 !important;
+                background-image: url('./images/point_bg.webp'), url('./images/point_bg.jpg');
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-attachment: local;
+            }
+
+            /* WebP 미지원 브라우저 대응 */
+            .no-webp .main .point .point_box {
+                background-image: url('./images/point_bg.jpg') !important;
+            }
+        </style>
+
+        <!-- CSS 파일 -->
+        <!-- reset.css: 브라우저 기본 스타일 초기화 -->
+        <link rel="stylesheet" href="./styles/reset.css" />
+        <!-- common.css: 헤더, 푸터, 버튼 등 공통 요소 스타일 -->
+        <link rel="stylesheet" href="./styles/common.css" />
+        <!-- style.css: 각 페이지별 고유 스타일 -->
+        <link rel="stylesheet" href="./styles/style.css" />
+
+        <!-- AOS 라이브러리 불러오기-->
+        <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+        <!-- 롤링섹션 - WebP 감지 스크립트를 즉시 실행 -->
+        <script>
+            // WebP 지원 감지를 즉시 실행하여 HTML 클래스 추가
+            (function () {
+                const webP = new Image();
+                webP.onload = webP.onerror = function () {
+                    document.documentElement.classList.add(webP.height === 2 ? 'webp' : 'no-webp');
+                };
+                webP.src =
+                    'data:images/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+            })();
+        </script>
+    </head>
+    <body>
+        <!-- *PAGE: 메인 페이지 
+        *공통 스타일은 common.css에 정의되어 있습니다.
+        *개별 페이지 스타일은 style.css에서 관리합니다! -->
+
+        <!-- 플로팅 모달 -->
+        <div class="modal" id="consultationModal">
+            <div class="modal_bg"></div>
+            <div class="modal_wrap">
+                <div class="modal_inner">
+                    <p># 상담신청</p>
+
+                    <!-- 셀렉트 박스 -->
+                    <div class="select_box">
+                        <select id="consultType">
+                            <option value="">상담신청</option>
+                            <option value="신입 합목">신입 합목</option>
+                            <option value="지사장 지원">지사장 지원</option>
+                            <option value="FC입사 상담">FC입사 상담</option>
+                            <option value="수평이전 프로젝트">수평이전 프로젝트</option>
+                            <option value="센터장 지원 상담">센터장 지원 상담</option>
+                        </select>
+                    </div>
+
+                    <!-- 입력 박스 -->
+                    <div class="input_box">
+                        <input type="text" id="inputName" placeholder="방문자 이름 입력" />
+                        <input type="text" id="inputPhone" placeholder="휴대폰 번호 입력" />
+                    </div>
+
+                    <!-- 동의 체크박스 -->
+                    <div class="check">
+                        <label for="agree_all_consult">
+                            <input type="checkbox" id="agree_all_consult" name="agree_all_consult" />
+                            <em>전체 동의</em>
+                        </label>
+                        <label for="agree_two_consult">
+                            <input type="checkbox" id="agree_two_consult" name="agree_two_consult" />
+                            <em>개인정보 취급방침 및 서비스 이용약관</em>
+                        </label>
+                        <label for="agree_third_consult">
+                            <input type="checkbox" id="agree_third_consult" name="agree_third_consult" />
+                            <em>민감정보 제3자 제공 동의</em>
+                        </label>
+                    </div>
+
+                    <!-- 버튼 -->
+                    <button type="button" class="button-modal button btn_small" id="submitBtn">상담신청하기</button>
+                    <button class="close_btn" id="closeBtn">
+                        <img src="./images/close_btn.png" alt="닫기 버튼" />
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 헤더 - 공통
+        *클래스 on으로 글씨 블루 색상 적용했습니다 -->
+        <header class="header main_header">
+            <div class="h_wrap">
+                <div class="h_container">
+                    <nav class="header_wrap">
+                        <h1 class="logo">
+                            <a href="./index.html">
+                                <img src="./images/logo.png" alt="" />
+                            </a>
+                        </h1>
+
+                        <!-- PC 메뉴 (기존) -->
+                        <ul class="nav_menu">
+                            <li><a href="./index.html" class="on">회사소개</a></li>
+                            <li><a href="./center_recruit.html" class="">센터장 모집</a></li>
+                            <li><a href="./branch_recruit.html" class="">지사장 모집</a></li>
+                            <li><a href="./fc_recruit.html" class="">FC 모집</a></li>
+                        </ul>
+
+                        <button class="ham_btn" aria-label="메뉴 열기">
+                            <img class="ham_icon" src="./images/ham_btn.png" alt="메뉴 버튼" />
+                        </button>
+                    </nav>
+                </div>
+                <nav class="ham_gnb">
+                    <ul>
+                        <li><a href="./index.html" class="on">회사소개</a></li>
+                        <li><a href="./center_recruit.html">센터장 모집</a></li>
+                        <li><a href="./branch_recruit.html">지사장 모집</a></li>
+                        <li><a href="./fc_recruit.html">FC 모집</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main class="main">
+            <!-- hiro 배너 영역 -->
+            <section class="hiro">
+                <video autoplay muted loop playsinline preload="auto" disablepictureinpicture>
+                    <source src="./images/wave_banner.mp4" type="video/mp4" />
+                    브라우저가 비디오 태그를 지원하지 않습니다.
+                </video>
+                <div class="hiro_text">
+                    <h2>
+                        변화하는 것에<br class="m_br" />
+                        속도를 더하고,<br class="p_br" /><br class="m_br" /><br class="m_br" />
+                        변하지 않던 것에<br class="m_br" />
+                        방향을 제시합니다. <br class="m_br" />
+                    </h2>
+                    <span>보험의 흐름을 만드는 FM에셋의 방식</span>
+                </div>
+            </section>
+
+            <!-- 텍스트 섹션 영역 -->
+            <section class="text_section">
+                <div class="container">
+                    <h3>
+                        우리는 언제나 FC의 성공을<br class="m_br" />
+                        시스템으로 증명해왔고,<br class="m_br" />
+                        <div class="m_div"></div>
+                        <br class="p_br" />
+                        앞으로도 성공을 위한<br class="m_br" />지원을 멈추지 않을 것입니다.
+                    </h3>
+                    <h4>
+                        중부권 1위 GA, FM에셋과 함께라면<br class="m_br" />
+                        당신의 성공이 일상이 됩니다.
+                    </h4>
+                </div>
+            </section>
+
+            <!-- 비지니스 영역 -->
+            <section class="business common_card">
+                <div class="container">
+                    <h3 class="card">
+                        준비된 시스템에서 시작하는<br />
+                        <span>준비된 영업</span>
+                    </h3>
+                    <h4 class="">
+                        누구나 쉽게 시작해도 전문가처럼<br class="m_br" />
+                        성장할 수 있도록 설계했습니다.
+                    </h4>
+
+                    <div class="card" data-aos="fade-up">
+                        <div class="item">
+                            <div class="box">
+                                <img src="./images/business_i1.png" alt="" />
+                            </div>
+                            <h5>보험 컨설팅</h5>
+                            <p>
+                                FM에셋만의<br />
+                                보험 진단 시스템을 활용한<br />
+                                새로운 보험 컨설팅
+                            </p>
+                        </div>
+
+                        <div class="item">
+                            <div class="box">
+                                <img src="./images/business_i2.png" alt="" />
+                            </div>
+                            <h5>보험금 청구 센터</h5>
+                            <p>
+                                모든 FC를<br />
+                                전문 보상컨설턴트로 브랜딩해<br />
+                                시장에서 독보적인 경쟁력 부여
+                            </p>
+                        </div>
+
+                        <div class="item">
+                            <div class="box">
+                                <img src="./images/business_i3.png" alt="" class="b_card_i3" />
+                            </div>
+                            <h5>고객 발굴</h5>
+                            <p>
+                                FC가 고객 발굴 부담 없이<br />
+                                상담과 계약에만 집중하도록<br />
+                                마케팅 지원
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 롤링 섹션 영역 -->
+            <section class="point">
+                <div class="point_wrap">
+                    <div class="point_inner">
+                        <div class="point_box">
+                            <h2>
+                                미래를 향한 도약<br />
+                                FM에셋의 오늘
+                            </h2>
+                            <div class="ani_text">
+                                <p>전국 500개 지점</p>
+                                <p>FC 1,640명</p>
+                                <p>매출 114,337,904,988원</p>
+                                <p>영업 이익 3,554,314,608원</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 시스템 영역 -->
+            <section class="system common_card">
+                <div class="container">
+                    <h3>FM에셋만의 시스템</h3>
+                    <h4 class="">최고의 전문가를 위한 최고의 성장 시스템을 제공합니다.</h4>
+
+                    <div class="card" data-aos="fade-up">
+                        <div class="item">
+                            <div class="box">
+                                <img src="./images/system_i1.png" alt="" class="s_card_i1" />
+                            </div>
+                            <h5>TS 승급제도</h5>
+                            <p>
+                                업계 유일의 관리자 자동 승급!<br />
+                                분할 수당 평생 지급 및<br />
+                                관리 수당 제공
+                            </p>
+                        </div>
+
+                        <div class="item">
+                            <div class="box">
+                                <img src="./images/system_i2.png" alt="" />
+                            </div>
+                            <h5>투명한 수수료</h5>
+                            <p>
+                                중간관리자 없이<br />
+                                개인의 성과를<br />
+                                100% 투명하게 직접 정산
+                            </p>
+                        </div>
+
+                        <div class="item">
+                            <div class="box">
+                                <img src="./images/system_i3.png" alt="" />
+                            </div>
+                            <h5>차별화된 시스템</h5>
+                            <p>
+                                AI보상부터<br />
+                                보장분석 시스템 및<br />
+                                고객관리 프로그램 제공
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 푸터 - 공통 -->
+        <!-- footer.html -->
+        <footer class="main_footer">
+            <div class="container">
+                <div class="company">
+                    <p>
+                        <strong>(주)에프엠에셋</strong> 공동대표 : 김상완, 양주팔<br />
+                        사업자 등록번호: 314-81-47752 대리점 등록번호: 2002031377<br />
+                        사업장 주소: 34909 대전광역시 중구 계백로 1719, 201호 (오류동, 센트리아오피스텔)<br />
+                        대표전화:
+                        <a href="tel:0808019987">080-801-9987</a>, <a href="tel:0425237500">042-523-7500</a><br />
+                        COPYRIGHT ⓒ 2001~2015 FMASSET. ALL RIGHTS RESERVED
+                    </p>
+                </div>
+
+                <div class="service">
+                    <p>
+                        <span>FM에셋</span><br /><br />
+                        본 사이트는 광고 심의 기준을 준수하였으며, 유효기간은 심의일로부터 1년입니다.<br />
+                        (주)에프엠에셋이 제공하는 서비스입니다.<br />
+                        에프엠에셋 보험대리점 준법감시필 2025-0000 (2025.00.00~2026.00.00)
+                    </p>
+                </div>
+
+                <div class="warning">
+                    <h4>[필수 안내사항]</h4>
+                    <p>
+                        보험 계약자가 기존 보험 계약을 해지하고, 새로운 보험 계약을 체결할 경우 유의사항은 아래와
+                        같습니다.<br />
+                        1. 질병 이력, 연령 증가 등으로 가입이 거절되거나 보험료가 인상될 수 있습니다.<br />
+                        2. 가입 상품에 따라 새로운 면책기간 적용 및 보장 제한 등 기타 불이익이 발생할 수 있습니다.
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- 플로팅 -->
+        <div class="floating">
+            <div class="top">
+                <div class="top_img">
+                    <img src="./images/f_i1.png" alt="" />
+                </div>
+                <!-- 전화 상담 -->
+                <a href="tel:1600-6910" class="phone">
+                    <p class="title">
+                        전화상담<br />
+                        1600-6910
+                    </p>
+                </a>
+            </div>
+
+            <!-- 종합상담 접수 -->
+            <button type="button" onclick="openConsultationModal()" class="consult">
+                <img src="./images/f_i2.png" alt="" />
+                <p class="title">종합상담접수</p>
+            </button>
+
+            <!-- 카톡 상담 -->
+            <a href="/" class="kakao" target="_blank">
+                <img src="./images/f_kakao.png" alt="" />
+                <p class="kakao_title">카카오톡 상담하기</p>
+            </a>
+        </div>
+
+        <!-- GSAP, AOS, JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+        <script src="./js/script.js"></script>
+    </body>
+</html>

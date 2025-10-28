@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FM에셋 종합자산관리전문회사</title>
+
+    <!-- #ISSUE: 임시로 넣어뒀기 때문에 기업에 맞는 글과, 이미지로 교체 필요 -->
+    <!-- 기본 메타 태그 -->
+    <meta
+      name="description"
+      content="FM에셋 - 25년 업력의 대형 GA, 보험 영업의 새로운 기준"
+    />
+    <meta
+      name="keywords"
+      content="FM에셋, 보험대리점, GA, FC모집, 지사장모집, 센터장모집, 보험영업"
+    />
+    <meta name="author" content="FM에셋" />
+
+    <!-- Open Graph (카카오톡, 페이스북 공유) -->
+    <meta property="og:type" content="website" />
+    <title>지사장 모집 - FM에셋</title>
+    <meta property="og:title" content="지사장 모집 - FM에셋" />
+    <meta
+      property="og:description"
+      content="2000년 설립 25년 이상 업력의 대형 GA GA 설계사 선호 1순위 계약 성공률 최고"
+    />
+    <meta property="og:image" content="./images/og_img.svg" />
+    <meta
+      property="og:url"
+      content="https://fm-asset.vercel.app/branch_recruit.html"
+    />
+    <meta property="og:site_name" content="FM에셋" />
+
+    <!-- #ISSUE: 임시로 아무이미지나 파비콘 넣어뒀습니다. 맞는 이미지로 대체해주세요!  -->
+    <link rel="icon" href="./images/favicon.ico" type="images/x-icon" />
+
+    <!-- CSS 파일 -->
+    <!-- reset.css: 브라우저 기본 스타일 초기화 -->
+    <link rel="stylesheet" href="./styles/reset.css" />
+    <!-- common.css: 헤더, 푸터, 버튼 등 공통 요소 스타일 -->
+    <link rel="stylesheet" href="./styles/common.css" />
+    <!-- style.css: 각 페이지별 고유 스타일 -->
+    <link rel="stylesheet" href="./styles/style.css" />
+
+    <!-- AOS 라이브러리 불러오기-->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  </head>
+  <body>
+    <!-- *PAGE: 지사장 모집 페이지 
+        *공통 스타일은 common.css에 정의되어 있습니다.
+        *개별 페이지 스타일은 style.css에서 관리합니다! -->
+
+    <!-- 헤더 - 메인 제외 공통
+        *클래스 on으로 글씨 블루 색상 적용했습니다 
+        * sub_header는 fc모집, 센터장 모집, 지사장 모집에만 있습니다-->
+    <header class="header sub_header">
+      <div class="h_wrap">
+        <div class="h_container">
+          <nav class="header_wrap">
+            <h1 class="logo">
+              <a href="./index.html">
+                <img src="./images/logo.png" alt="" />
+              </a>
+            </h1>
+
+            <!-- PC 메뉴 -->
+            <ul class="nav_menu">
+              <li><a href="./index.html" class="">회사소개</a></li>
+              <li><a href="./center_recruit.html" class="">센터장 모집</a></li>
+              <li>
+                <a href="./branch_recruit.html" class="on">지사장 모집</a>
+              </li>
+              <li><a href="./fc_recruit.html" class="">FC 모집</a></li>
+            </ul>
+
+            <!-- 햄버거 버튼 추가 -->
+            <button class="ham_btn" aria-label="메뉴 열기">
+              <img
+                class="ham_icon"
+                src="./images/ham_btn.png"
+                alt="메뉴 버튼"
+              />
+            </button>
+          </nav>
+        </div>
+
+        <!-- 모바일 메뉴 추가 -->
+        <nav class="ham_gnb">
+          <ul>
+            <li><a href="./index.html" class="">회사소개</a></li>
+            <li><a href="./center_recruit.html" class="">센터장 모집</a></li>
+            <li><a href="./branch_recruit.html" class="on">지사장 모집</a></li>
+            <li><a href="./fc_recruit.html" class="">FC 모집</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="sub_page branch_recruit">
+      <!-- 지사장모집 배너 영역 -->
+      <div class="br_banner">
+        <div class="ment">
+          <h2>
+            보험을 넘어<br class="m_br" />
+            미래를 바꾸는 여정, <br />
+            <div class="m_div"></div>
+            이 특별한 성공과 함께할<br class="m_br" />
+            파트너를 찾습니다.
+          </h2>
+          <h3>보험의 흐름을 만드는 FM에셋의 방식</h3>
+        </div>
+      </div>
+
+      <!-- 지사장모집 지사 현황 텍스트 영역 -->
+      <section class="jisa">
+        <div class="jisa_inner">
+          <img src="./images/jisa_bg.jpg" alt="" />
+          <h3 class="title" data-aos="fade-up">
+            전국<br class="m_br" />
+            500개 지점
+          </h3>
+        </div>
+      </section>
+
+      <!-- 파트너쉽 혜택 영역 -->
+      <section class="partnership">
+        <div class="container">
+          <div class="branch_title">파트너쉽 혜택</div>
+          <div class="box_wrap">
+            <div class="box box1" data-aos="fade-up" data-aos-delay="0">
+              <div class="top">
+                <div class="back_line back_line1"></div>
+                <img src="./images/branch_partner1.png" alt="" />
+              </div>
+              <h3>수수료 지급률 98%</h3>
+              <h4>
+                최고 등급 기준 기본 수수료 <br />
+                최대 98% 적용
+              </h4>
+            </div>
+            <div class="box box2" data-aos="fade-up" data-aos-delay="0">
+              <div class="top">
+                <div class="back_line back_line2"></div>
+                <img src="./images/branch_partner3.png" alt="" />
+              </div>
+              <h3>GA 시책 180%</h3>
+              <h4>
+                프로모션 대상 상품 추가 인센티브 <br />
+                최대 180% 부여
+              </h4>
+            </div>
+            <div class="box box3" data-aos="fade-up" data-aos-delay="300">
+              <div class="top">
+                <div class="back_line back_line3"></div>
+                <img src="./images/branch_partner2.png" alt="" />
+              </div>
+              <h3>수금 수수료 평생 제공</h3>
+              <h4>
+                유지 수납 관리에 대한<br />
+                장기(평생) 수수려 지급 구조
+              </h4>
+            </div>
+
+            <div class="box box4" data-aos="fade-up" data-aos-delay="300">
+              <div class="top">
+                <div class="back_line back_line4"></div>
+                <img src="./images/branch_partner4.png" alt="" />
+              </div>
+              <h3>상생시책 최고 330%</h3>
+              <h4>
+                조직 성과 공유형 PS 보너스<br />
+                최대 330% 책정
+              </h4>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 인터뷰 영역 -->
+      <section class="common_interview interview">
+        <div class="container">
+          <div class="branch_title">지사장 인터뷰</div>
+          <div class="box_wrap" data-aos="fade-up">
+            <div class="box box1">
+              <div class="top">
+                <div class="back_img"></div>
+                <img src="./images/b_i1.png" alt="" />
+              </div>
+              <h3>ㅅ지사 지사장</h3>
+              <p>
+                FM에셋은 수수료 체계도 <br />
+                투명하고 믿을 수 있어요. <br /><br />
+                일하면 일하는 만큼 <br />
+                시책과 지원금도 주니까 <br />
+                실적 올릴 맛이 납니다.
+              </p>
+            </div>
+            <div class="box box1">
+              <div class="top">
+                <div class="back_img"></div>
+                <img src="./images/b_i2.png" alt="" />
+              </div>
+              <h3>ㅇ지사 지사장</h3>
+              <p>
+                시작이 제일 막막한데<br />
+                FM에셋은 교육이나 시스템, <br />지원이 굉장히 좋아요.
+                <br /><br />
+                신규 팀 영입할 때에도 <br />
+                당당하고 편하게 얘기합니다.
+              </p>
+            </div>
+            <div class="box box1">
+              <div class="top">
+                <div class="back_img"></div>
+                <img src="./images/b_i3.png" alt="" />
+              </div>
+              <h3>ㄱ지사 지사장</h3>
+              <p>
+                장기 근속에는 이유가 있죠! <br /><br />
+                잘 하면 잘 할수록 <br />
+                더 주고, 또 주는데 <br />
+                매달 들어오는 수수료 보면 <br />
+                당연히 계속 일하고 싶어져요.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 지사 개설 지원 영역 -->
+      <section class="help">
+        <div class="container">
+          <div class="branch_title">지사 개설 지원</div>
+          <div class="box_wrap">
+            <div class="box box1">
+              <div class="lb">
+                <img src="./images/b_h1.png" alt="" />
+              </div>
+              <div class="rb">
+                <h3>
+                  초기·운영비 및 사무공간<br class="m_br" />
+                  구축 일괄 지원
+                </h3>
+                <p>초기 사업비, 임차비, 사무실, 집기·비품 등 지원</p>
+              </div>
+            </div>
+            <div class="box box2">
+              <div class="lb">
+                <img src="./images/b_h2.png" alt="" />
+              </div>
+              <div class="rb">
+                <h3>인력 정착·영업활동 자금 지원</h3>
+                <p>지사 관리자 정착지원금, fc 시드 자금 지원</p>
+              </div>
+            </div>
+            <div class="box box3">
+              <div class="lb">
+                <img src="./images/b_h3.png" alt="" />
+              </div>
+              <div class="rb">
+                <h3>DB·마케팅 전폭 지원</h3>
+                <p>무상 DB 제공, 영업기법 전수, 광고집행 본사 지원</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- 푸터 - 공통 -->
+    <!-- footer.html -->
+    <footer>
+      <div class="container">
+        <div class="company">
+          <p>
+            <strong>(주)에프엠에셋</strong> 공동대표 : 김상완, 양주팔<br />
+            사업자 등록번호: 314-81-47752 대리점 등록번호: 2002031377<br />
+            사업장 주소: 34909 대전광역시 중구 계백로 1719, 201호 (오류동,
+            센트리아오피스텔)<br />
+            대표전화:
+            <a href="tel:0808019987">080-801-9987</a>,
+            <a href="tel:0425237500">042-523-7500</a><br />
+            COPYRIGHT ⓒ 2001~2015 FMASSET. ALL RIGHTS RESERVED
+          </p>
+        </div>
+
+        <div class="service">
+          <p>
+            <span>FM에셋</span><br /><br />
+            본 사이트는 광고 심의 기준을 준수하였으며, 유효기간은 심의일로부터
+            1년입니다.<br />
+            (주)에프엠에셋이 제공하는 서비스입니다.<br />
+            에프엠에셋 보험대리점 준법감시필 2025-0000 (2025.00.00~2026.00.00)
+          </p>
+        </div>
+
+        <div class="warning">
+          <h4>[필수 안내사항]</h4>
+          <p>
+            보험 계약자가 기존 보험 계약을 해지하고, 새로운 보험 계약을 체결할
+            경우 유의사항은 아래와 같습니다.<br />
+            1. 질병 이력, 연령 증가 등으로 가입이 거절되거나 보험료가 인상될 수
+            있습니다.<br />
+            2. 가입 상품에 따라 새로운 면책기간 적용 및 보장 제한 등 기타
+            불이익이 발생할 수 있습니다.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- GSAP, AOS, JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script src="./js/script.js"></script>
+  </body>
+</html>

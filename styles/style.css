@@ -1,0 +1,2157 @@
+br.p_br {
+    display: block;
+}
+
+br.m_br {
+    display: none;
+}
+
+br.m_br2 {
+    display: none;
+}
+
+.sub_page {
+    overflow: hidden;
+    padding-top: 60px;
+}
+
+/* ====================== 메인 페이지   ====================== */
+/* *STYLEPAGE: main - 메인 */
+
+/* 메인 - hiro 배너 영역 */
+.main .hiro {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.main .hiro video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    pointer-events: none; /* 클릭 방지 */
+}
+
+.main .hiro video::-webkit-media-controls {
+    display: none !important;
+}
+
+.main .hiro video::-webkit-media-controls-panel {
+    display: none !important;
+}
+
+.main .hiro video::-webkit-media-controls-play-button {
+    display: none !important;
+}
+
+.main .hiro video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+}
+
+.main .hiro .hiro_text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+}
+
+.main .hiro h2 {
+    font-size: 88px;
+    font-weight: 900;
+    line-height: 1.4;
+    margin-bottom: 120px;
+    background: linear-gradient(135deg, var(--bs-blue) 0%, #5b86c2 50%, var(--bs-blue) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    padding: 5px 10px;
+}
+
+.main .hiro span {
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--bs-blue);
+    background: linear-gradient(135deg, var(--bs-blue) 0%, #5b86c2 50%, var(--bs-blue) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    padding: 5px 10px;
+}
+
+/* 메인 - 텍스트 섹션 영역 */
+.main .text_section {
+    padding: 185px 0;
+    text-align: center;
+}
+
+.main .text_section h3 {
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 60px;
+}
+
+.main .text_section h4 {
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--bs-blue);
+}
+
+.main .text_section div.m_div {
+    display: none;
+    height: 20px;
+}
+
+/* 메인 - 비지니스 영역 & 시스템  영역 */
+.main .common_card {
+    padding: 180px 0;
+    text-align: center;
+    background: var(--bs-bg-gray);
+}
+
+.main .common_card h3 {
+    margin-bottom: 16px;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.main .common_card h3 span {
+    color: var(--bs-blue);
+}
+
+.main .common_card h4 {
+    margin-bottom: 100px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.main .common_card .card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.main .common_card .item {
+    width: 314px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 20px 30px;
+    background: var(--bs-white);
+    border-radius: 20px;
+    background: linear-gradient(to bottom, #b7bbfa 15%, #5762ff 85%);
+}
+
+.main .common_card .box {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 170px;
+    margin-bottom: 10px;
+}
+
+.main .common_card .box img {
+    width: 80%;
+    height: 100%;
+    object-fit: cover;
+    box-sizing: border-box;
+}
+
+.main .common_card .box img.b_card_i3 {
+    width: 73%;
+}
+
+.main .common_card h5 {
+    margin-bottom: 26px;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--bs-white);
+}
+
+.main .common_card p {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--bs-white);
+}
+
+/* 메인 - 롤링 영역 */
+.main .point {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    position: relative;
+    overflow: clip;
+}
+
+.main .point_wrap {
+    position: relative;
+    overflow: clip;
+    width: 100%;
+    min-height: calc(var(--vh, 1vh) * 200);
+}
+
+.main .point_inner {
+    position: absolute;
+    top: calc(var(--vh, 1vh) * -50);
+    width: 100%;
+    height: calc(100% + calc(var(--vh, 1vh) * 100));
+}
+
+.main .point .point_box {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: calc(var(--vh, 1vh) * 100);
+    perspective: 1000px;
+    background-color: var(--bs-dark-blue);
+    /* iOS Safari 최적화 */
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    /* 배경 이미지 설정 - 폴백과 함께 */
+    background-image: url('../images/point_bg.webp'), /* WebP 우선 */ url('../images/point_bg.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: local; /* iOS Safari에서 fixed 대신 local 사용 */
+    opacity: 1;
+    /* iOS Safari 성능 최적화 */
+    -webkit-overflow-scrolling: touch;
+    will-change: auto; /* 초기에는 auto, 필요시에만 변경 */
+}
+
+.main .point .point_box.bg-loaded {
+    transition: background-image 0.3s ease-in-out;
+}
+
+@supports (-webkit-touch-callout: none) {
+    .main .point .point_box {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        background-attachment: scroll;
+    }
+}
+
+/* WebP 지원 여부에 따른 조건부 스타일 */
+.webp .main .point .point_box {
+    background-image: url('../images/point_bg.webp');
+}
+
+.no-webp .main .point .point_box {
+    background-image: url('../images/point_bg.jpg');
+}
+
+.main .point .point_box:not(.bg-loaded)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bs-dark-blue);
+    z-index: -1;
+}
+
+.main .point h2 {
+    text-align: center;
+    color: #fff;
+    font-size: 56px;
+    font-weight: 700;
+    position: absolute;
+    top: 200px;
+    /* top: calc(50% - 200px); */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+}
+
+.main .point .ani_text {
+    perspective: 1000px;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* transform-style: preserve-3d; */
+}
+
+.main .point p {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    max-width: 900px;
+    font-size: 46px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: rgba(227, 227, 227, 0.4);
+    text-align: center;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    margin: 0;
+    transition: color 0.3s ease;
+    padding: 20px 0;
+}
+
+.main .point p.focus {
+    color: #fff;
+    border-color: #fff;
+}
+
+/* 메인 - 시스템 영역 */
+.main .common_card h4 {
+    font-weight: 500;
+}
+
+.main .system .box img {
+    width: 63%;
+}
+
+.main .system .box img.s_card_i1 {
+    width: 68%;
+}
+
+/* ====================== FC 모집 페이지   ====================== */
+/* *STYLEPAGE: fc_recruit - FC 모집 */
+
+/* FC 모집 - 공통 */
+.fc_recruit .container {
+    padding: 120px 0;
+}
+
+.fc_recruit .fc_title {
+    font-size: 50px;
+    font-weight: 900;
+}
+
+/* FC 모집 - 배너 영역 */
+.fc_recruit .fc_banner {
+    position: relative;
+    width: 100%;
+    height: 600px;
+}
+
+.fc_recruit .fc_banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.fc_recruit .fc_banner h2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 70px;
+    font-weight: 700;
+    color: var(--bs-white);
+    width: 100%;
+    text-align: center;
+}
+
+/* FC 모집 - 텍스트 영역 */
+.fc_recruit .fc_text .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+}
+
+.fc_recruit .fc_text h3 {
+    color: var(--bs-blue);
+    margin-bottom: 48px;
+}
+
+.fc_recruit .fc_text p {
+    font-size: 30px;
+}
+
+.fc_recruit .fc_text img {
+    width: 280px;
+}
+
+/* FC 모집 - 영업기법 영역 */
+.fc_recruit .technic {
+    background: var(--bs-bg-gray);
+    text-align: center;
+}
+
+.fc_recruit .technic .t_title p {
+    color: var(--bs-dark-blue);
+    background: var(--bs-white);
+    font-size: 26px;
+    display: inline-block;
+    padding: 10px 16px;
+    border-radius: 100px;
+    margin-bottom: 34px;
+}
+
+.fc_recruit .technic .t_title h3 {
+    margin-bottom: 80px;
+}
+
+.fc_recruit .technic .content .top {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 70px;
+    margin-bottom: 80px;
+}
+
+.fc_recruit .technic .content .left {
+    text-align: left;
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.fc_recruit .technic .content .left p {
+    font-size: 26px;
+    background: var(--bs-white);
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.fc_recruit .technic .content .left span {
+    color: var(--bs-dark-blue);
+    font-weight: 600;
+}
+
+.fc_recruit .technic .content .mid img {
+    width: 20px;
+}
+
+.fc_recruit .technic .content .right {
+    height: 200px;
+}
+
+.fc_recruit .technic .content .right p {
+    font-size: 34px;
+    font-weight: 600;
+    color: var(--bs-dark-blue);
+    background: var(--bs-white);
+    padding: 0 75px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.fc_recruit .technic .bottom {
+    font-size: 26px;
+    color: #000612;
+}
+
+/* FC 모집 - 실적 집중 영역 */
+.fc_recruit .focus {
+    text-align: center;
+}
+
+.fc_recruit .focus .fc_title {
+    margin-bottom: 70px;
+}
+
+.fc_recruit .focus ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.fc_recruit .focus li {
+    width: 480px;
+    height: 292px;
+    border-radius: 20px;
+    position: relative;
+}
+
+.fc_recruit .focus img {
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.fc_recruit .focus .text_wrap {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 20px 0 25px;
+    width: 100%;
+    background: rgba(0, 53, 127, 0.4);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    z-index: 1;
+}
+
+.fc_recruit .focus .text_wrap p {
+    color: var(--bs-white);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.fc_recruit .focus .text_wrap strong {
+    display: block;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+/* FC 모집 - 직원 후기 영역 */
+.fc_recruit .stories {
+    text-align: center;
+    background: var(--bs-bg-gray);
+}
+
+.fc_recruit .stories .container {
+    width: 1000px;
+}
+
+.fc_recruit .stories .card_wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 105px;
+}
+
+.fc_recruit .stories .card {
+    padding: 35px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bs-white);
+    border-radius: 15px;
+}
+
+.fc_recruit .stories .left {
+    display: flex;
+    justify-content: center;
+    width: 40%;
+}
+
+.fc_recruit .stories .right {
+    width: 58%;
+    text-align: center;
+}
+
+.fc_recruit .stories img {
+    max-height: 300px;
+    width: auto;
+    object-fit: cover;
+}
+
+.fc_recruit .stories h4.title {
+    display: inline-block;
+    min-width: 340px;
+    font-size: 26px;
+    font-weight: 600;
+    background: var(--bs-dark-blue);
+    color: var(--bs-white);
+    padding: 10px 16px;
+    border-bottom: 10px;
+    margin-bottom: 30px;
+    border-radius: 100px;
+}
+
+.fc_recruit .stories h5.text {
+    font-size: 22px;
+    font-weight: 400;
+}
+
+.fc_recruit .stories .fc_title {
+    font-weight: 800;
+}
+
+.fc_recruit .stories .fc_title span {
+    color: var(--bs-dark-blue);
+}
+
+/* ====================== 지사장 모집 페이지   ====================== */
+/* *STYLEPAGE: branch_recruit - 지사장 모집 */
+
+/* 지사장 모집 - 배너, 텍스트 섹션 제외한 나머지 섹션 공통*/
+.branch_recruit .container {
+    padding: 180px 0;
+}
+
+.branch_recruit .branch_title {
+    font-weight: 600;
+    font-size: 46px;
+    text-align: center;
+}
+
+/* 지사장 모집 - 배너 영역 */
+.branch_recruit .br_banner {
+    height: 620px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url('../images/branch_banner.jpg') no-repeat center center;
+    text-align: center;
+    position: relative;
+    background-size: cover;
+}
+
+.branch_recruit .br_banner::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to bottom, rgba(0, 53, 127, 0.4) 0%, rgba(0, 0, 0, 0.8) 80%, #000 100%);
+    z-index: 1;
+}
+
+.branch_recruit .br_banner .ment {
+    position: relative;
+    z-index: 2;
+}
+
+.branch_recruit .br_banner h2 {
+    color: #fff;
+    font-weight: 800;
+    font-size: 48px;
+}
+
+.branch_recruit .br_banner h3 {
+    color: #fff;
+    font-size: 34px;
+    font-weight: 600;
+    margin-top: 30px;
+}
+
+/* 지사장 모집 - 지사 현황 텍스트 영역 */
+.branch_recruit .jisa {
+    width: 100%;
+    min-height: 100vh; /* height: 100vh; 대신 min-height */
+    height: calc(100vh - var(--header-height, 0px)); /* 헤더 높이만큼 빼기, 필요 시 */
+    position: relative;
+    /* background: rgba(0, 0, 0, 1); */
+    /* will-change: background-color; */
+}
+
+.branch_recruit .jisa .jisa_inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.branch_recruit .jisa img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.branch_recruit .jisa .title {
+    font-size: 100px;
+    color: var(--bs-white);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* transform: translate(-50%, -50%); */
+    margin-left: -50%;
+    margin-top: -50px;
+    width: 100%;
+    text-align: center;
+    z-index: 1;
+    opacity: 0;
+}
+
+/* 지사장 모집 - 파트너쉽 혜택 영역 */
+.branch_recruit .partnership {
+    background: #eef1f5;
+}
+
+.branch_recruit .partnership .box_wrap {
+    display: flex;
+    align-items: normal;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.branch_recruit .partnership .box_wrap .box {
+    display: block;
+    width: 48%;
+    background: #fff;
+    padding: 40px;
+    box-sizing: border-box;
+    margin-top: 45px;
+    border-radius: 15px;
+}
+
+.branch_recruit .partnership .box_wrap .box h3 {
+    color: #0554c1;
+    font-weight: 600;
+    font-size: 30px;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.branch_recruit .partnership .box_wrap .box h4 {
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.branch_recruit .partnership .box_wrap .box .top {
+    position: relative;
+}
+
+.branch_recruit .partnership .box_wrap .box .top .back_line {
+    width: 100%;
+    border-radius: 15px;
+    position: absolute;
+    padding: 60px 0;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+.branch_recruit .back_line1 {
+    background: #f6e2eb;
+}
+
+.branch_recruit .back_line2 {
+    background: #e7e2f6;
+}
+
+.branch_recruit .back_line3 {
+    background: #faf6df;
+}
+
+.branch_recruit .back_line4 {
+    background: #e2f0ee;
+}
+
+.branch_recruit .partnership .box_wrap .box .top img {
+    margin: 0 auto;
+    display: block;
+    height: 180px;
+    position: relative;
+    z-index: 2;
+}
+
+/* **공통 인터뷰 영역 - 
+지사장 모집: 지사장 인터뷰, 
+센터장 모집: 센터장 인터뷰 영역은 클래스명 
+  common_interview로 관리됩니다 */
+.common_interview .box_wrap {
+    width: 100%;
+    display: flex;
+    align-items: normal;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.common_interview .box_wrap .box {
+    width: 32%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-radius: 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    box-shadow: 0 3px 6px #999;
+    background: var(--bs-white);
+}
+
+.common_interview .box_wrap .box img {
+    display: block;
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 15px;
+}
+
+.common_interview .box_wrap .box h3 {
+    color: #0554c1;
+    font-weight: 600;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.common_interview .box_wrap .box p {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 15px;
+}
+
+/* 지사장 모집 - 지사 개설 지원 영역 */
+.branch_recruit .help {
+    background: #eef1f5;
+}
+
+.branch_recruit .help .box_wrap .box {
+    display: flex;
+    align-items: normal;
+    justify-content: normal;
+    width: 100%;
+    margin-top: 25px;
+    border: 1px solid #bfccdd;
+    border-radius: 15px;
+    background: #fff;
+}
+
+.branch_recruit .help .box_wrap .box1 .lb {
+    padding: 15px;
+    box-sizing: border-box;
+    border-right: 10px solid #f0f3d4;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.branch_recruit .help .box_wrap .box2 .lb {
+    padding: 15px;
+    box-sizing: border-box;
+    border-right: 10px solid #f4e2eb;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.branch_recruit .help .box_wrap .box3 .lb {
+    padding: 15px;
+    box-sizing: border-box;
+    border-right: 10px solid #e5eef6;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.branch_recruit .help .box_wrap .box .lb img {
+    width: 100px;
+    height: 120px;
+    display: block;
+}
+
+.branch_recruit .help .box_wrap .box .rb {
+    display: flex;
+    align-items: normal;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px;
+    box-sizing: border-box;
+    gap: 10px;
+}
+
+.branch_recruit .help .box_wrap .box .rb h3 {
+    color: #0554c1;
+    font-weight: 500;
+    font-size: 28px;
+}
+
+.branch_recruit .help .box_wrap .box .rb p {
+    color: #333;
+    font-weight: 500;
+    font-size: 22px;
+}
+
+/* ====================== 센터장 모집 페이지   ====================== */
+/* *STYLEPAGE: center_recruit - 센터장 모집 */
+
+/* 센터장 모집 - 공통 */
+.center_recruit {
+    text-align: center;
+}
+
+.center_recruit .container {
+    padding: 180px 0;
+}
+
+.center_recruit .c_title_large {
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.center_recruit .c_title_small {
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.center_recruit .c_sub_title {
+    font-size: 26px;
+    font-weight: 500;
+}
+
+/* 센터장 모집 - 배너 영역 */
+.center_recruit .c_banner {
+    position: relative;
+    width: 100%;
+    height: 450px;
+}
+
+.center_recruit .c_banner::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bs-dark-blue);
+    opacity: 0.4;
+}
+
+.center_recruit .c_banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.center_recruit .c_banner .inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    width: 100%;
+}
+
+.center_recruit .c_banner h2 {
+    font-size: 50px;
+    font-weight: 700;
+    color: var(--bs-white);
+    margin-bottom: 60px;
+}
+
+.center_recruit .c_banner p {
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--bs-white);
+}
+
+/* 센터장 모집 - 하는 일 영역 */
+.center_recruit .job h3 {
+    margin-bottom: 8px;
+}
+
+.center_recruit .job span {
+    color: var(--bs-dark-blue);
+}
+
+.center_recruit .job .c_sub_title {
+    margin-bottom: 64px;
+}
+
+.center_recruit .job .box_wrap {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.center_recruit .job .item {
+    width: 500px;
+    border-radius: 20px;
+    padding: 40px 26px;
+    background: var(--bs-bg-gray);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.center_recruit .job .left {
+    width: 38%;
+    max-width: 168px;
+}
+
+.center_recruit .job .left img {
+    width: 100%;
+}
+
+.center_recruit .job .right {
+    width: 55%;
+}
+
+.center_recruit .job .right h4 {
+    font-size: 24px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 100px;
+    background: var(--bs-blue);
+    color: var(--bs-white);
+    margin-bottom: 24px;
+}
+
+.center_recruit .job .right p {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+/* 센터장 모집 - 텍스트 영역 */
+.center_recruit .center_text {
+    background: var(--bs-bg-gray);
+}
+
+.center_recruit .center_text h3 {
+    font-size: 40px;
+    font-weight: 500;
+}
+
+.center_recruit .center_text span {
+    color: var(--bs-blue);
+}
+
+/* 센터장 모집 - 청구센터 차별점 영역 */
+.center_recruit .different h3 {
+    margin-bottom: 16px;
+    color: var(--bs-blue);
+}
+
+.center_recruit .different p {
+    margin-bottom: 62px;
+}
+
+.center_recruit .different .icon_wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 95px;
+    margin-bottom: 72px;
+}
+
+.center_recruit .different .item {
+    width: 198px;
+    height: 198px;
+    border-radius: 100%;
+    background: #faf6df;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center_recruit .different img {
+    max-width: 135px;
+}
+
+.center_recruit .different h4 {
+    font-weight: 400;
+}
+
+/* 센터장 모집 - 비전 영역 */
+.center_recruit .vision {
+    background: var(--bs-bg-gray);
+}
+
+.center_recruit .vision h3 {
+    margin-bottom: 16px;
+    color: var(--bs-blue);
+}
+
+.center_recruit .vision p {
+    margin-bottom: 88px;
+}
+
+.center_recruit .vision .count {
+    width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 33px 100px;
+    border-radius: 100px;
+    background: var(--bs-white);
+    border: 4px solid #adc1dc;
+    margin-bottom: 76px;
+}
+
+.center_recruit .vision h4 {
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.center_recruit .vision h4.target {
+    color: var(--bs-sky-blue);
+    font-weight: 600;
+}
+
+.center_recruit .vision img {
+    width: 28px;
+}
+
+/* 센터장 모집 - 비전 영역(그래프) */
+.center_recruit .graph {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0;
+    background: var(--bs-white);
+    border: 1px solid #adc1dc;
+    border-radius: 15px;
+}
+
+.center_recruit .graph .top {
+    display: flex;
+    align-items: end;
+}
+
+.center_recruit .graph .bottom {
+    display: flex;
+    align-items: center;
+}
+
+.center_recruit .graph .s_wrap {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid #000;
+    margin-bottom: 15px;
+}
+
+.center_recruit .graph h5 {
+    width: 100%;
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--bs-sky-blue);
+}
+
+.center_recruit .graph .stick {
+    width: 50px;
+    height: 215px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    background: var(--bs-sky-blue);
+    text-align: center;
+}
+
+.center_recruit .graph .s_wrap:nth-child(1) .stick {
+    height: 180px;
+}
+
+.center_recruit .graph .s_wrap:nth-child(1) .stick {
+    height: 100px;
+}
+
+.center_recruit .graph .s_wrap:nth-child(2) .stick {
+    height: 200px;
+}
+
+.center_recruit .graph .s_wrap:nth-child(3) .stick {
+    height: 260px;
+}
+
+.center_recruit .graph .s_wrap:nth-child(4) .stick {
+    height: 240px;
+}
+.center_recruit .graph h6 {
+    width: 20%;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+/* 센터장 모집 - 센터 개설 지원 영역 */
+.center_recruit .backup h3 {
+    margin-bottom: 80px;
+    font-weight: 600;
+}
+
+.center_recruit .backup ul {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.center_recruit .backup li {
+    width: 314px;
+    background: #eaf1f9;
+    border-radius: 20px;
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, #b7bbfa 15%, #5762ff 85%);
+}
+
+.center_recruit .backup .box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.center_recruit .backup img {
+    max-width: 110px;
+}
+
+.center_recruit .backup .bi_2 {
+    max-width: 140px;
+}
+
+.center_recruit .backup h4 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--bs-white);
+    margin-bottom: 14px;
+}
+
+.center_recruit .backup p {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--bs-white);
+}
+
+/* 센터장 모집 - 센터장 인터뷰 영역 */
+.center_recruit .interview {
+    background: var(--bs-bg-gray);
+}
+
+/* ====================== 반응형 스타일 ====================== */
+/* *STYLEMEDIA: 페이지 - 태블릿 (1200px 이하) */
+@media (max-width: 1200px) {
+    /* 메인 페이지 */
+    .main .hiro h2 {
+        font-size: 50px;
+    }
+
+    .main .text_section {
+        padding: 120px 0;
+    }
+
+    .main .text_section h3,
+    .main .text_section h4 {
+        font-size: 26px;
+    }
+
+    .main .common_card {
+        padding: 120px 0;
+    }
+
+    .main .common_card h3 {
+        font-size: 36px;
+        margin-bottom: 40px;
+    }
+
+    .main .common_card h4 {
+        font-size: 18px;
+        margin-bottom: 80px;
+        word-break: keep-all;
+    }
+
+    .main .common_card h5 {
+        font-size: 24px;
+    }
+
+    .main .common_card p {
+        font-size: 15px;
+    }
+
+    .main .common_card .card {
+        gap: 20px;
+    }
+
+    .main .common_card .item {
+        width: 280px;
+    }
+
+    .main .point_wrap {
+        min-height: calc(var(--vh, 1vh) * 180);
+    }
+
+    .main .point h2 {
+        top: 140px !important;
+        font-size: 48px;
+    }
+
+    .main .point p {
+        font-size: 38px;
+        max-width: 80%;
+        padding: 15px 10px;
+        border-radius: 15px;
+    }
+
+    .fc_recruit .container {
+        padding: 80px 20px;
+    }
+
+    .fc_recruit .fc_title {
+        font-size: 42px;
+    }
+
+    .fc_recruit .fc_banner {
+        height: 450px;
+    }
+
+    .fc_recruit .fc_banner h2 {
+        font-size: 55px;
+    }
+
+    .fc_recruit .fc_text .container {
+        gap: 40px;
+    }
+
+    .fc_recruit .fc_text p {
+        font-size: 26px;
+    }
+
+    .fc_recruit .fc_text img {
+        width: 220px;
+    }
+
+    .fc_recruit .focus ul {
+        gap: 15px;
+    }
+
+    .fc_recruit .focus li {
+        width: 400px;
+        height: 250px;
+    }
+
+    .branch_recruit .container {
+        padding: 120px 20px;
+    }
+
+    .branch_recruit .branch_title {
+        font-size: 38px;
+    }
+
+    .branch_recruit .br_banner h2 {
+        font-size: 40px;
+    }
+
+    .branch_recruit .br_banner h3 {
+        font-size: 28px;
+    }
+
+    .branch_recruit .partnership .box_wrap .box h3 {
+        font-size: 26px;
+    }
+
+    .branch_recruit .partnership .box_wrap .box {
+        padding: 30px;
+    }
+
+    .center_recruit .container {
+        padding: 120px 20px;
+    }
+
+    .center_recruit .c_title_large,
+    .center_recruit .c_title_small {
+        font-size: 34px;
+    }
+
+    .center_recruit .c_sub_title {
+        font-size: 22px;
+    }
+
+    .center_recruit .c_banner {
+        height: 350px;
+    }
+
+    .center_recruit .c_banner h2 {
+        font-size: 42px;
+        margin-bottom: 40px;
+    }
+
+    .center_recruit .c_banner p {
+        font-size: 26px;
+    }
+
+    .center_recruit .job .item {
+        width: 420px;
+        padding: 30px 20px;
+    }
+
+    .center_recruit .job .right h4 {
+        font-size: 18px;
+    }
+
+    .center_recruit .job .right p {
+        font-size: 15px;
+    }
+
+    .center_recruit .center_text h3 {
+        font-size: 34px;
+    }
+
+    .center_recruit .different .icon_wrap {
+        gap: 60px;
+    }
+
+    .center_recruit .different .item {
+        width: 160px;
+        height: 160px;
+    }
+
+    .center_recruit .different img {
+        max-width: 90px;
+    }
+
+    .center_recruit .different .item:last-child img {
+        max-width: 100px;
+    }
+
+    .center_recruit .vision .count {
+        width: auto;
+        padding: 25px 60px;
+    }
+
+    .center_recruit .vision h4 {
+        font-size: 24px;
+    }
+
+    .center_recruit .backup ul {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .common_interview .box_wrap {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+    }
+    .common_interview .box_wrap .box {
+        width: 60%;
+    }
+
+    /* FC 모집 페이지 */
+    .fc_recruit .container {
+        padding: 80px 30px;
+    }
+
+    .fc_recruit .fc_title {
+        font-size: 42px;
+    }
+
+    .fc_recruit .fc_banner {
+        height: 450px;
+    }
+
+    .fc_recruit .fc_banner h2 {
+        font-size: 55px;
+        line-height: 1.2;
+    }
+
+    .fc_recruit .fc_text .container {
+        gap: 40px;
+    }
+
+    .fc_recruit .fc_text p {
+        font-size: 26px;
+    }
+
+    .fc_recruit .fc_text img {
+        width: 220px;
+    }
+
+    .fc_recruit .technic .t_title p {
+        font-size: 22px;
+    }
+
+    .fc_recruit .technic .content .top {
+        gap: 50px;
+        margin-bottom: 60px;
+    }
+
+    .fc_recruit .technic .content .left {
+        width: 320px;
+    }
+
+    .fc_recruit .technic .content .left p {
+        font-size: 22px;
+        padding: 8px 16px;
+    }
+
+    .fc_recruit .technic .content .right p {
+        font-size: 30px;
+        padding: 0 60px;
+    }
+
+    .fc_recruit .technic .bottom {
+        font-size: 22px;
+    }
+
+    .fc_recruit .focus .fc_title {
+        margin-bottom: 50px;
+    }
+
+    .fc_recruit .focus ul {
+        gap: 15px;
+    }
+
+    .fc_recruit .focus li {
+        width: 400px;
+        height: 250px;
+    }
+
+    .fc_recruit .focus .text_wrap p {
+        font-size: 18px;
+    }
+
+    .fc_recruit .focus .text_wrap strong {
+        font-size: 20px;
+    }
+
+    .fc_recruit .stories .container {
+        width: 900px;
+        padding: 80px 30px;
+    }
+
+    .fc_recruit .stories .card_wrap {
+        gap: 30px;
+        margin-bottom: 80px;
+    }
+
+    .fc_recruit .stories .card {
+        padding: 25px 0;
+    }
+
+    .fc_recruit .stories img {
+        max-height: 250px;
+    }
+
+    .fc_recruit .stories h4.title {
+        min-width: 300px;
+        font-size: 22px;
+        margin-bottom: 25px;
+    }
+
+    .fc_recruit .stories h5.text {
+        font-size: 20px;
+    }
+}
+
+/* *STYLEMEDIA: 페이지 - 모바일 대 (768px 이하) */
+@media (max-width: 768px) {
+    br.p_br {
+        display: none;
+    }
+
+    br.m_br {
+        display: block;
+    }
+
+    .main .hiro h2 {
+        font-size: 52px;
+        margin-bottom: 60px;
+        line-height: 1.2;
+    }
+
+    .main .hiro span {
+        font-size: 22px;
+    }
+
+    .main .text_section {
+        padding: 80px 20px;
+    }
+
+    .main .text_section h3,
+    .main .text_section h4 {
+        font-size: 22px;
+        margin-bottom: 50px;
+    }
+
+    .main .text_section br.p_br {
+        display: none;
+    }
+    .main .text_section br.m_br {
+        display: block;
+    }
+    .main .text_section div.m_div {
+        display: block;
+        height: 20px;
+    }
+
+    .main .point_wrap {
+        min-height: calc(var(--vh, 1vh) * 150);
+    }
+
+    .main .point .point_box {
+        height: calc(var(--vh, 1vh) * 100);
+        background-attachment: scroll;
+        -webkit-transform: none;
+        transform: none;
+    }
+
+    .main .point .ani_text {
+        height: 90%;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .main .point h2 {
+        font-size: 38px;
+    }
+
+    .main .point p {
+        font-size: 28px;
+        max-width: 90%;
+        padding: 15px 15px;
+        border-radius: 12px;
+        border-width: 1.5px;
+    }
+
+    .main .common_card {
+        padding: 80px 20px;
+    }
+
+    .main .common_card h3 {
+        font-size: 30px;
+    }
+
+    .main .common_card .card {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .main .common_card .item {
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .fc_recruit .container {
+        padding: 60px 20px;
+    }
+
+    .fc_recruit .fc_title {
+        font-size: 28px;
+        line-height: 1.3;
+    }
+
+    .fc_recruit .fc_banner {
+        height: 300px;
+    }
+
+    .fc_recruit .fc_banner h2 {
+        font-size: 32px;
+        line-height: 1.2;
+        padding: 0 20px;
+    }
+
+    .fc_recruit .fc_text .container {
+        gap: 25px;
+        align-items: flex-end;
+    }
+
+    .fc_recruit .fc_text p {
+        font-size: 20px;
+        line-height: 1.4;
+    }
+
+    .fc_recruit .fc_text img {
+        width: 112px;
+    }
+
+    .fc_recruit .technic .t_title p {
+        font-size: 18px;
+        padding: 6px 10px;
+        margin-bottom: 20px;
+    }
+
+    .fc_recruit .technic .t_title h3 {
+        font-size: 26px;
+        margin-bottom: 40px;
+        padding: 0 20px;
+    }
+
+    .fc_recruit .technic .content .top {
+        flex-direction: column;
+        height: auto;
+        gap: 20px;
+        margin-bottom: 30px;
+        padding: 0 20px;
+    }
+
+    .fc_recruit .technic .content .left {
+        width: 100%;
+        max-width: 320px;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .fc_recruit .technic .content .left p {
+        font-size: 16px;
+        padding: 8px 15px;
+    }
+
+    .fc_recruit .technic .content .mid img {
+        transform: rotate(90deg);
+    }
+
+    .fc_recruit .technic .content .right {
+        width: 100%;
+        height: auto;
+        max-width: 320px;
+    }
+
+    .fc_recruit .technic .content .right p {
+        font-size: 22px;
+        padding: 15px 20px;
+        line-height: 1.3;
+    }
+
+    .fc_recruit .technic .bottom {
+        font-size: 18px;
+        padding: 0 20px;
+        line-height: 1.4;
+    }
+
+    .fc_recruit .focus .fc_title {
+        margin-bottom: 40px;
+        font-size: 28px;
+    }
+
+    .fc_recruit .focus ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .fc_recruit .focus li {
+        width: 100%;
+        max-width: 350px;
+        height: 200px;
+    }
+
+    .fc_recruit .focus .text_wrap {
+        padding: 15px 0 20px;
+    }
+
+    .fc_recruit .focus .text_wrap p {
+        font-size: 16px;
+        padding: 0 15px;
+        line-height: 1.3;
+    }
+
+    .fc_recruit .focus .text_wrap strong {
+        font-size: 18px;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .fc_recruit .stories .container {
+        width: 100%;
+        max-width: 100%;
+        padding: 60px 20px;
+    }
+
+    .fc_recruit .stories .card_wrap {
+        gap: 25px;
+        margin-bottom: 60px;
+    }
+
+    .fc_recruit .stories .card {
+        flex-direction: column;
+        padding: 20px 15px;
+        text-align: center;
+    }
+
+    .fc_recruit .stories .left,
+    .fc_recruit .stories .right {
+        width: 100%;
+    }
+
+    .fc_recruit .stories img {
+        max-height: 180px;
+        margin-bottom: 15px;
+    }
+
+    .fc_recruit .stories h4.title {
+        min-width: auto;
+        font-size: 18px;
+        margin-bottom: 15px;
+        padding: 8px 15px;
+    }
+
+    .fc_recruit .stories h5.text {
+        font-size: 16px;
+        line-height: 1.4;
+        word-break: keep-all;
+    }
+
+    .fc_recruit .stories .fc_title {
+        font-size: 24px;
+        line-height: 1.3;
+    }
+
+    .branch_recruit .branch_title {
+        font-size: 30px;
+    }
+
+    .branch_recruit .br_banner h2 {
+        font-size: 32px;
+        line-height: 1.2;
+    }
+
+    .branch_recruit .br_banner h3 {
+        font-size: 22px;
+        margin-top: 20px;
+    }
+
+    .branch_recruit .m_div {
+        height: 10px;
+    }
+
+    .branch_recruit .jisa .container {
+        padding: 80px 20px;
+    }
+
+    .branch_recruit .jisa .sub_title {
+        font-size: 18px;
+    }
+
+    .branch_recruit .partnership .box_wrap {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .branch_recruit .partnership .box_wrap .box {
+        width: 100%;
+        max-width: 400px;
+        padding: 25px;
+        margin-top: 20px;
+    }
+
+    .branch_recruit .partnership .box_wrap .box h3 {
+        font-size: 22px;
+    }
+
+    .branch_recruit .partnership .box_wrap .box h4 {
+        font-size: 16px;
+    }
+
+    .common_interview .box_wrap {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .common_interview .box_wrap .box {
+        width: 100%;
+        max-width: 350px;
+        min-width: auto;
+    }
+
+    .common_interview .box_wrap .box h3 {
+        font-size: 24px;
+    }
+
+    .common_interview .box_wrap .box p {
+        font-size: 16px;
+    }
+
+    .branch_recruit .jisa .title {
+        font-size: 85px;
+        line-height: 1.2;
+    }
+
+    .branch_recruit .help .box_wrap .box {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .branch_recruit .help .box_wrap .box1 .lb,
+    .branch_recruit .help .box_wrap .box2 .lb,
+    .branch_recruit .help .box_wrap .box3 .lb {
+        width: 100%;
+        border-right: none;
+        border-bottom: 10px solid;
+        min-width: auto;
+        padding: 20px;
+    }
+
+    .branch_recruit .help .box_wrap .box1 .lb {
+        border-bottom-color: #f0f3d4;
+    }
+
+    .branch_recruit .help .box_wrap .box2 .lb {
+        border-bottom-color: #f4e2eb;
+    }
+
+    .branch_recruit .help .box_wrap .box3 .lb {
+        border-bottom-color: #e5eef6;
+    }
+
+    .branch_recruit .help .box_wrap .box .rb h3 {
+        font-size: 22px;
+    }
+
+    .branch_recruit .help .box_wrap .box .rb p {
+        font-size: 18px;
+        word-break: keep-all;
+    }
+
+    .center_recruit .c_title_large,
+    .center_recruit .c_title_small {
+        font-size: 28px;
+    }
+
+    .center_recruit .c_sub_title {
+        font-size: 18px;
+    }
+
+    .center_recruit .c_banner h2 {
+        font-size: 38px;
+        margin-bottom: 30px;
+    }
+
+    .center_recruit .c_banner p {
+        font-size: 20px;
+    }
+
+    .center_recruit .c_banner .m_div {
+        height: 8px;
+    }
+
+    .center_recruit .job .box_wrap {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .center_recruit .job .item {
+        width: 100%;
+        max-width: 380px;
+        padding: 45px 20px;
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .center_recruit .job .left,
+    .center_recruit .job .right {
+        width: 100%;
+    }
+
+    .center_recruit .job .left {
+        max-width: 150px;
+    }
+    .center_recruit .job .right h4 {
+        display: inline-block;
+        font-size: 20px;
+        padding: 5px 20px;
+    }
+
+    .center_recruit .job .right p {
+        font-size: 18px;
+    }
+
+    .center_recruit .center_text h3 {
+        font-size: 30px;
+        padding: 0 20px;
+    }
+
+    .center_recruit .different .icon_wrap {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .center_recruit .different .item {
+        width: 140px;
+        height: 140px;
+    }
+
+    .center_recruit .different img {
+        max-width: 100px;
+    }
+
+    .center_recruit .vision .count {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px 30px;
+    }
+
+    .center_recruit .vision h4 {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .center_recruit .vision img {
+        transform: rotate(90deg);
+        width: 16px;
+    }
+
+    .center_recruit .graph {
+        padding: 20px 10px;
+        overflow-x: auto;
+    }
+
+    .center_recruit .graph .top,
+    .center_recruit .graph .bottom {
+        min-width: 400px;
+    }
+
+    .center_recruit .graph h5 {
+        font-size: 12px;
+    }
+
+    .center_recruit .graph .stick {
+        width: 40px;
+    }
+
+    .center_recruit .graph h6 {
+        font-size: 13px;
+    }
+
+    .center_recruit .backup ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .center_recruit .backup li {
+        width: 100%;
+        max-width: 300px;
+        height: 350px;
+        padding: 20px 30px;
+    }
+
+    .center_recruit .backup .box {
+        width: 180px;
+        height: 180px;
+    }
+
+    .center_recruit .backup img {
+        max-width: 100px;
+    }
+
+    .center_recruit .backup h4 {
+        font-size: 20px;
+    }
+}
+
+/* *STYLEMEDIA: 페이지 - 모바일 소 (480px 이하) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0;
+    }
+
+    .main .hiro h2 {
+        font-size: 42px;
+        margin-bottom: 60px;
+        line-height: 1.2;
+    }
+
+    .main .hiro span {
+        font-size: 18px;
+    }
+
+    .main .point_wrap {
+        min-height: calc(var(--vh, 1vh) * 120);
+    }
+
+    .main .point h2 {
+        font-size: 30px;
+    }
+
+    .main .point p {
+        font-size: 22px;
+        max-width: 95%;
+        padding: 12px 12px;
+        border-radius: 10px;
+        border-width: 1px;
+    }
+
+    .center_recruit .c_banner h2 {
+        font-size: 38px;
+    }
+
+    .center_recruit .c_banner .m_div {
+        height: 16px;
+    }
+
+    .center_recruit .center_text h3 {
+        font-size: 23px;
+    }
+
+    .center_recruit .c_title_large,
+    .center_recruit .c_title_small {
+        font-size: 23px;
+    }
+
+    .center_recruit .c_sub_title {
+        word-break: keep-all;
+    }
+
+    .center_recruit .different h3 {
+        margin-bottom: 5px;
+    }
+
+    .center_recruit .different h4 {
+        line-height: 1.5;
+    }
+
+    .branch_recruit .jisa .title {
+        font-size: 75px;
+    }
+    .branch_recruit .jisa br.m_br2 {
+        display: block;
+    }
+    .fc_recruit .fc_banner h2 {
+        font-size: 28px;
+        padding: 0 15px;
+    }
+
+    .fc_recruit .fc_text {
+        text-align: center;
+    }
+
+    .fc_recruit .fc_text .fc_title {
+        margin-bottom: 25px;
+    }
+
+    .fc_recruit .fc_text p {
+        font-size: 18px;
+    }
+
+    .fc_recruit .fc_text .right {
+        display: none;
+    }
+
+    .fc_recruit .fc_text .m_div {
+        height: 10px;
+        display: block;
+    }
+
+    .fc_recruit .technic .content .right p {
+        font-size: 20px;
+        padding: 12px 15px;
+    }
+
+    .fc_recruit .focus li {
+        max-width: 300px;
+        height: 180px;
+    }
+
+    .fc_recruit .focus .text_wrap p {
+        font-size: 14px;
+    }
+
+    .fc_recruit .focus .text_wrap strong {
+        font-size: 16px;
+    }
+
+    .fc_recruit .stories .fc_title {
+        font-size: 22px;
+    }
+
+    .fc_recruit .technic .content .mid img {
+        transform: rotate(90deg);
+    }
+}
