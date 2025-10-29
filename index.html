@@ -45,6 +45,82 @@
             .no-webp .main .point .point_box {
                 background-image: url('./images/point_bg.jpg') !important;
             }
+
+            /* 강화된 비디오 컨트롤 숨김 - 즉시 적용 */
+            #heroVideo {
+                pointer-events: none !important;
+                -webkit-appearance: none !important;
+                -moz-appearance: none !important;
+                appearance: none !important;
+                outline: none !important;
+                border: none !important;
+                background: transparent !important;
+                -webkit-touch-callout: none !important;
+                -webkit-user-select: none !important;
+                -moz-user-select: none !important;
+                -ms-user-select: none !important;
+                user-select: none !important;
+            }
+
+            #heroVideo::-webkit-media-controls,
+            #heroVideo::-webkit-media-controls-enclosure,
+            #heroVideo::-webkit-media-controls-panel,
+            #heroVideo::-webkit-media-controls-play-button,
+            #heroVideo::-webkit-media-controls-overlay-play-button,
+            #heroVideo::-webkit-media-controls-overlay-enclosure,
+            #heroVideo::-webkit-media-controls-start-playback-button,
+            #heroVideo::-webkit-media-controls-fullscreen-button,
+            #heroVideo::-webkit-media-controls-timeline,
+            #heroVideo::-webkit-media-controls-current-time-display,
+            #heroVideo::-webkit-media-controls-time-remaining-display,
+            #heroVideo::-webkit-media-controls-mute-button,
+            #heroVideo::-webkit-media-controls-volume-slider {
+                display: none !important;
+                opacity: 0 !important;
+                visibility: hidden !important;
+                position: absolute !important;
+                left: -99999px !important;
+                top: -99999px !important;
+                width: 0 !important;
+                height: 0 !important;
+                pointer-events: none !important;
+                z-index: -99999 !important;
+            }
+
+            #heroVideo::-moz-media-controls {
+                display: none !important;
+            }
+
+            #heroVideo::-ms-media-controls {
+                display: none !important;
+            }
+
+            /* iOS 특화 오버레이 제거 */
+            @supports (-webkit-touch-callout: none) {
+                #heroVideo::-webkit-media-controls-overlay-play-button {
+                    display: none !important;
+                    opacity: 0 !important;
+                    visibility: hidden !important;
+                    position: fixed !important;
+                    left: -99999px !important;
+                    top: -99999px !important;
+                    width: 0 !important;
+                    height: 0 !important;
+                    pointer-events: none !important;
+                    z-index: -99999 !important;
+                    transform: scale(0) !important;
+                }
+            }
+
+            /* 컨트롤 완전 차단 */
+            #heroVideo[controls] {
+                controls: none !important;
+            }
+
+            #heroVideo::before,
+            #heroVideo::after {
+                display: none !important;
+            }
         </style>
 
         <!-- CSS 파일 -->
@@ -68,6 +144,81 @@
                 };
                 webP.src =
                     'data:images/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+            })();
+
+            // 강화된 비디오 초기화 스크립트 - 즉시 실행
+            (function () {
+                // 사용자 상호작용 없이도 자동재생 시도
+                let attempts = 0;
+                const maxAttempts = 10;
+
+                function forceVideoPlay() {
+                    attempts++;
+
+                    const video = document.getElementById('heroVideo');
+                    if (!video) {
+                        if (attempts < maxAttempts) {
+                            setTimeout(forceVideoPlay, 100);
+                        }
+                        return;
+                    }
+
+                    // 강제 속성 설정
+                    video.muted = true;
+                    video.defaultMuted = true;
+                    video.volume = 0;
+                    video.autoplay = true;
+                    video.loop = true;
+                    video.playsInline = true;
+                    video.controls = false;
+
+                    // 속성 재설정
+                    video.setAttribute('muted', '');
+                    video.setAttribute('autoplay', '');
+                    video.setAttribute('loop', '');
+                    video.setAttribute('playsinline', '');
+                    video.removeAttribute('controls');
+
+                    // 재생 시도
+                    const playPromise = video.play();
+                    if (playPromise !== undefined) {
+                        playPromise
+                            .then(() => {
+                                console.log('✅ 즉시 자동재생 성공');
+                            })
+                            .catch(() => {
+                                console.log('❌ 즉시 자동재생 실패 - 사용자 상호작용 대기');
+
+                                // 사용자 상호작용 대기
+                                const playOnTouch = () => {
+                                    video.muted = true;
+                                    video.volume = 0;
+                                    video
+                                        .play()
+                                        .then(() => {
+                                            console.log('✅ 터치 후 재생 성공');
+                                        })
+                                        .catch(() => {
+                                            console.log('❌ 터치 후에도 재생 실패');
+                                        });
+
+                                    // 리스너 제거
+                                    document.removeEventListener('touchstart', playOnTouch);
+                                    document.removeEventListener('click', playOnTouch);
+                                };
+
+                                document.addEventListener('touchstart', playOnTouch, { once: true, passive: true });
+                                document.addEventListener('click', playOnTouch, { once: true, passive: true });
+                            });
+                    }
+                }
+
+                // DOM 로드 시 즉시 실행
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', forceVideoPlay);
+                } else {
+                    forceVideoPlay();
+                }
             })();
         </script>
     </head>
@@ -166,16 +317,23 @@
             <!-- hiro 배너 영역 -->
             <section class="hiro">
                 <video
-                    autoplay
-                    muted
-                    loop
-                    playsinline
-                    webkit-playsinline
+                    id="heroVideo"
+                    autoplay="autoplay"
+                    muted="muted"
+                    loop="loop"
+                    playsinline="playsinline"
+                    webkit-playsinline="webkit-playsinline"
                     preload="metadata"
-                    disablepictureinpicture
+                    disablepictureinpicture="disablepictureinpicture"
                     x-webkit-airplay="deny"
-                    controls="false"
-                    style="pointer-events: none; -webkit-appearance: none; outline: none"
+                    x5-video-player-type="h5"
+                    x5-video-player-fullscreen="true"
+                    x5-video-orientation="portraint"
+                    oncontextmenu="return false;"
+                    onselectstart="return false;"
+                    ondragstart="return false;"
+                    onloadstart="this.muted=true;this.volume=0;"
+                    oncanplay="this.muted=true;this.volume=0;this.play();"
                 >
                     <source src="./images/wave_banner.mp4" type="video/mp4" />
                     브라우저가 비디오 태그를 지원하지 않습니다.
