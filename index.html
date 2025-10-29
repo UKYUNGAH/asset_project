@@ -165,7 +165,18 @@
         <main class="main">
             <!-- hiro 배너 영역 -->
             <section class="hiro">
-                <video autoplay muted loop playsinline preload="auto" disablepictureinpicture>
+                <video
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    webkit-playsinline
+                    preload="metadata"
+                    disablepictureinpicture
+                    x-webkit-airplay="deny"
+                    controls="false"
+                    style="pointer-events: none; -webkit-appearance: none; outline: none"
+                >
                     <source src="./images/wave_banner.mp4" type="video/mp4" />
                     브라우저가 비디오 태그를 지원하지 않습니다.
                 </video>

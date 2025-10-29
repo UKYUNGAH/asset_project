@@ -34,26 +34,107 @@ br.m_br2 {
     height: 100%;
     object-fit: fill;
     pointer-events: none; /* 클릭 방지 */
+    -webkit-playsinline: true !important;
+    -webkit-appearance: none !important;
+    outline: none !important;
+    object-fit: cover !important;
+    pointer-events: none !important;
+    border: none !important;
+    background: transparent !important;
 }
 
-/* 기존 .main .hiro video 스타일 아래에 추가 */
+/* 모든 비디오 컨트롤 완전 숨김 */
+.main .hiro video::-webkit-media-controls {
+    display: none !important;
+    -webkit-appearance: none !important;
+}
+
 .main .hiro video::-webkit-media-controls-enclosure {
+    display: none !important;
+}
+
+.main .hiro video::-webkit-media-controls-panel {
+    display: none !important;
+}
+
+.main .hiro video::-webkit-media-controls-play-button {
     display: none !important;
 }
 
 .main .hiro video::-webkit-media-controls-overlay-play-button {
     display: none !important;
+    -webkit-appearance: none !important;
 }
 
 .main .hiro video::-webkit-media-controls-overlay-enclosure {
     display: none !important;
 }
 
-.main .hiro video {
-    -webkit-appearance: none !important;
+.main .hiro video::-webkit-media-controls-start-playback-button {
+    display: none !important;
 }
 
+.main .hiro video::-webkit-media-controls-fullscreen-button {
+    display: none !important;
+}
+
+.main .hiro video::-webkit-media-controls-timeline {
+    display: none !important;
+}
+
+.main .hiro video::-webkit-media-controls-current-time-display {
+    display: none !important;
+}
+
+.main .hiro video::-webkit-media-controls-time-remaining-display {
+    display: none !important;
+}
+
+.main .hiro video::-webkit-media-controls-mute-button {
+    display: none !important;
+}
+
+.main .hiro video::-webkit-media-controls-volume-slider {
+    display: none !important;
+}
+
+/* Firefox 브라우저 대응 */
 .main .hiro video::-moz-media-controls {
+    display: none !important;
+}
+
+/* Edge/IE 브라우저 대응 */
+.main .hiro video::-ms-media-controls {
+    display: none !important;
+}
+
+/* iOS에서 비디오 오버레이 완전 제거 */
+@supports (-webkit-touch-callout: none) {
+    .main .hiro video {
+        -webkit-appearance: none !important;
+    }
+
+    .main .hiro video::-webkit-media-controls-overlay-play-button {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        position: absolute !important;
+        left: -10000px !important;
+        top: -10000px !important;
+        width: 0 !important;
+        height: 0 !important;
+        pointer-events: none !important;
+        z-index: -1 !important;
+    }
+}
+
+/* 추가 보안용 숨김 스타일 */
+.main .hiro video[controls] {
+    controls: none !important;
+}
+
+.main .hiro video::before,
+.main .hiro video::after {
     display: none !important;
 }
 
@@ -1562,6 +1643,27 @@ br.m_br2 {
 
     .main .hiro span {
         font-size: 22px;
+    }
+
+    .main .hiro video {
+        /* 모바일에서 터치 이벤트 완전 차단 */
+        touch-action: none !important;
+        -webkit-touch-callout: none !important;
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+        user-select: none !important;
+    }
+
+    /* iOS Safari 특화 */
+    .main .hiro video::-webkit-media-controls-overlay-play-button {
+        opacity: 0 !important;
+        pointer-events: none !important;
+        position: absolute !important;
+        left: -9999px !important;
+        top: -9999px !important;
+        width: 0 !important;
+        height: 0 !important;
     }
 
     .main .text_section {

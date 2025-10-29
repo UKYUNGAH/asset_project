@@ -67,65 +67,105 @@ function debounce(func, delay) {
     };
 }
 
-// ==================== 3. 비디오 제어 (메인 페이지 전용) ====================
-// 비디오 재생버튼 강제 숨기기 함수
+// ==================== 3. 모바일 비디오 자동재생 최적화 ====================
+
+// 사용자 에이전트 감지
+const isMobileDevice = () => {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+};
+
+const isIOS = () => {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent);
+};
+
+// 비디오 속성 강제 설정 함수 (개선된 버전)
+function setVideoAttributes(video) {
+    if (!video) return;
+
+    // 기본 속성들
+    video.muted = true;
+    video.autoplay = true;
+    video.loop = true;
+    video.controls = false;
+    video.playsInline = true;
+
+    // 속성 직접 설정
+    video.setAttribute('muted', '');
+    video.setAttribute('autoplay', '');
+    video.setAttribute('loop', '');
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
+    video.setAttribute('x-webkit-airplay', 'deny');
+    video.removeAttribute('controls');
+
+    // iOS 특화 설정
+    if (isIOS()) {
+        video.setAttribute('preload', 'metadata'); // iOS에서는 metadata만 로드
+        video.defaultMuted = true;
+        video.volume = 0;
+    } else {
+        video.setAttribute('preload', 'auto');
+    }
+}
+
+// 개선된 비디오 컨트롤 숨김 함수
 function hideVideoControls() {
     const heroVideo = document.querySelector('.main .hiro video');
     if (!heroVideo) return;
 
-    // 모든 컨트롤 속성 제거
-    heroVideo.removeAttribute('controls');
-    heroVideo.controls = false;
+    // 속성 재설정
+    setVideoAttributes(heroVideo);
 
-    // 추가 속성 설정
-    heroVideo.setAttribute('playsinline', '');
-    heroVideo.setAttribute('webkit-playsinline', '');
-    heroVideo.setAttribute('disablepictureinpicture', '');
-
-    // 스타일로 강제 숨기기
+    // 스타일 강제 적용
     heroVideo.style.cssText += `
         -webkit-appearance: none !important;
         -moz-appearance: none !important;
         appearance: none !important;
+        object-fit: cover !important;
+        pointer-events: none !important;
     `;
+
+    console.log('비디오 컨트롤 숨김 적용됨');
 }
 
-// 비디오 자동재생 시도 함수
+// 개선된 자동재생 시도 함수
 function attemptVideoAutoplay() {
     const heroVideo = document.querySelector('.main .hiro video');
     if (!heroVideo) return;
 
-    const playVideo = () => {
-        const playPromise = heroVideo.play();
+    console.log('비디오 자동재생 시도 시작');
 
-        if (playPromise !== undefined) {
-            playPromise
-                .then(() => {
-                    hideVideoControls();
-                    console.log('비디오 자동재생 성공');
-                })
-                .catch((error) => {
-                    hideVideoControls();
-                    console.log('자동재생 실패, 재생버튼 숨김 유지:', error.message);
+    const playVideo = async () => {
+        try {
+            // 먼저 muted 상태 확인 및 설정
+            heroVideo.muted = true;
+            heroVideo.volume = 0;
 
-                    // 사용자 상호작용 후 재생 시도
-                    const userInteractionHandler = () => {
-                        heroVideo
-                            .play()
-                            .then(() => hideVideoControls())
-                            .catch(() => hideVideoControls());
+            // iOS에서는 추가 설정
+            if (isIOS()) {
+                heroVideo.defaultMuted = true;
+                await new Promise((resolve) => setTimeout(resolve, 100)); // 짧은 대기
+            }
 
-                        // 이벤트 리스너 제거
-                        document.removeEventListener('touchstart', userInteractionHandler);
-                        document.removeEventListener('click', userInteractionHandler);
-                        document.removeEventListener('scroll', userInteractionHandler);
-                    };
+            const playPromise = heroVideo.play();
 
-                    // 여러 사용자 상호작용 이벤트에 대응
-                    document.addEventListener('touchstart', userInteractionHandler, { once: true });
-                    document.addEventListener('click', userInteractionHandler, { once: true });
-                    document.addEventListener('scroll', userInteractionHandler, { once: true });
-                });
+            if (playPromise !== undefined) {
+                await playPromise;
+                console.log('✅ 비디오 자동재생 성공');
+                hideVideoControls();
+                return true;
+            }
+        } catch (error) {
+            console.log('❌ 자동재생 실패:', error.message);
+
+            // 사용자 상호작용 후 재생 시도
+            if (isMobileDevice()) {
+                setupUserInteractionHandlers(heroVideo);
+            }
+
+            // 컨트롤은 계속 숨김 유지
+            hideVideoControls();
+            return false;
         }
     };
 
@@ -133,18 +173,72 @@ function attemptVideoAutoplay() {
     if (heroVideo.readyState >= 1) {
         playVideo();
     } else {
-        heroVideo.addEventListener('loadedmetadata', playVideo, { once: true });
-        heroVideo.addEventListener('canplay', playVideo, { once: true });
+        // 메타데이터 로드 대기
+        const onLoadedMetadata = () => {
+            heroVideo.removeEventListener('loadedmetadata', onLoadedMetadata);
+            playVideo();
+        };
+
+        heroVideo.addEventListener('loadedmetadata', onLoadedMetadata);
+
+        // 타임아웃 설정 (5초 후에도 로드 안되면 강제 시도)
+        setTimeout(() => {
+            heroVideo.removeEventListener('loadedmetadata', onLoadedMetadata);
+            playVideo();
+        }, 5000);
     }
 }
 
-// 비디오 이벤트 리스너 설정
+// 사용자 상호작용 핸들러 설정
+function setupUserInteractionHandlers(video) {
+    console.log('사용자 상호작용 핸들러 설정');
+
+    const playOnInteraction = async () => {
+        try {
+            video.muted = true;
+            video.volume = 0;
+
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+                await playPromise;
+                console.log('✅ 사용자 상호작용 후 재생 성공');
+                hideVideoControls();
+            }
+        } catch (error) {
+            console.log('❌ 사용자 상호작용 후에도 재생 실패:', error.message);
+            hideVideoControls();
+        }
+
+        // 이벤트 리스너 제거
+        removeInteractionListeners();
+    };
+
+    const events = ['touchstart', 'touchend', 'click', 'scroll', 'keydown'];
+    const removeInteractionListeners = () => {
+        events.forEach((event) => {
+            document.removeEventListener(event, playOnInteraction);
+        });
+    };
+
+    // 여러 상호작용 이벤트에 리스너 추가
+    events.forEach((event) => {
+        document.addEventListener(event, playOnInteraction, {
+            once: true,
+            passive: true,
+        });
+    });
+
+    // 10초 후 자동 정리
+    setTimeout(removeInteractionListeners, 10000);
+}
+
+// 비디오 이벤트 리스너 설정 (개선된 버전)
 function setupVideoEventListeners() {
     const heroVideo = document.querySelector('.main .hiro video');
     if (!heroVideo) return;
 
-    // 비디오 이벤트에서 컨트롤 숨김 유지
-    const events = [
+    // 컨트롤 표시를 방지하는 이벤트들
+    const preventControlEvents = [
         'loadstart',
         'loadeddata',
         'loadedmetadata',
@@ -165,13 +259,53 @@ function setupVideoEventListeners() {
         'waiting',
     ];
 
-    events.forEach((event) => {
-        heroVideo.addEventListener(event, hideVideoControls, { passive: true });
+    preventControlEvents.forEach((eventType) => {
+        heroVideo.addEventListener(
+            eventType,
+            () => {
+                hideVideoControls();
+            },
+            { passive: true }
+        );
     });
 
-    // MutationObserver로 속성 변경 감지
+    // 특별한 이벤트 핸들러들
+    heroVideo.addEventListener(
+        'pause',
+        () => {
+            // 비디오가 일시정지되면 다시 재생 시도
+            setTimeout(() => {
+                if (heroVideo.paused && !heroVideo.ended) {
+                    heroVideo.play().catch(() => {
+                        console.log('재생 재시도 실패');
+                    });
+                }
+            }, 100);
+        },
+        { passive: true }
+    );
+
+    // 에러 발생 시 재시도
+    heroVideo.addEventListener('error', (e) => {
+        console.error('비디오 에러:', e);
+        // 에러 발생 시 잠시 후 다시 시도
+        setTimeout(() => {
+            if (heroVideo.networkState !== heroVideo.NETWORK_NO_SOURCE) {
+                attemptVideoAutoplay();
+            }
+        }, 1000);
+    });
+
+    // MutationObserver로 controls 속성 변경 감지
     if (window.MutationObserver) {
-        const observer = new MutationObserver(() => hideVideoControls());
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'controls') {
+                    hideVideoControls();
+                }
+            });
+        });
+
         observer.observe(heroVideo, {
             attributes: true,
             attributeFilter: ['controls'],
@@ -179,29 +313,62 @@ function setupVideoEventListeners() {
     }
 }
 
-// 비디오 초기화 함수 (통합)
+// 통합 비디오 초기화 함수 (개선된 버전)
 function initVideoControls() {
     // 메인 페이지가 아니면 실행하지 않음
     if (!document.querySelector('.main .hiro video')) return;
 
-    console.log('비디오 컨트롤 초기화 시작');
+    console.log('🎬 비디오 컨트롤 초기화 시작 (모바일 최적화)');
 
-    // 즉시 실행
+    const heroVideo = document.querySelector('.main .hiro video');
+
+    // 1. 즉시 속성 설정
+    setVideoAttributes(heroVideo);
     hideVideoControls();
 
-    // 이벤트 리스너 설정
+    // 2. 이벤트 리스너 설정
     setupVideoEventListeners();
 
-    // 자동재생 시도
-    attemptVideoAutoplay();
+    // 3. DOM 준비 후 자동재생 시도
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(attemptVideoAutoplay, 100);
+        });
+    } else {
+        setTimeout(attemptVideoAutoplay, 100);
+    }
 
-    // 페이지 포커스 시 재시도
+    // 4. 페이지 가시성 변경 시 재시도
     document.addEventListener('visibilitychange', () => {
         if (!document.hidden) {
-            hideVideoControls();
-            attemptVideoAutoplay();
+            setTimeout(() => {
+                hideVideoControls();
+                if (heroVideo.paused && !heroVideo.ended) {
+                    attemptVideoAutoplay();
+                }
+            }, 100);
         }
     });
+
+    // 5. 페이지 포커스 시 재시도
+    window.addEventListener('focus', () => {
+        setTimeout(() => {
+            hideVideoControls();
+            if (heroVideo.paused && !heroVideo.ended) {
+                attemptVideoAutoplay();
+            }
+        }, 100);
+    });
+
+    // 6. 오리엔테이션 변경 시 재시도 (모바일)
+    if (isMobileDevice()) {
+        window.addEventListener('orientationchange', () => {
+            setTimeout(() => {
+                hideVideoControls();
+                attemptVideoAutoplay();
+            }, 300);
+        });
+    }
 }
 
 // ==================== 4. 이미지 최적화 (Critical Path) ====================
